@@ -1,0 +1,25 @@
+{
+  "event_id": "astro-R1-igor",
+  "traditional_date": "1185-05-01",
+  "claim": {
+    "type": "solar_eclipse",
+    "magnitude_class": "annular_or_total",
+    "observed_visible": true,
+    "time_of_day": "afternoon",
+    "description_ru": "Солнце стояще яко месяцъ"
+  },
+  "result": {
+    "verified": true,
+    "separation_deg": 0.1062,
+    "best_hour_utc": 15,
+    "check_time_utc": "1185-05-08 15:00",
+    "julian_date": "1185-05-01",
+    "gregorian_date": "1185-05-08",
+    "location": {
+      "lat": 51.33,
+      "lon": 33.87,
+      "name": "Путивль"
+    },
+    "note": "Проверка через astropy get_body с конвертацией Julian→Gregorian."
+  }
+}
