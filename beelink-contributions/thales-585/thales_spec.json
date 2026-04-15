@@ -1,0 +1,28 @@
+{
+  "id": "astro-A1-thales",
+  "event": "Затмение Фалеса — битва лидян и мидян на реке Галис",
+  "traditional_date": "585-05-28 BCE",
+  "traditional_date_iso": "-584-05-28",
+  "calendar": "Julian proleptic",
+  "location": {
+    "lat": 40.0,
+    "lon": 33.0,
+    "name": "Река Галис (Анатолия)",
+    "comment": "примерные координаты места битвы (Hattusa / центр. Анатолия)"
+  },
+  "claim": {
+    "type": "solar_eclipse",
+    "magnitude_class": "total_or_near_total",
+    "observed_visible": true,
+    "time_of_day": "afternoon",
+    "predicted_by": "Thales Miletus",
+    "description": "Геродот 1.74: 'день превратился в ночь', битва остановилась, стороны заключили мир"
+  },
+  "source": "Herodotus, Historia 1.74",
+  "alternatives_to_check": [
+    "-609-09-22",
+    "-596-11-16",
+    "-580-05-17"
+  ],
+  "claim_strength": "anchor_of_greek_chronology"
+}
