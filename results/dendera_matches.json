@@ -1,0 +1,1602 @@
+[
+  {
+    "year": -286,
+    "month": 4,
+    "score": 3,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Aries",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 1362,
+    "month": 1,
+    "score": 3,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -464,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Capricornus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Aquarius",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -464,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Aries",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -464,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Gemini",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -406,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Libra",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Cancer",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -404,
+    "month": 1,
+    "score": 3,
+    "details": {
+      "Mercury": {
+        "actual": "Sagittarius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Aquarius",
+        "expected": "Aquarius",
+        "match": true
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Leo",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -382,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Scorpius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Gemini",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -374,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aquarius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Aquarius",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -346,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Aries",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -318,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Scorpius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Scorpius",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -316,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aries",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Taurus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Capricornus",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -310,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Capricornus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Scorpius",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -288,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Libra",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Scorpius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Gemini",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -286,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Sagittarius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Capricornus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Scorpius",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -286,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Leo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Leo",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -228,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Leo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Libra",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -228,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Libra",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Virgo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Sagittarius",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -192,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Scorpius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Scorpius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Scorpius",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -168,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Gemini",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -168,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Cancer",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -168,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Cancer",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Virgo",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -120,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Aries",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -98,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Libra",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Libra",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Capricornus",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -96,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Aries",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Aquarius",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -50,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Cancer",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": -2,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aries",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Taurus",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": -2,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Taurus",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 36,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Virgo",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 38,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Capricornus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Scorpius",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 92,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Scorpius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Virgo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Leo",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 124,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Scorpius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Virgo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Aquarius",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 126,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aries",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Aries",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 154,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Libra",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Virgo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Virgo",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 156,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aries",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Taurus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Scorpius",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 156,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Leo",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Libra",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 164,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Sagittarius",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 188,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aries",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Aries",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Libra",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 282,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Cancer",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Leo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Capricornus",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 354,
+    "month": 1,
+    "score": 3,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Aquarius",
+        "expected": "Aquarius",
+        "match": true
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Gemini",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 378,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Aries",
+        "expected": "Virgo",
+        "match": false
+      }
+    }
+  },
+  {
+    "year": 390,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aquarius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Pisces",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 390,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Aries",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Taurus",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 448,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aquarius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Capricornus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Gemini",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 448,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Cancer",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Virgo",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Gemini",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 448,
+    "month": 10,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Libra",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Cancer",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 478,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Capricornus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Sagittarius",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Capricornus",
+        "expected": "Capricornus",
+        "match": true
+      },
+      "Jupiter": {
+        "actual": "Sagittarius",
+        "expected": "Cancer",
+        "match": false
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 508,
+    "month": 1,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Aquarius",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Capricornus",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Sagittarius",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 508,
+    "month": 4,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Taurus",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Pisces",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Pisces",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  },
+  {
+    "year": 508,
+    "month": 7,
+    "score": 2,
+    "details": {
+      "Mercury": {
+        "actual": "Cancer",
+        "expected": "Gemini",
+        "match": false
+      },
+      "Venus": {
+        "actual": "Gemini",
+        "expected": "Aquarius",
+        "match": false
+      },
+      "Mars": {
+        "actual": "Taurus",
+        "expected": "Capricornus",
+        "match": false
+      },
+      "Jupiter": {
+        "actual": "Cancer",
+        "expected": "Cancer",
+        "match": true
+      },
+      "Saturn": {
+        "actual": "Virgo",
+        "expected": "Virgo",
+        "match": true
+      }
+    }
+  }
+]
