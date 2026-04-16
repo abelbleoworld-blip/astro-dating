@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.user.pilot-day2-deadline</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/osascript</string>
+    <string>-e</string>
+    <string>display notification "День 2 PILOT++ — финальный замер метрик. Beelink+Whisper должны работать. См. ~/Documents/Projects/astro-dating/pilot/day2/README.md" with title "🎯 PILOT++ Day 2: 11:00 МСК" sound name "Glass"</string>
+    <string>-e</string>
+    <string>display dialog "PILOT++ Day 2 deadline — 11:00 МСК!\n\n◻ Whisper 24/7 работает?\n◻ Beelink mesh executor?\n◻ ≥ 1 час voice transcript?\n◻ Mesh-memory test passed?\n\nОткрыть README?" buttons {"Позже", "Открыть README"} default button "Открыть README" with icon caution</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>11</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+  <key>RunAtLoad</key>
+  <false/>
+  <key>StandardOutPath</key>
+  <string>/tmp/pilot-day2-deadline.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/pilot-day2-deadline.err</string>
+</dict>
+</plist>
