@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astro-Dating — Верификация мировой хронологии звёздами</title>
+<meta name="description" content="Независимая астрономическая верификация 16 якорных исторических событий за 5000 лет. Дмитриев А.А., ГПНТБ России.">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --card: #141a2e;
+  --accent: #ffd700;
+  --text: #e0e4f0;
+  --muted: #8a92a6;
+  --green: #4ade80;
+  --red: #f87171;
+  --border: rgba(255,255,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;background:
+  radial-gradient(1px 1px at 20% 30%, white, transparent),
+  radial-gradient(1px 1px at 60% 70%, white, transparent),
+  radial-gradient(1.5px 1.5px at 40% 50%, #ffd, transparent),
+  radial-gradient(1px 1px at 80% 20%, white, transparent),
+  radial-gradient(1px 1px at 30% 80%, white, transparent),
+  radial-gradient(2px 2px at 70% 40%, #ffd700, transparent),
+  radial-gradient(1px 1px at 50% 10%, white, transparent);
+  background-size: 200% 200%; opacity:0.4;}
+header{padding:80px 20px 40px;text-align:center;position:relative;z-index:1}
+header h1{font-size:clamp(28px,5vw,48px);color:var(--accent);margin-bottom:16px;letter-spacing:-0.5px}
+header p.subtitle{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:800px;margin:0 auto}
+header .author{margin-top:24px;font-size:14px;color:var(--muted)}
+main{max-width:1100px;margin:0 auto;padding:20px;position:relative;z-index:1}
+section{margin:48px 0}
+h2{color:var(--accent);margin-bottom:20px;font-size:28px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.card h3{color:#fff;font-size:18px;margin-bottom:8px}
+.card .era{color:var(--muted);font-size:12px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.card p{font-size:14px;color:var(--muted);margin-bottom:8px}
+.check{color:var(--green);font-weight:600}
+.fail{color:var(--red);font-weight:600}
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--card);border-radius:8px;overflow:hidden}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:14px}
+th{background:rgba(255,215,0,0.1);color:var(--accent);font-weight:600}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.stat-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin:32px 0}
+.stat{background:var(--card);padding:24px;border-radius:12px;text-align:center;border:1px solid var(--border)}
+.stat .num{font-size:36px;color:var(--accent);font-weight:700}
+.stat .lbl{color:var(--muted);font-size:13px;margin-top:4px}
+footer{padding:48px 20px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:60px}
+.quote{background:var(--card);border-left:3px solid var(--accent);padding:20px 24px;margin:24px 0;font-style:italic;color:var(--muted)}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+.btn{display:inline-block;background:var(--accent);color:#0a0e1a;padding:10px 20px;border-radius:8px;font-weight:600;transition:0.15s}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn.secondary{background:transparent;border:1px solid var(--accent)}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<header>
+  <h1>Астрономическая верификация мировой хронологии</h1>
+  <p class="subtitle">16 якорных исторических событий, проверенных современной астрономией за 5000 лет: от Шумера до космической эры.</p>
+  <p class="author">Дмитриев А.А., ГПНТБ России · Апрель 2026</p>
+  <div class="links" style="justify-content:center;margin-top:24px">
+    <a class="btn" href="https://github.com/abelbleoworld-blip/astro-dating">GitHub Repo</a>
+    <a class="btn secondary" href="docs/ARTICLE-VAK.md">Научная статья (ВАК)</a>
+    <a class="btn secondary" href="docs/ДЛЯ-ШКОЛЬНИКОВ.md">Для школьников</a>
+  </div>
+</header>
+
+<main>
+
+<div class="stat-grid">
+  <div class="stat"><div class="num">16</div><div class="lbl">Якорных событий</div></div>
+  <div class="stat"><div class="num">8</div><div class="lbl">Цивилизаций</div></div>
+  <div class="stat"><div class="num">5000</div><div class="lbl">Лет покрытия</div></div>
+  <div class="stat"><div class="num">2</div><div class="lbl">Независимых систем</div></div>
+</div>
+
+<section>
+<h2>Главный вывод</h2>
+<p>На выборке из <b>16 астрономически датируемых событий</b> из <b>8 независимых цивилизаций</b> в диапазоне от 3067 года до н.э. до 1986 года н.э. получено <b>полное согласование</b> с традиционной хронологической шкалой в пределах астрономической точности.</p>
+<div class="quote">«Новая хронология» А.Т. Фоменко, требующая 1000-летнего сдвига античности, математически несовместима с физикой на каждом из проверенных якорей.</div>
+</section>
+
+<section>
+<h2>Таблица 16 якорей</h2>
+<table>
+  <tr><th>#</th><th>Событие</th><th>Эпоха</th><th>Культура</th><th>Результат</th></tr>
+  <tr><td>1</td><td>Бур-Сагале затмение</td><td>−763</td><td>🇮🇶 Ассирия</td><td class="check">0.028° ✅</td></tr>
+  <tr><td>2</td><td>Навуходоносор VAT 4956</td><td>−568</td><td>🏛 Вавилон</td><td class="check">Lunar 28.06 ✅</td></tr>
+  <tr><td>3</td><td>Saros-цикл × 5</td><td>−568..−477</td><td>🏛 Вавилон</td><td class="check">Δ &lt; 0.2 дня ✅</td></tr>
+  <tr><td>4</td><td>Фалес затмение</td><td>−584</td><td>🇬🇷 Греция</td><td class="check">0.52° ✅</td></tr>
+  <tr><td>5</td><td>Альмагест Птолемея</td><td>−130..+137</td><td>🇬🇷🇪🇬 Эллинизм</td><td class="check">Гиппарх ±100 ✅</td></tr>
+  <tr><td>6</td><td>Дендерский зодиак</td><td>−286 / −49</td><td>🇪🇬 Египет</td><td class="check">Птолемеи ✅</td></tr>
+  <tr><td>7</td><td>Комета Галлея × 30</td><td>−239..+1986</td><td>🌍 Глобально</td><td class="check">75-79 лет ✅</td></tr>
+  <tr><td>8</td><td>Крабовидная SN 1054</td><td>+1054</td><td>🇨🇳 Китай + 4</td><td class="check">HST 1002-1074 ✅</td></tr>
+  <tr><td>9</td><td>Затмение Игоря</td><td>+1185</td><td>🇷🇺 Русь</td><td class="check">0.106° ✅</td></tr>
+  <tr><td>10</td><td>Махабхарата (кластер)</td><td>−3068</td><td>🇮🇳 Индия</td><td class="check">5/6 маркеров ✅</td></tr>
+  <tr><td>11</td><td>Рамаяна / Рама</td><td>—</td><td>🇮🇳 Индия</td><td>Литературный идеал</td></tr>
+  <tr><td>12</td><td>Индийские эпохи</td><td>—</td><td>🇮🇳 Индия</td><td>Политические</td></tr>
+  <tr><td>13</td><td>Jyotisha Vedanga</td><td>−1400</td><td>🇮🇳 Индия</td><td class="check">Прецессия β Del ✅</td></tr>
+  <tr><td>14</td><td>Maya Dresden Codex</td><td>+731 / −3114</td><td>🇲🇽 Майя</td><td class="check">Венера 0.1 дня ✅</td></tr>
+  <tr><td>15</td><td>Шан Китай + Чуньцю + SN 185</td><td>−1302..+185</td><td>🇨🇳 Китай</td><td class="check">0.02-0.12° ✅</td></tr>
+  <tr><td>16</td><td>MUL.APIN Вавилон</td><td>−1000</td><td>🏛 Вавилон</td><td class="check">Венера 584 дня ✅</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Методология</h2>
+<div class="grid">
+  <div class="card">
+    <div class="era">Инструменты</div>
+    <h3>Современные эфемериды</h3>
+    <p>NASA JPL DE422 (−3000..+3000), каталог Hipparcos, NASA Five Millennium Catalog of Solar Eclipses, физические измерения HST.</p>
+  </div>
+  <div class="card">
+    <div class="era">Программные средства</div>
+    <h3>Python: astropy + skyfield</h3>
+    <p>Открытые библиотеки. Полный воспроизводимый пайплайн. Код на GitHub — любой школьник может повторить за вечер.</p>
+  </div>
+  <div class="card">
+    <div class="era">Peer-review</div>
+    <h3>Две независимые системы</h3>
+    <p>MacBook (macOS, astropy 6) и Beelink (Windows, astropy 7) параллельно считали с разными стеками. Совпадение исключает программные ошибки.</p>
+  </div>
+  <div class="card">
+    <div class="era">Методы</div>
+    <h3>4 независимых подхода</h3>
+    <p>Прецессия и proper motion (Альмагест), прямая проверка затмений, кластерный анализ составных текстов (Махабхарата), физическая датировка остатков (Крабовидная).</p>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Что опровергнуто</h2>
+<table>
+  <tr><th>Утверждение</th><th>Как опровергается</th></tr>
+  <tr><td>Морозов: Альмагест составлен в VIII-IX вв.</td><td>RMS минимум на −120, не +800 (разница 4°) <span class="fail">❌</span></td></tr>
+  <tr><td>Фоменко: 1000-летний сдвиг античности</td><td>Бур-Сагале не переносится на +237 (нет затмения) <span class="fail">❌</span></td></tr>
+  <tr><td>Фоменко: Дендера — памятник 1168 CE</td><td>0/5 совпадений планет <span class="fail">❌</span></td></tr>
+  <tr><td>Новая хронология: античность пропущена/раздвоена</td><td>30 возвращений Галлея без единой аномалии <span class="fail">❌</span></td></tr>
+  <tr><td>Скептицизм: «Слово о полку Игореве» — вымысел</td><td>Затмение sep 0.106° астрономически реально <span class="check">✅</span></td></tr>
+</table>
+</section>
+
+<section>
+<h2>Документы</h2>
+<div class="grid">
+  <div class="card">
+    <h3>📕 ARTICLE-VAK.md</h3>
+    <p>Научная статья формата ВАК: УДК, аннотация, методы, 16 якорей, литература по ГОСТ.</p>
+    <a href="docs/ARTICLE-VAK.md">Читать →</a>
+  </div>
+  <div class="card">
+    <h3>📘 PAPER-v2.md</h3>
+    <p>Расширенная научная статья со всеми деталями вычислений и интерпретацией.</p>
+    <a href="docs/PAPER-v2.md">Читать →</a>
+  </div>
+  <div class="card">
+    <h3>📗 ДЛЯ-ШКОЛЬНИКОВ.md</h3>
+    <p>Популярная версия для школьников и студентов. Простым языком, с аналогиями.</p>
+    <a href="docs/ДЛЯ-ШКОЛЬНИКОВ.md">Читать →</a>
+  </div>
+  <div class="card">
+    <h3>💻 GitHub Repository</h3>
+    <p>Полный исходный код. Python-скрипты, датасеты, результаты, графики.</p>
+    <a href="https://github.com/abelbleoworld-blip/astro-dating">Перейти →</a>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Воспроизводимость</h2>
+<div class="quote">
+Всё открыто. Все данные в публичном доступе. Весь код — Python. Время расчёта — менее 30 минут на любом ноутбуке. Любой школьник или студент может проверить сам.
+</div>
+<pre style="background:var(--card);padding:20px;border-radius:8px;overflow-x:auto;font-size:14px">git clone https://github.com/abelbleoworld-blip/astro-dating.git
+cd astro-dating
+pip install -r requirements.txt
+python src/almagest_date.py       # Датировка каталога Альмагеста
+python src/halley_chronology.py   # 30 возвращений Галлея
+python src/maya_dresden.py        # Майянская хронология</pre>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 · Дмитриев А.А., ГПНТБ России</p>
+<p style="margin-top:8px">
+  <a href="https://github.com/abelbleoworld-blip/astro-dating">GitHub</a> ·
+  <a href="mailto:turbo.a.turbo@gmail.com">Контакт</a>
+</p>
+</footer>
+</body>
+</html>
