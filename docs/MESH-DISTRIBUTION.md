@@ -130,19 +130,21 @@ mesh-memory/
 
 ## 8. Pilot 1 неделя — конкретные шаги
 
-**День 1 (сегодня, 2026-04-17):** ◻ ARCHITECTURE-2N.md ◻ MESH-DISTRIBUTION.md ◻ 64 квеста через quest skill ◻ S1 в 64 строки ✅ ◻ D1 в 64 строки ◻ commit + push.
+**Это PILOT++** — объединение 2ⁿ-задач (структура) и PC-задач (движок). Детали PC см. `PREDICTIVE-CONTEXT.md`.
 
-**День 2 (2026-04-18):** ◻ Поднять Claude Code на Beelink через `ssh azw-ser9` ◻ Beelink клонирует astro-dating ◻ Beelink клонирует mesh-memory ◻ Тест: Beelink читает pending/ → берёт задачу → выполняет → пушит.
+**День 1 (сегодня, 2026-04-17):** 2ⁿ: ◻ ARCHITECTURE-2N.md ✅ ◻ MESH-DISTRIBUTION.md ✅ ◻ S1 в 64 строки ✅ ◻ D1 в 64 строки ◻ 64 квеста через quest skill. PC: ◻ PREDICTIVE-CONTEXT.md ✅ ◻ commit + push.
 
-**День 3 (2026-04-19):** ◻ OPPO Termux установить (`pkg install nodejs-lts python git openssh termux-boot`) ◻ SSH-ключ OPPO в authorized_keys Mac/Beelink ◻ Тест: micro-task через Termux-cron каждый час → polling mesh-memory → выполнение мини-скрипта. ◻ **Boox eInk** — установить Termux + git, склонировать astro-dating + mesh-memory, Calibre для PDF-библиотеки. Первый PDF (peer-review статья по астроверификации) загрузить и прочитать с пометками стилусом.
+**День 2 (2026-04-18):** 2ⁿ: ◻ Beelink онлайн через `ssh azw-ser9` ◻ клонирует astro-dating + mesh-memory ◻ тест pending → in-progress → done. PC: ◻ Whisper.cpp на Mac, launchd `com.user.whisper-capture` → `mesh-memory/voice/`.
 
-**День 4 (2026-04-20):** ◻ Cron на VPS Abel-HQ: каждые 6 часов запускает AI cross-review через Grok/Gemini API ◻ Telegram-бот @abelworldbot собирает digest каждое утро в 7:00.
+**День 3 (2026-04-19):** 2ⁿ: ◻ OPPO Termux + SSH-ключ + micro-task тест ◻ Boox онлайн с Termux+git+Calibre, первый PDF. PC: ◻ Screen capture cron `*/5` → vision LLM → `mesh-memory/screen/`. Тест: 96 скриншотов за день, поиск работает.
 
-**День 5 (2026-04-21):** ◻ iMac в pool как dual-check ◻ Cron на iMac: каждый коммит Mac → iMac запускает те же тесты → diff → отчёт в reports/.
+**День 4 (2026-04-20):** 2ⁿ: ◻ Cron VPS Abel-HQ: AI cross-review через Grok/Gemini. PC: ◻ Indexer на Beelink — sentence-transformers + FAISS, ночной job → `mesh-memory/index/hot.faiss`. Тест: запрос «вспомни про D1» возвращает voice-фрагменты.
 
-**День 6 (2026-04-22):** ◻ Замер метрик pilot ◻ Subjective опрос «играючи?» ◻ Анализ что работает, что мешает.
+**День 5 (2026-04-21):** 2ⁿ: ◻ iMac dual-check, cron каждый коммит Mac → iMac тесты → diff. PC: ◻ State estimator на VPS-HQ ежечасно, читает 4ч capture + active_quests → `state.md`.
 
-**День 7 (2026-04-23):** ◻ Финальный отчёт ◻ Решение: масштабировать на C (вся экосистема) или докрутить параметры.
+**День 6 (2026-04-22):** 2ⁿ: ◻ Замер метрик pilot, опрос «играючи?». PC: ◻ Predictor на VPS-HQ каждые 2 часа → predictions.md ◻ Telegram digest 7:00 первый раз — содержательный.
+
+**День 7 (2026-04-23):** 2ⁿ: ◻ Финальный отчёт, решение о масштабировании на C. PC: ◻ Feedback loop активен — accept/reject → `mesh-memory/feedback/` ◻ Beelink анализ feedback ночью.
 
 ## 9. Метрики pilot
 
@@ -153,6 +155,11 @@ mesh-memory/
 | OPPO выполнил micro-tasks | ≥ 3 |
 | **Boox прочитал peer-review PDF** | **≥ 1 с рукописными пометками, синхронизированными в mesh** |
 | iMac dual-check работает | да, хотя бы 1 раз diff |
+| **PC: Voice capture (часов)** | **≥ 50 часов, ≥ 80% распознано** |
+| **PC: Screen capture (скриншотов)** | **≥ 1500 описано** |
+| **PC: Predictor предсказаний** | **≥ 84 за неделю (12/день)** |
+| **PC: Telegram morning digest** | **≥ 5 за 7 дней** |
+| **PC: Принятые квесты от predictor** | **≥ 10** |
 | Telegram morning digest | ≥ 5 за неделю (не каждый день обязательно) |
 | Mac работает 9-18, ничего после | да (без перегрузки) |
 | Subjective: «играючи?» | 7+ из 10 |
