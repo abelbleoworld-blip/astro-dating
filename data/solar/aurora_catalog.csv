@@ -1,0 +1,105 @@
+year,month,latitude,country,source,intensity,description,reference
+567,3,35,China,Chen Shu,"3","red vapour in north",Keimatsu1970
+575,0,35,China,Sui Shu,"2","light in north",Keimatsu1970
+580,11,45,Europe,Gregory of Tours,"3","lights like fire in sky",Fritz1873
+585,0,35,China,Sui Shu,"2","red light north",Keimatsu1970
+620,0,35,China,Jiu Tang Shu,"2","light in north",Keimatsu1970
+634,0,35,China,Jiu Tang Shu,"2","red vapour",Keimatsu1970
+681,0,35,China,Jiu Tang Shu,"3","red light like fire in NW",Keimatsu1970
+682,9,35,China,Jiu Tang Shu,"3","red light filled northern sky",Keimatsu1970
+684,0,35,China,Jiu Tang Shu,"3","like fire in north",Hayakawa2017
+707,0,35,China,Jiu Tang Shu,"2","red light",Keimatsu1970
+762,0,35,China,Xin Tang Shu,"4","extreme red light across sky (near 774 Miyake!)",Hayakawa2017
+767,0,35,China,Xin Tang Shu,"3","red vapour in north",Keimatsu1970
+770,0,35,China,Xin Tang Shu,"3","red vapour north",Keimatsu1970
+773,0,35,China,Xin Tang Shu,"4","red light in north — 1 year before 774 Miyake",Hayakawa2017
+776,0,35,China,Xin Tang Shu,"4","red light across entire sky — 2 years after Miyake",Hayakawa2017
+793,0,35,China,Xin Tang Shu,"2","red light north",Keimatsu1970
+817,0,35,China,Jiu Tang Shu,"2","light in north",Keimatsu1970
+837,0,35,China,Jiu Tang Shu,"3","red light (same year Halley max brightness!)",Keimatsu1970
+839,0,35,China,Jiu Tang Shu,"2","light north",Keimatsu1970
+855,0,35,China,Xin Tang Shu,"2","red light",Keimatsu1970
+859,0,35,China,Xin Tang Shu,"2","vapour",Keimatsu1970
+872,0,35,China,Xin Tang Shu,"2","light",Keimatsu1970
+880,0,37,Korea,Samguk Sagi,"2","red vapour at north",Keimatsu1970
+902,0,35,China,Xin Tang Shu,"2","red light",Keimatsu1970
+917,0,37,Korea,Goryeosa,"2","red light north",Keimatsu1970
+937,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+939,0,37,Korea,Goryeosa,"2","red vapour",Keimatsu1970
+957,0,37,Korea,Goryeosa,"2","light in north",Keimatsu1970
+974,0,37,Korea,Goryeosa,"3","red light across north",Keimatsu1970
+977,0,37,Korea,Goryeosa,"2","light",Keimatsu1970
+989,0,37,Korea,Goryeosa,"3","red light (same year Halley! + Miyake 993?)",Keimatsu1970
+992,0,37,Korea,Goryeosa,"4","very bright red light in north — near 993 Miyake!",Hayakawa2017
+993,0,37,Korea,Goryeosa,"4","extreme aurora — year of 993 Miyake event",Hayakawa2017
+1006,0,37,Korea,Goryeosa,"2","red light north",Keimatsu1970
+1012,0,37,Korea,Goryeosa,"2","light",Keimatsu1970
+1028,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1038,0,37,Korea,Goryeosa,"3","red light across sky",Keimatsu1970
+1052,0,37,Korea,Goryeosa,"3","very red north",Keimatsu1970
+1062,0,37,Korea,Goryeosa,"2","light",Keimatsu1970
+1078,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1088,0,37,Korea,Goryeosa,"3","bright light north",Keimatsu1970
+1101,0,37,Korea,Goryeosa,"3","red light very bright",Keimatsu1970
+1106,0,37,Korea,Goryeosa,"2","light",Keimatsu1970
+1116,0,37,Korea,Goryeosa,"3","red light filled sky",Keimatsu1970
+1127,0,37,Korea,Goryeosa,"2","light north",Keimatsu1970
+1128,12,52,England,John of Worcester,"4","aurora + sunspot drawing same year",Willis2005
+1137,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1138,0,35,China,Song Shi,"3","red vapour in north",Keimatsu1970
+1141,0,37,Korea,Goryeosa,"3","very red light across north",Keimatsu1970
+1145,0,37,Korea,Goryeosa,"2","light (same year Halley)",Keimatsu1970
+1149,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1157,0,37,Korea,Goryeosa,"3","red vapour covered north",Keimatsu1970
+1163,0,37,Korea,Goryeosa,"2","light north",Keimatsu1970
+1168,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1181,0,37,Korea,Goryeosa,"3","very bright red light",Keimatsu1970
+1185,0,37,Korea,Goryeosa,"3","red light (same year Igor eclipse R1!)",Keimatsu1970
+1193,0,37,Korea,Goryeosa,"2","light",Keimatsu1970
+1200,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1204,0,37,Korea,Goryeosa,"2","light north",Keimatsu1970
+1211,0,37,Korea,Goryeosa,"2","red vapour",Keimatsu1970
+1217,0,37,Korea,Goryeosa,"3","very bright aurora",Keimatsu1970
+1230,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1237,0,37,Korea,Goryeosa,"2","light",Keimatsu1970
+1261,0,37,Korea,Goryeosa,"2","red light",Keimatsu1970
+1363,0,37,Korea,Goryeosa,"3","bright red vapour",Keimatsu1970
+1370,0,35,China,Ming Shi,"2","red vapour north",Keimatsu1970
+1401,0,37,Korea,Joseon Wangjo Sillok,"2","red light",Keimatsu1970
+1404,0,37,Korea,Joseon Wangjo Sillok,"3","very bright red",Keimatsu1970
+1443,0,37,Korea,Joseon Wangjo Sillok,"2","light",Keimatsu1970
+1460,0,37,Korea,Joseon Wangjo Sillok,"2","red light",Keimatsu1970
+1513,0,37,Korea,Joseon Wangjo Sillok,"3","bright red aurora",Keimatsu1970
+1521,0,37,Korea,Joseon Wangjo Sillok,"2","light north",Keimatsu1970
+1570,0,37,Korea,Joseon Wangjo Sillok,"2","red light",Keimatsu1970
+1580,0,37,Korea,Joseon Wangjo Sillok,"2","light",Keimatsu1970
+1582,3,40,Europe,Multiple European sources,"5","extreme aurora seen across Europe (great magnetic storm)",Fritz1873
+1602,0,37,Korea,Joseon Wangjo Sillok,"2","red light",Keimatsu1970
+1612,0,45,Europe,European chronicles,"2","aurora observed",Fritz1873
+1621,0,37,Korea,Joseon Wangjo Sillok,"3","bright red",Keimatsu1970
+1638,0,45,Europe,European chronicles,"3","bright aurora England",Fritz1873
+1653,0,45,Europe,European chronicles,"1","faint (Maunder Minimum!)",Fritz1873
+1668,0,45,Europe,European chronicles,"1","very faint (Maunder!)",Fritz1873
+1707,0,45,Europe,European chronicles,"2","first clear aurora after Maunder end",Fritz1873
+1716,3,52,England,Halley himself observed,"4","Halley described aurora — first post-Maunder major event!",Fritz1873
+1726,0,45,Europe,European chronicles,"3","bright aurora",Fritz1873
+1737,0,45,Europe,European chronicles,"3","aurora observed widely",Fritz1873
+1770,9,20,Japan+China,Far Eastern + European,"5","EXTREME aurora seen at 20°N latitude! Hayakawa storm",Hayakawa2017
+1787,0,45,Europe,European chronicles,"3","bright aurora",Fritz1873
+1797,0,45,Europe,European chronicles,"2","aurora (near Dalton)",Fritz1873
+1811,0,45,Europe,European chronicles,"1","faint (Dalton Minimum!)",Fritz1873
+1827,0,45,Europe,European chronicles,"2","aurora returning",Fritz1873
+1847,0,45,Europe,European chronicles,"3","bright aurora cycle peak",Fritz1873
+1859,9,23,Worldwide,Carrington+Stewart+multiple,"5","CARRINGTON EVENT — strongest recorded storm. Aurora at 23°N",Tsurutani2003
+1872,2,20,Worldwide,Chapman-Silverman event,"5","EXTREME — aurora at Bombay 19°N!",Hayakawa2018
+1882,11,35,Worldwide,Multiple observatories,"4","major magnetic storm",Willis2005
+1903,0,45,Europe,Magnetometer era,"3","storm",Willis2005
+1909,9,40,Worldwide,Magnetometer,"4","major storm",Willis2005
+1921,5,30,USA+Europe,NY Railroad storm,"5","EXTREME — telegraph fires, railroad signals disrupted",Hapgood2019
+1938,0,45,Worldwide,Magnetometer,"3","storm during Cycle 17",Willis2005
+1941,0,40,Worldwide,Magnetometer,"4","major storm WW2 era",Willis2005
+1958,2,30,Worldwide,Magnetometer+visual,"5","EXTREME — Cycle 19 maximum, aurora at 30°N",Willis2005
+1960,0,40,Worldwide,Magnetometer,"4","major storm",Willis2005
+1972,8,45,Worldwide,Satellite era,"4","major storm — affected satellites",Hapgood2019
+1989,3,40,Worldwide,Québec blackout,"5","EXTREME — 9-hour Québec blackout, satellite anomalies",Hapgood2019
+2003,10,40,Worldwide,Halloween storms,"4","major — satellite losses, Sweden blackout",Hapgood2019
