@@ -13,6 +13,7 @@
 | **L6** | Кросс-публикации (5 волн пирамиды) | [publishing/MODEL.md](../publishing/MODEL.md) + [MATRIX.md](../publishing/MATRIX.md) | ~450 строк | W1 peer-review → W2 wiki-cite → W3 научпоп → W4 видео → W5 wiki-new; 11×14 матрица |
 | **L7** | Wikipedia: NOR/RS/COI стратегия | [publishing/wikipedia/STRATEGY.md](../publishing/wikipedia/STRATEGY.md) | ~165 строк | Wikipedia — усилитель, не запускающая точка; talk-page → community review |
 | **L8** | Мульти-фрактальная архитектура (6 шкал) | [L8-multi-fractal.md](L8-multi-fractal.md) | 64 строки | 2ⁿ + Fibonacci + 12-TET + календарь + фонология + Dunbar — каждой задаче своя шкала |
+| **L9** | Два кода природы: ЭМ-спектр как доказательство | [L9-two-codes.md](L9-two-codes.md) | 64 строки | CMB 1.063мм → ×10 → CO₂/Nd:YAG (десятичный); CMB /2¹¹ → зелёный свет (двоичный); два ортогональных кода в одном спектре |
 ## Дополнительные файлы сессии
 - [SESSION-2026-04-17.md](SESSION-2026-04-17.md) — расшифровка ключевых решений сессии (что обсуждали, что выбрали, какие альтернативы отвергли)
 - [pilot/day2/README.md](../../pilot/day2/README.md) — конкретный план дня 2 PILOT++ (Beelink + Whisper)
