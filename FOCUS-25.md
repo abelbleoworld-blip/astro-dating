@@ -5,7 +5,7 @@
 ## 4 экспоненциальных пути (что делаем)
 | ID | Путь | Single Next Action | Дедлайн | Статус |
 |---|---|---|---|---|
-| **P1** | Astro-dating → reference | Письмо Дамбису + arXiv endorsement | 2026-04-19 | ◻ черновик готов в `letters/dambis-2026-04.md` |
+| **P1** | SOL-1 → Solar Prediction | Построить pipeline: Yau-Stephenson × astro-dating якоря → FFT → прогноз Grand Solar Minimum | 2026-05-01 | ◻ якорь SOL-1 готов, pipeline не начат. **Тихо работаем, не публикуем до результата.** Письмо Дамбису ПОСЛЕ готового прогноза |
 | **P2** | 2ⁿ → personal OS | Применить к AILib биллингу (256 строк, 4×64) | 2026-04-22 | ◻ не начато |
 | **P3** | PC → critical infra | Voice on-demand (`voice` команда) | 2026-04-17 ✅ | ✅ работает: `voice`, `v`, см. `pilot/day2/voice-on-demand.md` |
 | **P4** | Thought leadership | Telegram-пост про ARCHITECTURE-2N + L8 | 2026-04-19 | ◻ черновик в `social/telegram-post-2n.md` |
