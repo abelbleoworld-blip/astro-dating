@@ -7,7 +7,7 @@
 |---|---|---|---|---|
 | **P1** | Astro-dating → reference | Письмо Дамбису + arXiv endorsement | 2026-04-19 | ◻ черновик готов в `letters/dambis-2026-04.md` |
 | **P2** | 2ⁿ → personal OS | Применить к AILib биллингу (256 строк, 4×64) | 2026-04-22 | ◻ не начато |
-| **P3** | PC → critical infra | Whisper 24/7 (только этот слой) | 2026-04-17 вечер | ◻ скрипт готов в `pilot/day2/setup-whisper-mac.sh` |
+| **P3** | PC → critical infra | Voice on-demand (`voice` команда) | 2026-04-17 ✅ | ✅ работает: `voice`, `v`, см. `pilot/day2/voice-on-demand.md` |
 | **P4** | Thought leadership | Telegram-пост про ARCHITECTURE-2N + L8 | 2026-04-19 | ◻ черновик в `social/telegram-post-2n.md` |
 ## 25% активные артефакты (~10 файлов)
 - `ARCHITECTURE-2N.md` — манифест 2ⁿ (требует фикса противоречия с L8, см. open issues)
