@@ -59,24 +59,79 @@ def main():
     print(f"    Doubling time estimate: {(years[-1]-years[0]) / (log_bits[-1]-log_bits[0]):.0f} years per doubling")
 
     # ============================================================
-    # Exponential fit on log_bits
+    # Piecewise exponential fit: pre-1600 + post-1600
     # ============================================================
-    try:
-        popt_exp, pcov_exp = curve_fit(exponential, years, bits,
-                                        p0=[1, 0.005, 0], maxfev=10000)
-        bits_fit_exp = exponential(years, *popt_exp)
-        doubling_time_exp = np.log(2) / popt_exp[1]
-        print(f"\n[3] Exponential fit: a={popt_exp[0]:.2e}, b={popt_exp[1]:.6f}, c={popt_exp[2]:.0f}")
-        print(f"    Doubling time: {doubling_time_exp:.0f} years")
+    # 3 eras: naked eye → telescope → space
+    ERAS = [
+        ('Naked Eye',  None, 1600,  '🔭 Pre-telescope'),
+        ('Telescope',  1600, 1900,  '🔭 Telescope era'),
+        ('Space Age',  1900, None,  '🛰️ Photography + Space'),
+    ]
 
-        residuals_exp = np.log2(bits) - np.log2(np.maximum(bits_fit_exp, 1))
-        print(f"\n[4] Residuals (log₂ actual - log₂ fit):")
-        for inst, res in zip(instruments, residuals_exp):
-            marker = '⬆️' if res > 1 else '⬇️' if res < -1 else '  '
-            print(f"    {marker} {inst['year']:+5d} {inst['name'][:35]:35s} {res:+5.1f}")
-    except Exception as e:
-        print(f"    ⚠️ Exponential fit failed: {e}")
-        popt_exp = None
+    popt_eras = {}
+    doubling_eras = {}
+    residuals_exp = np.zeros(len(years))
+
+    for era_name, start, end, desc in ERAS:
+        if start is None:
+            mask = years < end
+        elif end is None:
+            mask = years >= start
+        else:
+            mask = (years >= start) & (years < end)
+
+        if mask.sum() < 3:
+            print(f"\n[3] {era_name}: only {mask.sum()} points, skipping fit")
+            continue
+
+        y_era, b_era = years[mask], bits[mask]
+        try:
+            # Fit on log space for better stability
+            log_b = np.log2(np.maximum(b_era, 1))
+            from numpy.polynomial import polynomial as P
+            coeffs = P.polyfit(y_era, log_b, 1)
+            slope = coeffs[1]  # log2(bits)/year
+            doubling = 1.0 / slope if slope > 0 else float('inf')
+
+            # Also try exponential for extrapolation
+            p0_c = y_era[0]
+            try:
+                popt, _ = curve_fit(exponential, y_era, b_era,
+                                    p0=[b_era[0], 0.005, p0_c], maxfev=10000)
+                doubling_exp = np.log(2) / popt[1] if popt[1] > 0 else float('inf')
+                fit_vals = exponential(y_era, *popt)
+                residuals_exp[mask] = np.log2(b_era) - np.log2(np.maximum(fit_vals, 1))
+                popt_eras[era_name] = popt
+                doubling_eras[era_name] = doubling_exp
+                print(f"\n[3] {desc} ({y_era[0]}—{y_era[-1]}, {mask.sum()} pts):")
+                print(f"     Linear log₂ slope: doubling every {doubling:.0f} years")
+                print(f"     Exponential fit:   doubling every {doubling_exp:.0f} years")
+            except Exception:
+                doubling_eras[era_name] = doubling
+                print(f"\n[3] {desc} ({y_era[0]}—{y_era[-1]}, {mask.sum()} pts):")
+                print(f"     Linear log₂ slope: doubling every {doubling:.0f} years")
+        except Exception as e:
+            print(f"    ⚠️ {era_name} fit failed: {e}")
+
+    # Summary
+    popt_pre = popt_eras.get('Naked Eye')
+    popt_post = popt_eras.get('Space Age') if 'Space Age' in popt_eras else popt_eras.get('Telescope')
+    doubling_pre = doubling_eras.get('Naked Eye', 500)
+    doubling_post = doubling_eras.get('Space Age', doubling_eras.get('Telescope', 50))
+    doubling_time_exp = doubling_post
+    popt_exp = popt_post
+    BREAK_YEAR = 1600
+
+    print(f"\n[3 SUMMARY] Piecewise doubling times:")
+    for era_name, _, _, desc in ERAS:
+        d = doubling_eras.get(era_name)
+        if d:
+            print(f"     {desc:30s}: {d:.0f} years")
+
+    print(f"\n[4] Residuals (log₂ actual - log₂ piecewise fit):")
+    for inst, res in zip(instruments, residuals_exp):
+        marker = '⬆️' if res > 1 else '⬇️' if res < -1 else '  '
+        print(f"    {marker} {inst['year']:+5d} {inst['name'][:35]:35s} {res:+5.1f}")
 
     # ============================================================
     # Key findings
@@ -144,11 +199,17 @@ def main():
             ax.annotate(f"{inst['name'][:20]}\n({inst['year']})",
                        xy=(inst['year'], np.log2(inst['total_bits'])),
                        fontsize=6, ha='center', va='bottom', rotation=0)
-    if popt_exp is not None:
-        x_fit = np.linspace(years[0], 2100, 500)
-        y_fit = np.log2(np.maximum(exponential(x_fit, *popt_exp), 1))
-        ax.plot(x_fit, y_fit, 'r--', lw=2, alpha=0.7,
-               label=f'Exp fit (doubling {doubling_time_exp:.0f}y)')
+    if popt_pre is not None:
+        x_pre = np.linspace(years[0], BREAK_YEAR, 300)
+        y_pre = np.log2(np.maximum(exponential(x_pre, *popt_pre), 1))
+        ax.plot(x_pre, y_pre, 'r--', lw=2, alpha=0.7,
+               label=f'Pre-{BREAK_YEAR} (doubling {doubling_pre:.0f}y)')
+    if popt_post is not None:
+        x_post = np.linspace(BREAK_YEAR, 2100, 300)
+        y_post = np.log2(np.maximum(exponential(x_post, *popt_post), 1))
+        ax.plot(x_post, y_post, 'g--', lw=2, alpha=0.7,
+               label=f'Post-{BREAK_YEAR} (doubling {doubling_post:.0f}y)')
+    ax.axvline(BREAK_YEAR, color='orange', ls=':', alpha=0.5, lw=1)
     ax.set_xlabel('Year CE')
     ax.set_ylabel('log₂(bits) — информационная ёмкость')
     ax.set_title('Кривая цивилизации: астрономическое знание за 5000 лет')
