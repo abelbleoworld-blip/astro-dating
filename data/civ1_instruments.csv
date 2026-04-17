@@ -1,0 +1,22 @@
+year,name,culture,objects,params,bits_per_param,total_bits,precision_arcsec,source
+-3000,Stonehenge (heel stone + sarsen circle),Britain,50,2,3,300,18000,Ruggles1999
+-1800,Mul.Apin star list,Babylon,66,3,6,1188,7200,Hunger1999
+-700,Babylonian astronomical diaries,Babylon,7,5,8,280,3600,Sachs1988
+-500,Dresden Codex (Maya Venus tables),Maya,5,3,10,150,360,Aveni1980
+-300,Eudoxus spheres (27 spheres model),Greece,27,3,6,486,3600,Heath1913
+-150,Antikythera mechanism,Greece,7,6,10,420,3600,Freeth2006
+-130,Hipparchus star catalogue (Almagest),Greece,1022,2,10,20440,4428,Toomer1984+ours
++100,Ptolemy Almagest (theory+catalog),Rome,1022,3,10,30660,3600,Toomer1984
++500,Aryabhata (Indian astronomy),India,9,5,8,360,3600,Pingree1981
++800,Al-Battani (Arabic tables),Islamic,489,2,8,7824,600,Nallino1903
++1000,Song dynasty star maps,China,1464,2,8,23424,3600,Needham1959
++1252,Alfonsine Tables,Europe,7,8,12,672,600,Chabas2012
++1437,Ulugh Beg catalogue,Central Asia,1018,2,12,24432,1080,Verbunt2012
++1602,Tycho Brahe catalogue,Denmark,777,2,14,21756,60,Thoren1990
++1627,Kepler Rudolphine Tables,Germany,1005,3,14,42210,120,Kepler1627
++1725,Flamsteed Historia Coelestis,England,3310,2,16,105920,10,Flamsteed1725
++1801,Piazzi Palermo catalogue,Italy,7646,2,18,275256,3,Piazzi1803
++1860,Bonner Durchmusterung,Germany,324189,2,16,10374048,1,Argelander1860
++1997,Hipparcos (ESA),Space,118218,4,20,9457440,1,ESA1997
++2016,Gaia DR1,Space,1142679769,2,24,54848628912,0.3,GaiaDR1
++2022,Gaia DR3,Space,1811709771,6,30,326107758780,0.02,GaiaDR3
