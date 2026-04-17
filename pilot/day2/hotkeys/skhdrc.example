@@ -1,0 +1,11 @@
+# skhd config — global hotkeys
+# voice — голосовые заметки
+
+# ⌘⌥V (Cmd+Alt+V) — запись 30 секунд
+cmd + alt - v : /Users/macbookpro14/bin/voice-hotkey 30 HOTKEY
+
+# ⌘⌥⇧V (Cmd+Alt+Shift+V) — запись 60 секунд
+cmd + alt + shift - v : /Users/macbookpro14/bin/voice-hotkey 60 HOTKEY-LONG
+
+# ⌘⌥B (Cmd+Alt+B) — короткая запись 10 секунд (для быстрых идей)
+cmd + alt - b : /Users/macbookpro14/bin/voice-hotkey 10 IDEA
