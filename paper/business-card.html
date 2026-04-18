@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'SF Pro Display', 'Helvetica Neue', -apple-system, sans-serif;
+    background: #000;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+  }
+  .card {
+    width: 1050px; height: 600px;
+    background: linear-gradient(155deg, #0e1018 0%, #141822 40%, #0c0e14 100%);
+    border-radius: 28px;
+    padding: 56px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Gradient top bar */
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, #67e8f9 0%, #a78bfa 50%, #34d399 100%);
+  }
+  /* Ambient glow */
+  .glow1 {
+    position: absolute; top: -100px; right: -60px;
+    width: 350px; height: 350px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(103,232,249,0.07) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .glow2 {
+    position: absolute; bottom: -120px; left: 40%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .content { position: relative; z-index: 1; }
+
+  .name {
+    font-size: 38px; font-weight: 700; color: #e8eaf0;
+    letter-spacing: -0.03em; margin-bottom: 6px;
+  }
+  .title-line {
+    font-size: 16px; color: rgba(255,255,255,0.40);
+    letter-spacing: 0.01em; line-height: 1.5; margin-bottom: 4px;
+  }
+  .org {
+    font-size: 15px; color: #67e8f9; font-weight: 500;
+    margin-top: 14px; margin-bottom: 28px; letter-spacing: 0.01em;
+  }
+
+  .ids {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 40px;
+    margin-bottom: 24px;
+  }
+  .id-row {
+    font-size: 13px; display: flex; align-items: baseline; gap: 10px;
+  }
+  .id-label {
+    color: rgba(255,255,255,0.22); font-weight: 500;
+    min-width: 52px; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .id-value {
+    color: rgba(255,255,255,0.55);
+    font-family: 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+    font-size: 12.5px; letter-spacing: 0.02em;
+  }
+
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(103,232,249,0.1), rgba(255,255,255,0.03));
+    margin: 20px 0;
+  }
+
+  .bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .quote {
+    font-size: 12.5px; color: rgba(167,139,250,0.55);
+    font-style: italic; line-height: 1.6; max-width: 460px;
+  }
+
+  .right-block {
+    display: flex; align-items: flex-end; gap: 20px;
+  }
+  .qr {
+    width: 100px; height: 100px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    opacity: 0.85;
+  }
+  .qr img { width: 100%; height: 100%; object-fit: cover; }
+
+  .project {
+    text-align: right;
+  }
+  .project-name {
+    font-size: 28px; font-weight: 800; color: #34d399;
+    letter-spacing: 0.08em;
+  }
+  .project-sub {
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.03em; margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+
+  <div class="content">
+    <div class="name">Alexander A. Dmitriev</div>
+    <div class="title-line">Ph.D. (Economics) · Analyst & Researcher</div>
+    <div class="title-line">Scientific Secretary Dept · Shraiberg's Research Laboratory</div>
+    <div class="org">ГПНТБ России — Russian National Public Library for Science & Technology</div>
+
+    <div class="ids">
+      <div class="id-row"><span class="id-label">ORCID</span><span class="id-value">0009-0000-6164-8474</span></div>
+      <div class="id-row"><span class="id-label">DOI</span><span class="id-value">10.5281/zenodo.19638005</span></div>
+      <div class="id-row"><span class="id-label">GitHub</span><span class="id-value">abelbleoworld-blip/astro-dating</span></div>
+      <div class="id-row"><span class="id-label">arXiv</span><span class="id-value">cs.AI · submit/7493246</span></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="bottom">
+      <div class="quote">«Хронология — не вопрос авторитета.<br>Это вопрос вычисления.»</div>
+
+      <div class="right-block">
+        <div class="qr">
+          <img src="qr-doi.png" alt="QR → DOI">
+        </div>
+        <div class="project">
+          <div class="project-name">SOL-1</div>
+          <div class="project-sub">astro-dating · open science</div>
+          <div class="project-sub" style="margin-top:4px; color:rgba(103,232,249,0.4)">scan → paper</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
