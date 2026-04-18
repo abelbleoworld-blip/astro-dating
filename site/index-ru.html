@@ -8,7 +8,7 @@
 <style>
 :root{--bg:#08090c;--surface:rgba(18,20,30,0.65);--glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);--text:#e0e2ec;--dim:rgba(255,255,255,0.40);--cyan:#67e8f9;--green:#34d399;--purple:#a78bfa;--red:#f87171;--yellow:#fbbf24;--blue:#60a5fa;--orange:#fb923c}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;background-image:url('hubble-bg.jpg');background-size:cover;background-position:center;background-attachment:fixed;background-blend-mode:overlay;background-color:rgba(8,9,12,0.88)}
+body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;width:600px;height:600px;top:-200px;right:-100px;background:radial-gradient(circle,rgba(103,232,249,0.06)0%,transparent 70%);filter:blur(80px);pointer-events:none;border-radius:50%}
 body::after{content:'';position:fixed;width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(167,139,250,0.05)0%,transparent 70%);filter:blur(80px);pointer-events:none;border-radius:50%}
 
@@ -68,39 +68,6 @@ footer a{color:var(--cyan);text-decoration:none}
 </style>
 </head>
 <body>
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
 
 <nav>
   <div class="logo">A.A. Dmitriev</div>
@@ -414,36 +381,6 @@ footer a{color:var(--cyan);text-decoration:none}
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
       <a href="https://www.fmone.ru" class="btn primary" style="font-size:15px;padding:12px 28px">🛒 Каталог столов</a>
       <a href="https://doi.org/10.5281/zenodo.19638005" class="btn secondary">📄 Читать исследование</a>
-    </div>
-
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
-      <div style="font-size:13px;color:var(--dim);margin-bottom:12px">Или поддержите исследование напрямую:</div>
-      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
-        <a href="https://ko-fi.com/aadmitriev" class="btn secondary" style="font-size:12px;padding:8px 16px">☕ Ko-fi</a>
-        <a href="https://www.buymeacoffee.com/aadmitriev" class="btn secondary" style="font-size:12px;padding:8px 16px">🍺 Buy Me a Coffee</a>
-        <a href="https://www.patreon.com/aadmitriev" class="btn secondary" style="font-size:12px;padding:8px 16px">🎯 Patreon</a>
-        <a href="https://github.com/sponsors/abelbleoworld-blip" class="btn secondary" style="font-size:12px;padding:8px 16px">💜 GitHub Sponsors</a>
-        <a href="https://paypal.me/aadmitriev" class="btn secondary" style="font-size:12px;padding:8px 16px">💳 PayPal</a>
-      </div>
-      <div style="font-size:11px;color:var(--dim);margin-top:10px">100% средств идёт на открытые исследования SOL-1 и серверную инфраструктуру</div>
-    
-    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
-      <div style="font-size:14px;font-weight:600;color:var(--yellow);margin-bottom:8px">🎁 Бонусы для донатеров</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-        <div style="background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:12px 16px;flex:1;min-width:200px;max-width:280px">
-          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">☕ от $5</div>
-          <div style="font-size:12px;color:var(--dim)">Книга EPUB + PDF (RU/EN) + благодарность на сайте</div>
-        </div>
-        <div style="background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:12px 16px;flex:1;min-width:200px;max-width:280px">
-          <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:4px">🔬 от $25</div>
-          <div style="font-size:12px;color:var(--dim)">Локальный прогноз для вашего региона + персональный отчёт</div>
-        </div>
-        <div style="background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:12px 16px;flex:1;min-width:200px;max-width:280px">
-          <div style="font-size:13px;font-weight:700;color:var(--purple);margin-bottom:4px">🏢 от $100</div>
-          <div style="font-size:12px;color:var(--dim)">Консультация 1ч + адаптация прогноза под вашу отрасль (агро, энерго, спутники)</div>
-        </div>
-      </div>
-    </div</div>
     </div>
   </div>
 </section>
