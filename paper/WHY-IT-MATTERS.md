@@ -105,5 +105,5 @@
 
 ---
 
-*Проект SOL-1 | astro-dating | Открытые данные | CC BY 4.0*
+*А.А. Дмитриев, ГПНТБ России | Проект SOL-1 | astro-dating | Открытые данные | CC BY 4.0*
 *Код: github.com/abelbleoworld-blip/astro-dating*

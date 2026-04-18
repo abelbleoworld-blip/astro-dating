@@ -3,7 +3,9 @@
 
 ---
 
-**From:** A.A. Dmitriev, Independent Researcher
+**From:** A.A. Dmitriev, Analyst & Researcher
+Russian National Public Library for Science and Technology (RNPLS&T)
+Scientific Secretary Department | Shraiberg's Research Laboratory
 **Date:** April 18, 2026
 **Subject:** Predictive model for Grand Solar Minimum based on 55,000 years of empirical data — request for independent verification
 
