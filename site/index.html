@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander A. Dmitriev — Research & Projects</title>
+<meta name="description" content="Researcher, ГПНТБ России. AI, solar prediction, industrial design, open science.">
+<style>
+:root{--bg:#08090c;--surface:rgba(18,20,30,0.65);--glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.07);--text:#e0e2ec;--dim:rgba(255,255,255,0.40);--cyan:#67e8f9;--green:#34d399;--purple:#a78bfa;--red:#f87171;--yellow:#fbbf24;--blue:#60a5fa;--orange:#fb923c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;width:600px;height:600px;top:-200px;right:-100px;background:radial-gradient(circle,rgba(103,232,249,0.06)0%,transparent 70%);filter:blur(80px);pointer-events:none;border-radius:50%}
+body::after{content:'';position:fixed;width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(167,139,250,0.05)0%,transparent 70%);filter:blur(80px);pointer-events:none;border-radius:50%}
+
+nav{position:sticky;top:0;z-index:100;padding:14px 24px;background:rgba(8,9,12,0.8);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+nav .logo{font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav .links{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:var(--dim);text-decoration:none;font-size:13px;transition:color 0.2s}
+nav a:hover{color:var(--text)}
+
+.hero{position:relative;z-index:1;padding:60px 24px 40px;max-width:900px;margin:0 auto;text-align:center}
+.hero h1{font-size:38px;font-weight:800;letter-spacing:-0.03em;margin-bottom:6px}
+.hero h1 span{background:linear-gradient(135deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:16px;color:var(--dim);margin-bottom:4px}
+.hero .org{font-size:14px;color:var(--cyan);margin-bottom:24px}
+.hero .quote{font-size:14px;color:var(--purple);font-style:italic;margin-bottom:28px;opacity:0.7}
+.ids{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.id-badge{padding:5px 12px;border-radius:8px;font-size:11px;font-family:'SF Mono',Menlo,monospace;background:var(--glass);border:1px solid var(--border);color:var(--dim)}
+.id-badge a{color:inherit;text-decoration:none}
+.id-badge:hover{border-color:rgba(255,255,255,0.15);color:var(--text)}
+
+section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:50px 24px}
+section h2{font-size:24px;font-weight:700;margin-bottom:6px}
+section h2 span{color:var(--cyan)}
+.section-sub{color:var(--dim);font-size:13px;margin-bottom:24px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:var(--surface);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all 0.25s;position:relative;overflow:hidden;text-decoration:none;color:var(--text);display:block}
+.card:hover{border-color:rgba(255,255,255,0.12);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.c-cyan::before{background:var(--cyan)}.c-green::before{background:var(--green)}.c-purple::before{background:var(--purple)}.c-red::before{background:var(--red)}.c-yellow::before{background:var(--yellow)}.c-blue::before{background:var(--blue)}.c-orange::before{background:var(--orange)}
+.card h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.card .desc{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:8px}
+.card .tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{padding:2px 7px;border-radius:5px;font-size:10px;font-weight:600}
+.tag-ai{background:rgba(103,232,249,0.12);color:var(--cyan)}
+.tag-web{background:rgba(96,165,250,0.12);color:var(--blue)}
+.tag-hw{background:rgba(251,191,36,0.12);color:var(--yellow)}
+.tag-sci{background:rgba(167,139,250,0.12);color:var(--purple)}
+.tag-biz{background:rgba(52,211,153,0.12);color:var(--green)}
+.tag-live{background:rgba(248,113,113,0.12);color:var(--red)}
+.tag-oss{background:rgba(255,255,255,0.06);color:var(--dim)}
+
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:16px}
+.rbox{background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.rbox .n{font-size:24px;font-weight:800;margin-bottom:2px}
+.rbox .l{font-size:11px;color:var(--dim)}
+
+.downloads{list-style:none;display:flex;flex-direction:column;gap:6px}
+.downloads a{color:var(--cyan);text-decoration:none;font-size:13px}.downloads a:hover{color:var(--text)}
+.downloads .m{font-size:11px;color:var(--dim);margin-left:8px}
+
+footer{position:relative;z-index:1;text-align:center;padding:36px 24px;border-top:1px solid var(--border);margin-top:36px}
+footer p{font-size:11px;color:var(--dim);line-height:1.8}
+footer a{color:var(--cyan);text-decoration:none}
+
+@media(max-width:600px){.hero h1{font-size:26px}.grid{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">A.A. Dmitriev</div>
+  <div class="links">
+    <a href="#science">Наука</a>
+    <a href="#ai">AI & Software</a>
+    <a href="#industry">Индустрия</a>
+    <a href="#infra">Инфраструктура</a>
+    <a href="#downloads">Материалы</a>
+    <a href="#contact">Контакт</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div style="width:120px;height:120px;border-radius:50%;margin:0 auto 20px;overflow:hidden;border:2px solid rgba(103,232,249,0.3);box-shadow:0 0 30px rgba(103,232,249,0.1)">
+    <img src="photo.png" alt="A.A. Dmitriev" style="width:100%;height:100%;object-fit:cover;object-position:center 20%">
+  </div>
+  <h1>Alexander A. <span>Dmitriev</span></h1>
+  <div class="sub">Ph.D. (Economics) · Analyst & Researcher · Data Scientist</div>
+  <div class="org">ГПНТБ России — Shraiberg's Research Laboratory</div>
+  <div class="quote">«Хронология — не вопрос авторитета. Это вопрос вычисления.»</div>
+  <div class="ids">
+    <div class="id-badge"><a href="https://orcid.org/0009-0000-6164-8474">ORCID 0009-0000-6164-8474</a></div>
+    <div class="id-badge"><a href="https://doi.org/10.5281/zenodo.19638005">DOI 10.5281/zenodo.19638005</a></div>
+    <div class="id-badge"><a href="https://github.com/abelbleoworld-blip/astro-dating">GitHub</a></div>
+  </div>
+</div>
+
+<!-- ═══ НАУКА ═══ -->
+<section id="science">
+  <h2>🔬 <span>Наука</span> и исследования</h2>
+  <div class="section-sub">Открытые данные, воспроизводимые результаты</div>
+  <div class="grid">
+
+    <a href="https://doi.org/10.5281/zenodo.19638005" class="card c-cyan">
+      <h3>SOL-1: Прогноз Grand Solar Minimum</h3>
+      <div class="desc">5 прокси за 55000 лет → 6 солнечных циклов → Monte Carlo 500 runs. P(GSM)=95%. Gleissberg 88yr подтверждён 4/4.</div>
+      <div class="tags"><span class="tag tag-sci">FFT</span><span class="tag tag-ai">Monte Carlo</span><span class="tag tag-oss">Open Source</span><span class="tag tag-live">DOI</span></div>
+    </a>
+
+    <div class="card c-purple">
+      <h3>astro-dating: Хронозвёзды</h3>
+      <div class="desc">Астроверификация хронологии. 16 якорей, 9 цивилизаций, 3300 лет. Mesh peer-review между 3 машинами.</div>
+      <div class="tags"><span class="tag tag-sci">Астрохронология</span><span class="tag tag-ai">Python</span><span class="tag tag-oss">Open</span></div>
+    </div>
+
+    <div class="card c-green">
+      <h3>CIV-1: Кривая цивилизации</h3>
+      <div class="desc">5000 лет астрономического знания: от Стоунхенджа до Gaia. Piecewise exponential: 1230yr → 34yr → 2yr doubling.</div>
+      <div class="tags"><span class="tag tag-sci">Информатика</span><span class="tag tag-ai">Data Analysis</span></div>
+    </div>
+
+    <div class="card c-yellow">
+      <h3>AI Economics</h3>
+      <div class="desc">Dynamic Interdependency System. Экономическое моделирование взаимозависимостей.</div>
+      <div class="tags"><span class="tag tag-sci">Экономика</span><span class="tag tag-ai">Моделирование</span></div>
+    </div>
+
+  </div>
+
+  <div class="result-grid">
+    <div class="rbox"><div class="n" style="color:var(--cyan)">~2126</div><div class="l">Медиана GSM</div></div>
+    <div class="rbox"><div class="n" style="color:var(--green)">95.4%</div><div class="l">P(Deep+Grand)</div></div>
+    <div class="rbox"><div class="n" style="color:var(--purple)">4/4</div><div class="l">Gleissberg</div></div>
+    <div class="rbox"><div class="n" style="color:var(--cyan)">r=0.47</div><div class="l">Be10 × C14</div></div>
+    <div class="rbox"><div class="n" style="color:var(--green)">55000</div><div class="l">Лет данных</div></div>
+    <div class="rbox"><div class="n" style="color:var(--red)">0.0%</div><div class="l">P(nothing)</div></div>
+  </div>
+</section>
+
+<!-- ═══ AI & SOFTWARE ═══ -->
+<section id="ai">
+  <h2>🤖 <span>AI</span> & Software</h2>
+  <div class="section-sub">AI-продукты, автоматизация, open source</div>
+  <div class="grid">
+
+    <div class="card c-cyan">
+      <h3>Abel AIOS</h3>
+      <div class="desc">Персональная AI операционная система. Единый AI-слой поверх всех устройств: часы, телефон, ноутбук. Swift/SwiftUI + Node.js/Fastify + Claude API.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-web">SwiftUI</span><span class="tag tag-web">Fastify</span><span class="tag tag-live">Production</span></div>
+    </div>
+
+    <div class="card c-green">
+      <h3>AbelForge</h3>
+      <div class="desc">AI-генератор презентаций. Тема → исследование → слайды → PPTX + подкаст. Edge-TTS, Claude, маржа x25.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-biz">SaaS</span><span class="tag tag-web">Node.js</span></div>
+    </div>
+
+    <div class="card c-purple">
+      <h3>NanoClaw</h3>
+      <div class="desc">AI-агент в Telegram (@Abe777lebot). Grammy + Claude + better-sqlite3. Контекстные диалоги, web search.</div>
+      <div class="tags"><span class="tag tag-ai">AI Agent</span><span class="tag tag-web">Telegram</span><span class="tag tag-live">Live</span></div>
+    </div>
+
+    <a href="https://ailib.fmone.ru" class="card c-blue">
+      <h3>AILib — ИИБиб</h3>
+      <div class="desc">B2B платформа знаний для юрфирм. RAG-поиск, Telegram-бот, Bitrix24/amoCRM, AI-оркестратор. Тарифы 9.9k—49.9k₽/мес.</div>
+      <div class="tags"><span class="tag tag-ai">RAG</span><span class="tag tag-biz">B2B</span><span class="tag tag-web">SaaS</span><span class="tag tag-live">ailib.fmone.ru</span></div>
+    </a>
+
+    <div class="card c-cyan">
+      <h3>Claude Supervisor</h3>
+      <div class="desc">Web-дашборд мониторинга Claude Code сессий. Liquid Glass UI, click-to-zoom, auto-approve, kill/pause.</div>
+      <div class="tags"><span class="tag tag-ai">DevTools</span><span class="tag tag-web">Web</span><span class="tag tag-oss">Open</span></div>
+    </div>
+
+    <div class="card c-green">
+      <h3>A-Router 2.0</h3>
+      <div class="desc">Fastify оркестратор всех проектов. Health-check, AI-вердикт, Rules Engine, Task Queue, Telegram бот @abelworldbot.</div>
+      <div class="tags"><span class="tag tag-ai">Orchestrator</span><span class="tag tag-web">Fastify</span><span class="tag tag-live">24/7</span></div>
+    </div>
+
+    <div class="card c-yellow">
+      <h3>Folder AI</h3>
+      <div class="desc">AI-органайзер файлов для macOS. Electron + Claude API. Spotlight-style поиск, smart analysis, Liquid Glass UI.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-web">Electron</span><span class="tag tag-oss">v1.1.0</span></div>
+    </div>
+
+    <div class="card c-orange">
+      <h3>PowerAI</h3>
+      <div class="desc">Battery monitoring с AI-аналитикой для macOS. Предсказание здоровья батареи.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-web">macOS</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ ИНДУСТРИЯ ═══ -->
+<section id="industry">
+  <h2>🏭 <span>Индустрия</span> и дизайн</h2>
+  <div class="section-sub">Продуктовый дизайн, инженерия, бизнес</div>
+  <div class="grid">
+
+    <a href="https://www.fmone.ru" class="card c-cyan" style="grid-column:1/-1;border-radius:18px;padding:0;overflow:hidden">
+      <div style="display:flex;flex-wrap:wrap">
+        <img src="photo-full.png" alt="Standing on UFO table" style="width:280px;height:280px;object-fit:cover;flex-shrink:0">
+        <div style="padding:24px;flex:1;min-width:260px">
+          <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">Собственное производство</div>
+          <h3 style="font-size:22px;margin-bottom:8px">FMone — кинетические столы</h3>
+          <div class="desc" style="font-size:14px;line-height:1.6;margin-bottom:12px">Premium мебель с механизмом трансформации. Стол поднимается одним движением — из журнального в обеденный. 10 моделей: UFO, UMO, CUBE. Металл, стекло, LED-подсветка.</div>
+          <div style="font-size:20px;font-weight:700;color:var(--green);margin-bottom:12px">от 190 000 ₽</div>
+          <div class="tags">
+            <span class="tag tag-hw">10 моделей</span>
+            <span class="tag tag-biz">Доставка РФ</span>
+            <span class="tag tag-live" style="background:rgba(103,232,249,0.15);color:var(--cyan)">→ fmone.ru</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.brand-space.ru" class="card c-green">
+      <img src="brandspace-preview.jpg" alt="Brand Space" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;opacity:0.8">
+      <h3>Brand Space — B2B столы</h3>
+      <div class="desc">Кинетические столы для офисов, шоурумов, ресторанов. Индивидуальный дизайн, корпоративные объёмы.</div>
+      <div class="tags"><span class="tag tag-biz">B2B</span><span class="tag tag-live" style="background:rgba(52,211,153,0.15);color:var(--green)">→ brand-space.ru</span></div>
+    </a>
+
+    <a href="https://ailib.fmone.ru" class="card c-blue">
+      <img src="ailib-preview.jpg" alt="AILib" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;opacity:0.8">
+      <h3>AILib — ИИБиб</h3>
+      <div class="desc">AI-платформа знаний для юрфирм. RAG-поиск, Telegram-бот, Bitrix24. 9.9k–49.9k₽/мес.</div>
+      <div class="tags"><span class="tag tag-ai">AI RAG</span><span class="tag tag-live" style="background:rgba(96,165,250,0.15);color:var(--blue)">→ ailib.fmone.ru</span></div>
+    </a>
+
+    <div class="card c-purple">
+      <h3>AEC-40 Arctic Explorer Class</h3>
+      <div class="desc">Семейство яхт: AEC-15 / AEC-30 / AEC-40. Головной корпус «Абель». Двухтрек: РФ + экспорт. Tier-1 сервис.</div>
+      <div class="tags"><span class="tag tag-hw">Naval Architecture</span><span class="tag tag-biz">Startup</span></div>
+    </div>
+
+    <div class="card c-yellow">
+      <h3>SolidWorks FMone</h3>
+      <div class="desc">3D-моделирование кинетических столов. Инженерная документация, чертежи.</div>
+      <div class="tags"><span class="tag tag-hw">CAD</span><span class="tag tag-hw">Engineering</span></div>
+    </div>
+
+    <div class="card c-orange">
+      <h3>GCodeViewer</h3>
+      <div class="desc">Визуализатор G-code для CNC/3D-принтеров. Просмотр траекторий обработки.</div>
+      <div class="tags"><span class="tag tag-hw">CNC</span><span class="tag tag-web">Viewer</span></div>
+    </div>
+
+    <div class="card c-blue">
+      <h3>Avito Store</h3>
+      <div class="desc">Автоматизация продаж на Avito. Управление объявлениями.</div>
+      <div class="tags"><span class="tag tag-biz">E-commerce</span><span class="tag tag-web">Automation</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ ИНФРАСТРУКТУРА ═══ -->
+<section id="infra">
+  <h2>🖥 <span>Инфраструктура</span></h2>
+  <div class="section-sub">Серверы, сети, DevOps</div>
+  <div class="grid">
+
+    <div class="card c-cyan">
+      <h3>Abel HQ</h3>
+      <div class="desc">Центр управления на VPS. Node.js + Fastify + SQLite + Ollama. Мониторинг 4 серверов, 3 сайтов, 10 проектов.</div>
+      <div class="tags"><span class="tag tag-web">Monitoring</span><span class="tag tag-ai">Ollama</span><span class="tag tag-live">VPS</span></div>
+    </div>
+
+    <div class="card c-green">
+      <h3>WireGuard Mesh Network</h3>
+      <div class="desc">Единая сеть 10.10.0.x: MacBook, Beelink, iMac, 4 VPS, iPhone, Steam Deck. Shared git repo.</div>
+      <div class="tags"><span class="tag tag-web">VPN</span><span class="tag tag-hw">Mesh</span></div>
+    </div>
+
+    <div class="card c-purple">
+      <h3>AMP Agent</h3>
+      <div class="desc">Mesh-агент для координации между машинами. LaunchAgent на каждом узле.</div>
+      <div class="tags"><span class="tag tag-web">Mesh</span><span class="tag tag-ai">Agent</span></div>
+    </div>
+
+    <div class="card c-yellow">
+      <h3>Dashboard</h3>
+      <div class="desc">Дашборд управления проектами. AI-анализ каждые 4ч. Автофикс git init + commit.</div>
+      <div class="tags"><span class="tag tag-web">Dashboard</span><span class="tag tag-ai">Analytics</span></div>
+    </div>
+
+    <div class="card c-red">
+      <h3>4 VPS (Timeweb Cloud)</h3>
+      <div class="desc">FMone (5.129.220.96) · Brand Space (5.42.103.160) · Media (72.56.81.53) · Abel HQ (72.56.107.21). nginx + pm2 + SSL.</div>
+      <div class="tags"><span class="tag tag-web">DevOps</span><span class="tag tag-live">Production</span></div>
+    </div>
+
+    <div class="card c-blue">
+      <h3>Beelink AZW SER9</h3>
+      <div class="desc">24/7 worker: git-зеркала, CI, сборки, бэкапы. Windows → Ubuntu Server (plan).</div>
+      <div class="tags"><span class="tag tag-hw">Hardware</span><span class="tag tag-web">Worker</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ МАТЕРИАЛЫ ═══ -->
+<section id="downloads">
+  <h2>📥 <span>Материалы</span></h2>
+  <div class="section-sub">Скачивай, проверяй, цитируй. CC BY 4.0.</div>
+  <ul class="downloads">
+    <li><a href="https://doi.org/10.5281/zenodo.19638005">📄 SOL-1 полный пакет (Zenodo DOI)</a><span class="m">LaTeX + графики + данные</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Letter-EN.pdf">📝 Техническое письмо EN</a><span class="m">PDF</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Letter-RU.pdf">📝 Техническое письмо RU</a><span class="m">PDF</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/WHY-IT-MATTERS.pdf">🌍 Простым языком</a><span class="m">PDF</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Presentation.pptx">📊 Презентация 12 слайдов</a><span class="m">PPTX</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Lectures.pdf">🎓 8 лекций</a><span class="m">PDF</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Letter-RU.mp3">🔊 Аудио письмо</a><span class="m">11:49</span></li>
+    <li><a href="https://github.com/abelbleoworld-blip/astro-dating">⌨ GitHub: весь код</a><span class="m">Python, Node.js</span></li>
+  </ul>
+</section>
+
+<!-- ═══ КОНТАКТ ═══ -->
+<section id="contact">
+  <h2>📬 <span>Контакт</span></h2>
+  <div class="section-sub">
+    <strong>Alexander A. Dmitriev</strong>, Ph.D.<br>
+    ГПНТБ России · Shraiberg's Research Laboratory<br><br>
+    ORCID: <a href="https://orcid.org/0009-0000-6164-8474" style="color:var(--cyan)">0009-0000-6164-8474</a><br>
+    DOI: <a href="https://doi.org/10.5281/zenodo.19638005" style="color:var(--cyan)">10.5281/zenodo.19638005</a><br>
+    GitHub: <a href="https://github.com/abelbleoworld-blip" style="color:var(--cyan)">abelbleoworld-blip</a><br>
+    Email: a.a.dmitrieff@gmail.com<br><br>
+    Сайты: <a href="https://www.fmone.ru" style="color:var(--green)">fmone.ru</a> · <a href="https://www.brand-space.ru" style="color:var(--green)">brand-space.ru</a> · <a href="https://ailib.fmone.ru" style="color:var(--green)">ailib.fmone.ru</a>
+  </div>
+</section>
+
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" style="text-align:center">
+  <h2>💡 Чем могу быть <span>полезен</span></h2>
+  <div class="section-sub">Ищу сотрудничество, peer review, совместные проекты</div>
+  
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px">
+    <span class="tag tag-ai" style="padding:6px 14px;font-size:13px;border-radius:8px">#AI_Prediction</span>
+    <span class="tag tag-sci" style="padding:6px 14px;font-size:13px;border-radius:8px">#DataScience</span>
+    <span class="tag tag-sci" style="padding:6px 14px;font-size:13px;border-radius:8px">#SolarPhysics</span>
+    <span class="tag tag-ai" style="padding:6px 14px;font-size:13px;border-radius:8px">#MonteCarlo</span>
+    <span class="tag tag-web" style="padding:6px 14px;font-size:13px;border-radius:8px">#FullStack</span>
+    <span class="tag tag-web" style="padding:6px 14px;font-size:13px;border-radius:8px">#Node.js</span>
+    <span class="tag tag-web" style="padding:6px 14px;font-size:13px;border-radius:8px">#Python</span>
+    <span class="tag tag-web" style="padding:6px 14px;font-size:13px;border-radius:8px">#Swift</span>
+    <span class="tag tag-hw" style="padding:6px 14px;font-size:13px;border-radius:8px">#IoT</span>
+    <span class="tag tag-hw" style="padding:6px 14px;font-size:13px;border-radius:8px">#CAD</span>
+    <span class="tag tag-biz" style="padding:6px 14px;font-size:13px;border-radius:8px">#B2B_SaaS</span>
+    <span class="tag tag-biz" style="padding:6px 14px;font-size:13px;border-radius:8px">#ProductDesign</span>
+    <span class="tag tag-ai" style="padding:6px 14px;font-size:13px;border-radius:8px">#ClaudeAPI</span>
+    <span class="tag tag-ai" style="padding:6px 14px;font-size:13px;border-radius:8px">#LLM_Agents</span>
+    <span class="tag tag-sci" style="padding:6px 14px;font-size:13px;border-radius:8px">#OpenScience</span>
+    <span class="tag tag-sci" style="padding:6px 14px;font-size:13px;border-radius:8px">#ClimateAdaptation</span>
+    <span class="tag tag-hw" style="padding:6px 14px;font-size:13px;border-radius:8px">#NavalArchitecture</span>
+    <span class="tag tag-biz" style="padding:6px 14px;font-size:13px;border-radius:8px">#Monetization</span>
+    <span class="tag tag-web" style="padding:6px 14px;font-size:13px;border-radius:8px">#DevOps</span>
+    <span class="tag tag-ai" style="padding:6px 14px;font-size:13px;border-radius:8px">#FFT_Spectral</span>
+  </div>
+
+  <div style="max-width:600px;margin:0 auto;text-align:left;color:var(--dim);font-size:14px;line-height:1.8">
+    <p><strong style="color:var(--green)">Peer Review:</strong> ищу независимую проверку SOL-1 прогноза. Код открыт, данные публичны.</p>
+    <p><strong style="color:var(--cyan)">AI-продукты:</strong> проектирую и строю AI-системы (агенты, RAG, предиктивные пайплайны) под ключ.</p>
+    <p><strong style="color:var(--purple)">Data Analysis:</strong> FFT, wavelet, Monte Carlo, time series — от палеоклимата до финансов.</p>
+    <p><strong style="color:var(--yellow)">Промышленный дизайн:</strong> от 3D-модели до серийного производства (кинетические столы, яхты).</p>
+    <p><strong style="color:var(--orange)">Инфраструктура:</strong> 4 VPS, mesh-сеть, 10+ проектов в production, CI/CD, мониторинг.</p>
+  </div>
+</section>
+
+<!-- ═══ SUPPORT ═══ -->
+<section style="text-align:center;padding:40px 24px">
+  <div style="max-width:600px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--cyan),var(--purple))"></div>
+    <h2 style="font-size:22px;margin-bottom:6px">☀️ Поддержите науку напрямую</h2>
+    <p style="color:var(--dim);font-size:14px;margin-bottom:16px;line-height:1.6">Покупая кинетический стол FMone — вы финансируете независимые исследования SOL-1 и открытую науку. Каждый стол = вклад в прогноз, который может спасти урожаи.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <a href="https://www.fmone.ru" class="btn primary" style="font-size:15px;padding:12px 28px">🛒 Каталог столов</a>
+      <a href="https://doi.org/10.5281/zenodo.19638005" class="btn secondary">📄 Читать исследование</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    © 2026 Alexander A. Dmitriev · <a href="https://doi.org/10.5281/zenodo.19638005">DOI 10.5281/zenodo.19638005</a> · CC BY 4.0<br>
+    «Мы не просим верить. Мы просим проверить.»
+  </p>
+</footer>
+
+</body>
+</html>
