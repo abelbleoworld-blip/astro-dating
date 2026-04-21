@@ -68,39 +68,17 @@ footer a{color:var(--cyan);text-decoration:none}
 </style>
 </head>
 <body>
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
+<!-- LANG -->
+<div id="lang-switch" style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
+<a href="index.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇷🇺</a>
+<a href="en.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇺🇸</a>
+<a href="zh.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇨🇳</a>
+<a href="es.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇪🇸</a>
+<a href="fr.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇫🇷</a>
+<a href="de.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇩🇪</a>
+<a href="ja.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇯🇵</a>
+<a href="ar.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇸🇦</a>
 </div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
 
 <nav>
   <div class="logo">A.A. Dmitriev</div>

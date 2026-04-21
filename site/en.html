@@ -68,57 +68,24 @@ footer a{color:var(--cyan);text-decoration:none}
 </style>
 </head>
 <body>
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
+<!-- LANG -->
+<div id="lang-switch" style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
+<a href="index.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇷🇺</a>
+<a href="en.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇺🇸</a>
+<a href="zh.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇨🇳</a>
+<a href="es.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇪🇸</a>
+<a href="fr.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇫🇷</a>
+<a href="de.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇩🇪</a>
+<a href="ja.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇯🇵</a>
+<a href="ar.html" style="text-decoration:none;font-size:14px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);text-align:center">🇸🇦</a>
 </div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
-<div style="position:fixed;top:60px;right:12px;z-index:200;display:flex;flex-direction:column;gap:4px">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Русский">🇷🇺</a>
-  <a href="en.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="English">🇺🇸</a>
-  <a href="zh.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="中文">🇨🇳</a>
-  <a href="es.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Español">🇪🇸</a>
-  <a href="fr.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Français">🇫🇷</a>
-  <a href="ar.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="العربية">🇸🇦</a>
-  <a href="de.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="Deutsch">🇩🇪</a>
-  <a href="ja.html" style="text-decoration:none;font-size:16px;padding:4px 8px;border-radius:6px;background:var(--glass);border:1px solid var(--border);text-align:center" title="日本語">🇯🇵</a>
-</div>
-
 
 <nav>
   <div class="logo">A.A. Dmitriev</div>
   <div class="links">
-    <a href="#science">Наука</a>
+    <a href="#science">Science</a>
     <a href="#ai">AI & Software</a>
-    <a href="#industry">Индустрия</a>
+    <a href="#industry">Industry</a>
     <a href="#infra">Infrastructure</a>
     <a href="#downloads">Downloads</a>
     <a href="#contact">Contact</a>
@@ -142,7 +109,7 @@ footer a{color:var(--cyan);text-decoration:none}
 
 <!-- ═══ НАУКА ═══ -->
 <section id="science">
-  <h2>🔬 <span>Наука</span> и исследования</h2>
+  <h2>🔬 <span>Science</span> и исследования</h2>
   <div class="section-sub">Open data, reproducible results</div>
   <div class="grid">
 
@@ -179,49 +146,6 @@ footer a{color:var(--cyan);text-decoration:none}
     <div class="rbox"><div class="n" style="color:var(--cyan)">r=0.47</div><div class="l">Be10 × C14</div></div>
     <div class="rbox"><div class="n" style="color:var(--green)">55000</div><div class="l">Лет данных</div></div>
     <div class="rbox"><div class="n" style="color:var(--red)">0.0%</div><div class="l">P(nothing)</div></div>
-  </div>
-</section>
-
-<!-- ═══ VALIDATION ═══ -->
-<section id="validation">
-  <h2>✅ Подтверждение модели — <span>только факты</span></h2>
-  <div class="section-sub">Что подтвердилось, что расходится, что ещё не проверено</div>
-  <div style="display:flex;flex-direction:column;gap:10px">
-    <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:12px;padding:16px">
-      <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✅ ПОДТВЕРЖДЕНО</div>
-      <ul style="font-size:13px;color:var(--dim);line-height:1.8;padding-left:20px">
-        <li><strong style="color:var(--text)">Gleissberg ~88 лет</strong> — 4/4 прокси (88.2, 87.5, 88.8, 87.6). Разброс &lt;2%</li>
-        <li><strong style="color:var(--text)">Suess ~207 лет</strong> — 3/3 прокси (210.5, 177.6, 210.5)</li>
-        <li><strong style="color:var(--text)">Hallstatt ~2300 лет</strong> — 2/2 космогенных прокси</li>
-        <li><strong style="color:var(--text)">Be10 × C14</strong> — r=0.47, p&lt;0.001, 37000 лет. Два изотопа = один сигнал</li>
-        <li><strong style="color:var(--text)">5/5 GSM воспроизведены</strong> — Оорт, Вольф, Шпёрер, Маундер, Дальтон</li>
-        <li><strong style="color:var(--text)">Steinhilber & Beer 2013</strong> — 2090±30 совпадает с нашим 2058-2206</li>
-      </ul>
-    </div>
-    <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);border-radius:12px;padding:16px">
-      <div style="font-size:13px;font-weight:700;color:var(--yellow);margin-bottom:6px">⚠️ ОГРАНИЧЕНИЯ</div>
-      <ul style="font-size:13px;color:var(--dim);line-height:1.8;padding-left:20px">
-        <li><strong style="color:var(--text)">Линейная модель</strong> — реальное динамо нелинейно</li>
-        <li><strong style="color:var(--text)">Фазовая когерентность</strong> — деградирует, 100+ лет — нарастающая неопределённость</li>
-        <li><strong style="color:var(--text)">Дальтон</strong> — воспроизведён погранично (+0.040)</li>
-      </ul>
-    </div>
-    <div style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);border-radius:12px;padding:16px">
-      <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:6px">❌ РАСХОЖДЕНИЯ</div>
-      <ul style="font-size:13px;color:var(--dim);line-height:1.8;padding-left:20px">
-        <li><strong style="color:var(--text)">vs Zharkova 2015</strong> — она: 2030-2040. Cycle 25 сильнее чем ожидала. Наш прогноз позже</li>
-        <li><strong style="color:var(--text)">vs NASA</strong> — «потепление в 6 раз сильнее». Согласны, но не считали двойной стресс</li>
-      </ul>
-    </div>
-    <div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:12px;padding:16px">
-      <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px">🔬 ОЖИДАЕТ ПРОВЕРКИ</div>
-      <ul style="font-size:13px;color:var(--dim);line-height:1.8;padding-left:20px">
-        <li>Peer review (письма отправлены Usoskin, Steinhilber)</li>
-        <li>Wavelet вместо FFT</li>
-        <li>Спутниковые данные SDO/SOHO</li>
-        <li>Eclipse corona proxy — использовался ли ранее?</li>
-      </ul>
-    </div>
   </div>
 </section>
 
@@ -284,7 +208,7 @@ footer a{color:var(--cyan);text-decoration:none}
 
 <!-- ═══ ИНДУСТРИЯ ═══ -->
 <section id="industry">
-  <h2>🏭 <span>Индустрия</span> и дизайн</h2>
+  <h2>🏭 <span>Industry</span> и дизайн</h2>
   <div class="section-sub">Product design, engineering, business</div>
   <div class="grid">
 
@@ -464,7 +388,7 @@ footer a{color:var(--cyan);text-decoration:none}
   <div style="max-width:600px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;position:relative;overflow:hidden">
     <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--cyan),var(--purple))"></div>
     <h2 style="font-size:22px;margin-bottom:6px">☀️ Support Science Directly</h2>
-    <p style="color:var(--dim);font-size:14px;margin-bottom:16px;line-height:1.6">By purchasing an FMone kinetic table — you fund independent SOL-1 research and open science.</p>
+    <p style="color:var(--dim);font-size:14px;margin-bottom:16px;line-height:1.6">By purchasing an FMone kinetic table you fund independent SOL-1 research and open science.</p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
       <a href="https://www.fmone.ru" class="btn primary" style="font-size:15px;padding:12px 28px">🛒 Table Catalog</a>
       <a href="https://doi.org/10.5281/zenodo.19638005" class="btn secondary">📄 Read Research</a>
