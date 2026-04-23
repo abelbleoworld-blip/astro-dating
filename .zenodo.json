@@ -1,0 +1,39 @@
+{
+  "title": "Astro-Dating — Computational Archaeoastronomy & Solar Prediction",
+  "description": "Independent verification of historical chronology through astronomical calculations (16 anchor events across 9 civilizations, ~3300 years) and a probabilistic forecast of the next Grand Solar Minimum from multi-proxy spectral analysis (5 proxies, 55,000 years).",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "creators": [
+    {
+      "name": "Dmitriev, Alexander",
+      "affiliation": "Russian National Public Library for Science and Technology (GPNTB)",
+      "orcid": "0009-0000-6164-8474"
+    }
+  ],
+  "keywords": [
+    "archaeoastronomy",
+    "chronology",
+    "solar activity",
+    "grand solar minimum",
+    "Almagest",
+    "proper motion",
+    "spectral analysis",
+    "beryllium-10",
+    "carbon-14",
+    "Gleissberg cycle",
+    "open science",
+    "reproducible research"
+  ],
+  "communities": [
+    {"identifier": "astronomy"}
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/abelbleoworld-blip/astro-dating",
+      "resource_type": "software"
+    }
+  ],
+  "language": "eng"
+}

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Astro-Dating — Computational Archaeoastronomy & Solar Prediction"
+abstract: "Independent verification of historical chronology through astronomical calculations and probabilistic forecast of the next Grand Solar Minimum from multi-proxy spectral analysis."
+type: software
+authors:
+  - family-names: Dmitriev
+    given-names: Alexander
+    orcid: "https://orcid.org/0009-0000-6164-8474"
+    affiliation: "Russian National Public Library for Science and Technology (GPNTB)"
+repository-code: "https://github.com/abelbleoworld-blip/astro-dating"
+license: CC-BY-4.0
+keywords:
+  - archaeoastronomy
+  - chronology
+  - solar activity
+  - grand solar minimum
+  - Almagest
+  - proper motion
+  - spectral analysis
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19638004
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.19638005
+    description: "v1.0 — Almagest 1022 Stars (2026-04-18)"
