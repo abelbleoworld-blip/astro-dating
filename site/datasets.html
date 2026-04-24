@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Датасеты и библиотека знаний — А. А. Дмитриев</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./css2" rel="stylesheet">
+<style>
+  :root{
+    --bg: #efe9dc;
+    --bg-2:#e7e1d2;
+    --ink:#201d18;
+    --ink-2:#3a342b;
+    --mute:#8a8372;
+    --rule:#cec5b0;
+    --card:#f6f1e4;
+    --accent:#c8553d;
+    --accent-soft:#e9b7aa;
+    --maxw: 1240px;
+    --pad: 56px;
+    --serif: "Fraunces", "Source Serif Pro", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+  header{display:flex;justify-content:space-between;align-items:center;padding:16px var(--pad);border-bottom:1px solid var(--rule)}
+  header .back{font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+  header .back:hover{color:var(--accent)}
+  header .title{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+
+  .hero{padding:56px 0 40px;border-bottom:1px solid var(--rule)}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:56px;line-height:1.05;letter-spacing:-.02em;margin:0 0 16px}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero .sub{font-size:16px;color:var(--ink-2);max-width:720px;line-height:1.55}
+
+  /* summary strip */
+  .summary{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;padding:32px 0;border-bottom:1px solid var(--rule)}
+  .summary .cell{text-align:center}
+  .summary .num{font-family:var(--serif);font-size:32px;display:block;line-height:1}
+  .summary .label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-top:6px;display:block}
+
+  .sect{padding:40px 0;border-bottom:1px solid var(--rule)}
+  .sect:last-child{border-bottom:none;padding-bottom:80px}
+  .sect-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sect-head h2{font-family:var(--serif);font-weight:400;font-size:32px;margin:0;letter-spacing:-.01em}
+  .sect-head h2 em{font-style:italic;color:var(--accent)}
+  .sect-intro{font-size:15px;color:var(--ink-2);line-height:1.6;max-width:800px;margin-bottom:24px}
+
+  /* data cards */
+  .data-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+  .data-card{padding:20px 24px;background:var(--card);border:1px solid var(--rule);border-radius:2px;transition:border-color .2s}
+  .data-card:hover{border-color:var(--ink-2)}
+  .data-card .tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;background:var(--accent);color:var(--bg);border-radius:1px;margin-bottom:10px}
+  .data-card .tag.green{background:#6e8868}
+  .data-card .tag.blue{background:#5b7ba0}
+  .data-card .tag.mute{background:var(--mute)}
+  .data-card h3{font-family:var(--serif);font-size:20px;font-weight:400;margin:0 0 8px}
+  .data-card p{font-size:13px;color:var(--ink-2);line-height:1.5;margin:0 0 12px}
+  .data-card .meta{display:flex;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.1em}
+
+  .data-card.wide{grid-column:1/-1}
+
+  table{width:100%;border-collapse:collapse;margin-bottom:24px}
+  th{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);text-align:left;padding:10px 14px;border-bottom:2px solid var(--rule);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.5;vertical-align:top}
+  tr:hover td{background:var(--card)}
+  td:first-child{font-weight:600;color:var(--ink)}
+
+  .highlight{padding:16px 20px;background:color-mix(in oklab, var(--accent-soft) 30%, var(--card));border-left:3px solid var(--accent);margin:20px 0;font-size:14px;line-height:1.55}
+
+  /* script list */
+  .script-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .script-item{padding:12px 16px;background:var(--card);border:1px solid var(--rule);border-radius:2px;font-size:12px}
+  .script-item .name{font-family:var(--mono);font-size:11px;color:var(--accent);display:block;margin-bottom:4px}
+  .script-item .desc{color:var(--ink-2)}
+
+  footer{padding:24px var(--pad);border-top:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--mute);text-transform:uppercase;display:flex;justify-content:space-between}
+
+  @media(max-width:768px){
+    :root{--pad:20px}
+    .hero h1{font-size:36px}
+    .summary{grid-template-columns:repeat(3,1fr)}
+    .data-grid{grid-template-columns:1fr}
+    .script-grid{grid-template-columns:1fr 1fr}
+    .data-card.wide{grid-column:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="new-site.html" class="back">&larr; На главную</a>
+  <span class="title">Датасеты и знания</span>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Датасеты и библиотека <em>знаний</em></h1>
+    <div class="sub">Все данные, на которых построены исследования SOL-1, astro-dating и CIV-1. Источники, объёмы, форматы. Всё открыто, всё воспроизводимо.</div>
+  </div>
+
+  <div class="summary">
+    <div class="cell"><span class="num">55 000</span><span class="label">лет данных</span></div>
+    <div class="cell"><span class="num">10 000+</span><span class="label">точек измерений</span></div>
+    <div class="cell"><span class="num">60</span><span class="label">скриптов Python</span></div>
+    <div class="cell"><span class="num">80+</span><span class="label">визуализаций</span></div>
+    <div class="cell"><span class="num">1,3 ГБ</span><span class="label">общий объём</span></div>
+  </div>
+
+  <!-- I. Солнечные прокси -->
+  <div class="sect" id="solar">
+    <div class="sect-head"><span class="mono">I</span><h2>Солнечные <em>прокси</em> &mdash; конвейер SOL-1</h2></div>
+    <p class="sect-intro">Пять независимых источников, по которым мы отслеживаем солнечную активность за тысячи лет. Каждый — другой «канал» записи: глаза, хроники, лёд, деревья.</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <span class="tag">Э1</span>
+        <h3>Солнечные пятна невооружённым глазом</h3>
+        <p>Записи из Китая, Кореи и арабских стран: когда люди видели тёмные точки на Солнце. Самая старая запись — 28 г. до н.э.</p>
+        <div class="meta">
+          <span>103 записи</span>
+          <span>28 до н.э. &mdash; 1604 н.э.</span>
+          <span>Yau & Stephenson, 1988</span>
+          <span>CSV &middot; 6,4 КБ</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag">Э2</span>
+        <h3>Северные сияния (аврора)</h3>
+        <p>Чем активнее Солнце, тем чаще полярные сияния видны далеко от полюсов. Летописи фиксировали «небесные огни» и «кровавые зори».</p>
+        <div class="meta">
+          <span>~2 000 записей</span>
+          <span>567 &mdash; 1900 н.э.</span>
+          <span>Silverman 1992 + Keimatsu 1970</span>
+          <span>CSV &middot; 7,2 КБ</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag">Э3</span>
+        <h3>Корона при затмениях</h3>
+        <p>Во время полного затмения видна солнечная корона. Активное Солнце — корона круглая. Тихое — вытянутая, как крылья бабочки.</p>
+        <div class="meta">
+          <span>116 затмений</span>
+          <span>71 &mdash; 2024 н.э.</span>
+          <span>Stephenson, 1997</span>
+          <span>CSV &middot; 11 КБ</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag">Э4</span>
+        <h3>Радиоуглерод &sup1;&sup4;C (IntCal20)</h3>
+        <p>Космические лучи создают радиоактивный углерод в атмосфере. Когда Солнце сильное — оно экранирует Землю и &sup1;&sup4;C мало. Когда «спит» — &sup1;&sup4;C растёт. Измеряется в годичных кольцах деревьев.</p>
+        <div class="meta">
+          <span>9 501 точка</span>
+          <span>55 000 лет</span>
+          <span>Reimer et al., 2020</span>
+          <span>.14c &middot; 216 КБ</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag">Э5</span>
+        <h3>Бериллий-10 (GISP2)</h3>
+        <p>То же, что &sup1;&sup4;C, но атомы бериллия-10 оседают на снег и сохраняются в ледяных кернах Гренландии. Глубина скважины — 3 км. Полностью независимый способ проверки.</p>
+        <div class="meta">
+          <span>387 точек</span>
+          <span>40 000 лет</span>
+          <span>Finkel & Nishiizumi, 1997</span>
+          <span>TXT &middot; 16 КБ</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag mute">Дополн.</span>
+        <h3>Телескопические наблюдения (SILSO)</h3>
+        <p>Современный ряд чисел Вольфа — подсчёт пятен в телескоп с 1700 г. Помесячные и годовые значения. Используется для калибровки модели.</p>
+        <div class="meta">
+          <span>Помесячно + годовые</span>
+          <span>1700 &mdash; 2026</span>
+          <span>Royal Observatory of Belgium</span>
+          <span>CSV &middot; 132 КБ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Перекрёстная проверка:</strong> Глайссберг (~88 лет) подтверждён в 4 из 4 прокси. Сюсс (~207 лет) — в 3 из 3. Корреляция Пирсона &sup1;&sup4;C &times; &sup1;&#8304;Be: r = 0,47. Пять линий — одна картина.
+    </div>
+  </div>
+
+  <!-- II. Звёздные каталоги -->
+  <div class="sect" id="stars">
+    <div class="sect-head"><span class="mono">II</span><h2>Звёздные <em>каталоги</em></h2></div>
+    <p class="sect-intro">Сравниваем, где звёзды были записаны древними — и где они находятся сейчас. Разница = время. Так датируем каталоги.</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <span class="tag">Основной</span>
+        <h3>Альмагест Птолемея &mdash; 1022 звезды</h3>
+        <p>Полный каталог, оцифрованный по изданию Verbunt & van Gent (2012). Координаты каждой звезды в эклиптической системе. Метод Дамбиса-Ефремова расширен с 8 до 1022 звёзд.</p>
+        <div class="meta">
+          <span>1 022 звезды</span>
+          <span>CSV &middot; 36 КБ</span>
+          <span>Verbunt & van Gent 2012, A&A 544</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag green">Космические</span>
+        <h3>Hipparcos + Gaia DR3</h3>
+        <p>Современные положения и собственные движения звёзд. Hipparcos (ESA, 1997): 118 000 звёзд, точность ~1 mas. Gaia DR3 (ESA, 2022): 1,8 млрд звёзд, точность ~0,02 mas.</p>
+        <div class="meta">
+          <span>CSV &middot; 45 КБ (выборка быстрых звёзд)</span>
+          <span>ESA</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag blue">OCR</span>
+        <h3>Полный текст Альмагеста (Веселовский, 1998)</h3>
+        <p>672 страницы, оцифрованные постранично через OCR. Полный русский перевод с комментариями. Первичный источник для верификации координат.</p>
+        <div class="meta">
+          <span>672 файла</span>
+          <span>3,1 МБ текста + 9,5 МБ постраничные</span>
+          <span>TXT</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag mute">Быстрые</span>
+        <h3>Быстрые звёзды Альмагеста</h3>
+        <p>Выборка звёзд с наибольшим собственным движением — именно они чувствительны к датировке. Аналог выборки из оригинальной работы Дамбиса-Ефремова (2000).</p>
+        <div class="meta">
+          <span>CSV &middot; 1,2 КБ</span>
+          <span>Dambis & Efremov, JHA 2000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- III. Эфемериды -->
+  <div class="sect" id="ephemeris">
+    <div class="sect-head"><span class="mono">III</span><h2><em>Эфемериды</em> и планетные данные</h2></div>
+    <p class="sect-intro">Точные расчётные таблицы NASA: где находилась каждая планета, Луна и Солнце в любой момент за тысячи лет. Основа для проверки затмений, комет и конфигураций.</p>
+
+    <div class="data-grid">
+      <div class="data-card wide">
+        <span class="tag">NASA JPL</span>
+        <h3>JPL DE422 &mdash; планетные эфемериды</h3>
+        <p>Бинарный файл с положениями всех планет Солнечной системы, Луны и Солнца. Покрывает тысячелетия. Используется для расчёта затмений (Бур-Сагале 763 до н.э., Фалес 585 до н.э., «Слово о полку Игореве» 1185 н.э.), проверки конфигураций планет (Дендерский зодиак, VAT 4956) и хронологии кометы Галлея.</p>
+        <div class="meta">
+          <span>622 МБ</span>
+          <span>BSP формат</span>
+          <span>NASA Jet Propulsion Laboratory</span>
+          <span>Используется через Skyfield (Python)</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag mute">Кометы</span>
+        <h3>Комета Галлея &mdash; 30 появлений</h3>
+        <p>Все зафиксированные возвращения от 239 г. до н.э. до 1986 г. н.э. Интервалы 74&ndash;79,5 лет. Каждое — хронологический якорь.</p>
+        <div class="meta">
+          <span>30 записей</span>
+          <span>CSV &middot; 3,5 КБ</span>
+          <span>2 200 лет</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag mute">Инструменты</span>
+        <h3>CIV-1 &mdash; история инструментов</h3>
+        <p>Таблица инструментов от Стоунхенджа до Gaia: год, точность в угловых секундах, информационная ёмкость в битах. Основа для кривой цивилизации.</p>
+        <div class="meta">
+          <span>15&ndash;20 точек</span>
+          <span>CSV &middot; 1,5 КБ</span>
+          <span>5 000 лет</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IV. Результаты -->
+  <div class="sect" id="results">
+    <div class="sect-head"><span class="mono">IV</span><h2>Результаты <em>анализа</em></h2></div>
+    <p class="sect-intro">80+ визуализаций, 50+ отчётов. Каждый скрипт генерирует отчёт в Markdown и график в PNG.</p>
+
+    <table>
+      <tr><th>Категория</th><th>Файлов</th><th>Что внутри</th></tr>
+      <tr><td>Спектры FFT (SOL-1)</td><td>5 отчётов + 5 графиков</td><td>Фурье-анализ каждого прокси (Э1&ndash;Э5). Найденные циклы, амплитуды, подтверждения.</td></tr>
+      <tr><td>Прогноз Монте-Карло</td><td>3 отчёта + 3 графика</td><td>500 реализаций, распределение вероятностей, доверительные интервалы, детальные и векторные варианты.</td></tr>
+      <tr><td>Альмагест</td><td>3 отчёта + 3 графика</td><td>Датировка 1022 звёзд, сравнение Hipparcos vs Gaia, быстрые звёзды.</td></tr>
+      <tr><td>16 цивилизаций</td><td>20+ отчётов</td><td>Вавилон, Египет, Индия, Китай, Майя, Корея, Австралия, Кхмеры, Ацтеки, Инки, Арабы, Вьетнам, Япония, палеолит.</td></tr>
+      <tr><td>Пограничные задачи (F1&ndash;F5)</td><td>5 отчётов + графики</td><td>Красный Сириус, Угарит, Мияке 7176 до н.э., SN 1181 / Pa 30.</td></tr>
+      <tr><td>Дополнительные (G1&ndash;G6)</td><td>6 отчётов + графики</td><td>События Мияке, солнечный ветер по Галлею, авроральные бури, радиация на Марсе.</td></tr>
+      <tr><td>Большие минимумы (MAU-1)</td><td>1 отчёт + график</td><td>Верификация Оорт&ndash;Дальтон по всем 5 прокси.</td></tr>
+      <tr><td>Сводная верификация</td><td>1 отчёт</td><td>Все 18 якорей, процент подтверждения, сравнение с «Новой хронологией».</td></tr>
+    </table>
+  </div>
+
+  <!-- V. Скрипты -->
+  <div class="sect" id="scripts">
+    <div class="sect-head"><span class="mono">V</span><h2>60 скриптов <em>Python</em></h2></div>
+    <p class="sect-intro">Каждый скрипт — отдельный эксперимент. Запускается на ноутбуке за секунды. Все данные публичные, все зависимости стандартные (NumPy, SciPy, Astropy, Matplotlib, Skyfield).</p>
+
+    <div class="script-grid">
+      <div class="script-item"><span class="name">sol1_e1_verify_fft.py</span><span class="desc">FFT солнечных пятен</span></div>
+      <div class="script-item"><span class="name">sol1_e2_aurora_fft.py</span><span class="desc">FFT северных сияний</span></div>
+      <div class="script-item"><span class="name">sol1_e3_corona_fft.py</span><span class="desc">FFT солнечной короны</span></div>
+      <div class="script-item"><span class="name">sol1_e4_c14_fft.py</span><span class="desc">FFT радиоуглерода</span></div>
+      <div class="script-item"><span class="name">sol1_e5_be10_fft.py</span><span class="desc">FFT бериллия-10</span></div>
+      <div class="script-item"><span class="name">sol1_prediction.py</span><span class="desc">Прогноз Монте-Карло</span></div>
+      <div class="script-item"><span class="name">almagest_1022.py</span><span class="desc">Датировка 1022 звёзд</span></div>
+      <div class="script-item"><span class="name">almagest_1022_gaia.py</span><span class="desc">Gaia vs Hipparcos</span></div>
+      <div class="script-item"><span class="name">bur_sagale_763bce.py</span><span class="desc">Затмение 763 до н.э.</span></div>
+      <div class="script-item"><span class="name">maya_dresden.py</span><span class="desc">Дрезденский кодекс</span></div>
+      <div class="script-item"><span class="name">dendera_zodiac.py</span><span class="desc">Дендерский зодиак</span></div>
+      <div class="script-item"><span class="name">halley_chronology.py</span><span class="desc">30 появлений Галлея</span></div>
+      <div class="script-item"><span class="name">crab_supernova_1054.py</span><span class="desc">Сверхновая 1054</span></div>
+      <div class="script-item"><span class="name">india_mahabharata.py</span><span class="desc">Махабхарата: 7 планет</span></div>
+      <div class="script-item"><span class="name">babylonian_astronomy.py</span><span class="desc">Вавилонская хронология</span></div>
+      <div class="script-item"><span class="name">china_chronology.py</span><span class="desc">Китайская хронология</span></div>
+      <div class="script-item"><span class="name">h1_egyptian_decans.py</span><span class="desc">Египетские деканы</span></div>
+      <div class="script-item"><span class="name">h2_sothic_cycle.py</span><span class="desc">Сотический цикл</span></div>
+      <div class="script-item"><span class="name">k1_korean_star_map.py</span><span class="desc">Корейская звёздная карта</span></div>
+      <div class="script-item"><span class="name">k2_aboriginal_astronomy.py</span><span class="desc">Австралийские аборигены</span></div>
+      <div class="script-item"><span class="name">k3_angkor_wat.py</span><span class="desc">Ангкор-Ват: прецессия</span></div>
+      <div class="script-item"><span class="name">k5_aztec_sunstone.py</span><span class="desc">Ацтекский камень Солнца</span></div>
+      <div class="script-item"><span class="name">k6_inca.py</span><span class="desc">Инки: 328 уак</span></div>
+      <div class="script-item"><span class="name">k7_al_sufi.py</span><span class="desc">Каталог Ас-Суфи</span></div>
+      <div class="script-item"><span class="name">g1_miyake_events.py</span><span class="desc">События Мияке</span></div>
+      <div class="script-item"><span class="name">g2_halley_solar_wind.py</span><span class="desc">Солнечный ветер по Галлею</span></div>
+      <div class="script-item"><span class="name">civ1_civilization_curve.py</span><span class="desc">Кривая цивилизации</span></div>
+      <div class="script-item"><span class="name">f1_red_sirius.py</span><span class="desc">Загадка красного Сириуса</span></div>
+      <div class="script-item"><span class="name">monte_carlo_dating.py</span><span class="desc">Монте-Карло датировка</span></div>
+      <div class="script-item"><span class="name">mau1_grand_minima.py</span><span class="desc">Большие минимумы</span></div>
+    </div>
+
+    <div class="highlight">
+      <strong>Воспроизводимость:</strong> <code>pip install numpy scipy matplotlib astropy skyfield</code> &rarr; запустить любой скрипт. Время выполнения: менее 10 секунд на якорь. Работает на любом ноутбуке.
+    </div>
+  </div>
+
+  <!-- VI. Библиотека знаний -->
+  <div class="sect" id="docs">
+    <div class="sect-head"><span class="mono">VI</span><h2>Библиотека <em>знаний</em></h2></div>
+    <p class="sect-intro">30+ исследовательских отчётов, 7 глав книги, 8 лекций, статьи для школьников и специалистов.</p>
+
+    <table>
+      <tr><th>Раздел</th><th>Содержание</th><th>Объём</th></tr>
+      <tr><td>Научная статья</td><td>RevTeX4-2, 6 страниц. Полный конвейер SOL-1 с абстрактом, методологией и результатами.</td><td>14 КБ LaTeX + PDF</td></tr>
+      <tr><td>Библиография</td><td>15 ключевых источников: Usoskin, Steinhilber, Eddy, Zharkova, Reimer, Finkel, Dambis & Efremov и др.</td><td>sol1_refs.bib &middot; 4,4 КБ</td></tr>
+      <tr><td>Научный доклад</td><td>Подробный отчёт на 34 КБ — полная методология, все 18 якорей, таблицы результатов.</td><td>34 КБ</td></tr>
+      <tr><td>Статья для ВАК</td><td>Полная статья в формате российского академического стандарта (ИИЕТ РАН).</td><td>38 КБ</td></tr>
+      <tr><td>Книга «Хронозвёзды»</td><td>7 глав: от постановки задачи до прогноза. PDF + EPUB (RU + EN). 172 КБ исходников.</td><td>PDF 57 КБ + EPUB 16 КБ</td></tr>
+      <tr><td>Аудиокнига</td><td>7 глав, профессиональный мастеринг. Полная версия: 153 МБ.</td><td>167 МБ (мастер + исходники)</td></tr>
+      <tr><td>Лекции (8 шт.)</td><td>По 5 минут каждая. Полный цикл: от верификации до прогноза.</td><td>PDF + MD</td></tr>
+      <tr><td>Для школьников</td><td>Адаптированная версия — понятным языком, с примерами.</td><td>21 КБ + PDF</td></tr>
+      <tr><td>Популярные статьи</td><td>Для Habr и широкой аудитории. Солнечный прогноз и хронология.</td><td>18 КБ &times; 2</td></tr>
+      <tr><td>Письма экспертам</td><td>Усоскин, Штайнхильбер, Дамбис, SpaceX — EN + RU версии.</td><td>10 файлов</td></tr>
+      <tr><td>Презентация</td><td>12 слайдов + PPTX + Markdown исходник.</td><td>PPTX + PDF 2,3 МБ</td></tr>
+    </table>
+  </div>
+
+  <!-- VII. Верификация -->
+  <div class="sect" id="verification">
+    <div class="sect-head"><span class="mono">VII</span><h2><em>Верификация</em> и контроль качества</h2></div>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <span class="tag green">Два узла</span>
+        <h3>Распределённые вычисления</h3>
+        <p>Все расчёты выполняются параллельно на двух независимых машинах: MacBook M1 Pro (macOS, Astropy 6.0) и Beelink SER9 (Windows, Astropy 7.2). Разные ОС, разные версии библиотек. Расхождение результатов = флаг ошибки реализации.</p>
+        <div class="meta">
+          <span>MacBook M1 Pro</span>
+          <span>Beelink SER9</span>
+          <span>WireGuard mesh 10.10.0.x</span>
+        </div>
+      </div>
+
+      <div class="data-card">
+        <span class="tag green">Открытый код</span>
+        <h3>Полная воспроизводимость</h3>
+        <p>Все данные публичные. Все скрипты на GitHub. Зависимости: 5 стандартных Python-библиотек. Время воспроизведения: менее 1 минуты на весь конвейер на любом ноутбуке.</p>
+        <div class="meta">
+          <span>GitHub: abelbleoworld-blip/astro-dating</span>
+          <span>DOI: 10.5281/zenodo.19638005</span>
+          <span>CC BY 4.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIII. Как получить -->
+  <div class="sect" id="access">
+    <div class="sect-head"><span class="mono">VIII</span><h2>Как <em>получить</em></h2></div>
+
+    <table>
+      <tr><th>Что</th><th>Где</th><th>Доступ</th></tr>
+      <tr><td>Весь код + данные + скрипты</td><td><a href="https://github.com/abelbleoworld-blip/astro-dating" target="_blank">GitHub</a></td><td>Открыто</td></tr>
+      <tr><td>Полный пакет SOL-1 (ZIP ~47 МБ)</td><td><a href="https://doi.org/10.5281/zenodo.19638005" target="_blank">Zenodo DOI</a></td><td>Открыто</td></tr>
+      <tr><td>Научная статья (PDF)</td><td>По запросу: <a href="mailto:a@aadmitrieff.com">a@aadmitrieff.com</a></td><td>По запросу</td></tr>
+      <tr><td>Книга + аудиокнига</td><td>По запросу или через поддержку</td><td>По запросу</td></tr>
+      <tr><td>Словарь терминов</td><td><a href="glossary.html">glossary.html</a></td><td>Открыто</td></tr>
+    </table>
+
+    <div class="highlight">
+      <strong>Лицензия:</strong> CC BY 4.0 &mdash; используйте, копируйте, модифицируйте. Единственное условие: укажите автора.<br>
+      <strong>Цитирование:</strong> Dmitriev, A. A. (2026). <em>AI-driven multi-proxy predictive system for solar activity.</em> DOI: 10.5281/zenodo.19638005
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>&copy; 2026 &middot; А.&thinsp;А.&thinsp;Дмитриев</span>
+  <span>CC BY 4.0 &middot; <a href="glossary.html" style="color:var(--mute)">Словарь</a> &middot; <a href="new-site.html" style="color:var(--mute)">Главная</a></span>
+</footer>
+
+</body>
+</html>

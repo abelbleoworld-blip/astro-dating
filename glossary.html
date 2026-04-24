@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Словарь терминов — А. А. Дмитриев</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./css2" rel="stylesheet">
+<style>
+  :root{
+    --bg: #efe9dc;
+    --bg-2:#e7e1d2;
+    --ink:#201d18;
+    --ink-2:#3a342b;
+    --mute:#8a8372;
+    --rule:#cec5b0;
+    --card:#f6f1e4;
+    --accent:#c8553d;
+    --accent-soft:#e9b7aa;
+    --maxw: 1240px;
+    --pad: 56px;
+    --serif: "Fraunces", "Source Serif Pro", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+
+  /* header */
+  header{display:flex;justify-content:space-between;align-items:center;padding:16px var(--pad);border-bottom:1px solid var(--rule)}
+  header .back{font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+  header .back:hover{color:var(--accent)}
+  header .title{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+
+  /* hero */
+  .hero{padding:56px 0 40px;border-bottom:1px solid var(--rule)}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:56px;line-height:1.05;letter-spacing:-.02em;margin:0 0 16px}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero .sub{font-size:16px;color:var(--ink-2);max-width:700px;line-height:1.55}
+
+  /* toc */
+  .toc{padding:28px 0;border-bottom:1px solid var(--rule)}
+  .toc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .toc a{display:block;padding:10px 14px;background:var(--card);border:1px solid var(--rule);border-radius:2px;font-size:13px;color:var(--ink-2);transition:border-color .2s,color .2s}
+  .toc a:hover{border-color:var(--accent);color:var(--ink);text-decoration:none}
+  .toc a .num{font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:var(--mute);display:block;margin-bottom:4px}
+
+  /* sections */
+  .sect{padding:40px 0;border-bottom:1px solid var(--rule)}
+  .sect:last-child{border-bottom:none;padding-bottom:80px}
+  .sect-head{display:flex;align-items:baseline;gap:16px;margin-bottom:24px}
+  .sect-head h2{font-family:var(--serif);font-weight:400;font-size:32px;margin:0;letter-spacing:-.01em}
+  .sect-head h2 em{font-style:italic;color:var(--accent)}
+  .sect-intro{font-size:15px;color:var(--ink-2);line-height:1.6;max-width:800px;margin-bottom:24px}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;margin-bottom:24px}
+  th{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);text-align:left;padding:10px 14px;border-bottom:2px solid var(--rule);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.55;vertical-align:top}
+  tr:hover td{background:var(--card)}
+  td:first-child{font-weight:600;white-space:nowrap;color:var(--ink)}
+  td strong{color:var(--ink)}
+
+  /* sub-headings inside sections */
+  .sect h3{font-family:var(--serif);font-weight:400;font-size:22px;margin:32px 0 16px;letter-spacing:-.005em}
+
+  /* highlight box */
+  .highlight{padding:16px 20px;background:color-mix(in oklab, var(--accent-soft) 30%, var(--card));border-left:3px solid var(--accent);margin:20px 0;font-size:14px;line-height:1.55}
+  .highlight strong{color:var(--accent)}
+
+  /* footer */
+  footer{padding:24px var(--pad);border-top:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--mute);text-transform:uppercase;display:flex;justify-content:space-between}
+
+  @media(max-width:768px){
+    :root{--pad:20px}
+    .hero h1{font-size:36px}
+    .toc-grid{grid-template-columns:1fr 1fr}
+    .sect-head h2{font-size:24px}
+    td:first-child{white-space:normal}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="new-site.html" class="back">&larr; На главную</a>
+  <span class="title">Словарь терминов</span>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Терминологический <em>словарь</em></h1>
+    <div class="sub">Все термины, методы, данные и аббревиатуры проектов SOL-1, CIV-1 и astro-dating. Объяснения написаны простым языком — без предварительной подготовки.</div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-grid">
+      <a href="#projects"><span class="num">I</span>Проекты и коды</a>
+      <a href="#cycles"><span class="num">II</span>Солнечные циклы</a>
+      <a href="#minima"><span class="num">III</span>Большие минимумы</a>
+      <a href="#data"><span class="num">IV</span>Источники данных</a>
+      <a href="#methods"><span class="num">V</span>Методы анализа</a>
+      <a href="#astro"><span class="num">VI</span>Астрономия</a>
+      <a href="#anchors"><span class="num">VII</span>Древние якоря</a>
+      <a href="#climate"><span class="num">VIII</span>Климат</a>
+      <a href="#publishing"><span class="num">IX</span>Публикации</a>
+      <a href="#stack"><span class="num">X</span>Технический стек</a>
+      <a href="#units"><span class="num">XI</span>Единицы измерения</a>
+      <a href="#people"><span class="num">XII</span>Ключевые учёные</a>
+      <a href="#phrasebook"><span class="num">XIII</span>Разговорник</a>
+    </div>
+  </div>
+
+  <!-- I. Проекты -->
+  <div class="sect" id="projects">
+    <div class="sect-head"><span class="mono">I</span><h2>Проекты и <em>их коды</em></h2></div>
+    <table>
+      <tr><th>Код</th><th>Полное название</th><th>Суть</th></tr>
+      <tr><td>SOL-1</td><td>Solar Activity Prediction Pipeline</td><td>Прогноз солнечной активности на основе 5 прокси за 55 000 лет. Главный результат: 95,4% вероятность ослабления Солнца к ~2126 г.</td></tr>
+      <tr><td>CIV-1</td><td>Civilization Curve</td><td>Кривая цивилизации — как росла точность астрономических знаний за 5 000 лет (от Стоунхенджа до Gaia).</td></tr>
+      <tr><td>astro-dating</td><td>Computational Archaeoastronomy</td><td>Зонтичный проект: проверка исторических дат по астрономическим расчётам. 16 цивилизаций, 18 якорей, 5 континентов.</td></tr>
+      <tr><td>MAU-1</td><td>Grand Solar Minima Verification</td><td>Подпроект: верификация пяти известных Больших солнечных минимумов.</td></tr>
+      <tr><td>E1–E5</td><td>Этапы конвейера SOL-1</td><td>Пять независимых источников данных (см. раздел IV).</td></tr>
+      <tr><td>F1–F5</td><td>Frontier Problems</td><td>Пять нерешённых задач на стыке астрономии и истории (Красный Сириус, Угарит и др.).</td></tr>
+    </table>
+  </div>
+
+  <!-- II. Солнечные циклы -->
+  <div class="sect" id="cycles">
+    <div class="sect-head"><span class="mono">II</span><h2>Солнечные <em>циклы</em></h2></div>
+    <p class="sect-intro">Солнце не светит одинаково — его активность колеблется с разными периодами. Это как волны в океане: есть мелкая рябь, а есть приливы.</p>
+    <table>
+      <tr><th>Цикл</th><th>Период</th><th>Что это</th><th>Где подтверждён</th></tr>
+      <tr><td>Швабе (Schwabe)</td><td>~11 лет</td><td>Основной цикл: пятна на Солнце то появляются, то исчезают каждые ~11 лет.</td><td>Телескопические наблюдения с 1610 г.</td></tr>
+      <tr><td>Хейла (Hale)</td><td>~22 года</td><td>Магнитное поле Солнца меняет полярность каждые ~22 года (два цикла Швабе).</td><td>Магнитные наблюдения</td></tr>
+      <tr><td>Глайссберга (Gleissberg)</td><td>~88 лет</td><td>Амплитуда циклов Швабе сама колеблется с периодом ~88 лет. Подтверждён в 4 из 4 прокси SOL-1.</td><td>E1, E2, E3, E4</td></tr>
+      <tr><td>Сюсса / де Фриза (Suess / de Vries)</td><td>~207 лет</td><td>Долгопериодная модуляция. Подтверждён в 3 из 3 применимых прокси.</td><td>E3, E4, E5</td></tr>
+      <tr><td>Эдди (Eddy)</td><td>~1000 лет</td><td>Тысячелетний цикл, заметен по радиоуглероду и бериллию.</td><td>E4, E5</td></tr>
+      <tr><td>Хальштатт (Hallstatt)</td><td>~2300 лет</td><td>Самый длинный подтверждённый цикл. Виден только в космогенных изотопах (&#185;&#8308;C и &#185;&#8304;Be).</td><td>E4, E5</td></tr>
+    </table>
+  </div>
+
+  <!-- III. Большие минимумы -->
+  <div class="sect" id="minima">
+    <div class="sect-head"><span class="mono">III</span><h2>Большие солнечные <em>минимумы</em></h2></div>
+    <p class="sect-intro">Когда несколько циклов совпадают в фазе спада — Солнце «засыпает» на десятилетия. Пятен почти нет, на Земле холодает.</p>
+    <table>
+      <tr><th>Минимум</th><th>Когда</th><th>Что было</th></tr>
+      <tr><td>Оорт (Oort)</td><td>1010–1050</td><td>Мягкое похолодание, снижение урожайности в Европе.</td></tr>
+      <tr><td>Вольф (Wolf)</td><td>1280–1340</td><td>Начало «Малого ледникового периода». Голод в Европе.</td></tr>
+      <tr><td>Шпёрер (Sp&ouml;rer)</td><td>1460–1550</td><td>Тяжёлые зимы, замерзание рек, неурожаи.</td></tr>
+      <tr><td>Маундер (Maunder)</td><td>1645–1715</td><td>Самый известный: пятен почти не было 70 лет. Темза замерзала. Каналы Голландии покрывались льдом.</td></tr>
+      <tr><td>Дальтон (Dalton)</td><td>1790–1830</td><td>Последний подтверждённый минимум. «Год без лета» (1816) — после извержения Тамборы на фоне уже ослабленного Солнца.</td></tr>
+    </table>
+    <div class="highlight"><strong>Прогноз SOL-1:</strong> следующий Большой солнечный минимум — медиана <strong>~2126 г.</strong> (68% доверительный интервал: 2058–2206).</div>
+  </div>
+
+  <!-- IV. Данные -->
+  <div class="sect" id="data">
+    <div class="sect-head"><span class="mono">IV</span><h2>Источники <em>данных</em></h2></div>
+    <p class="sect-intro"><strong>Прокси</strong> (proxy) — косвенный показатель. Солнце не оставляет прямых записей о своей активности за тысячи лет, но оставляет следы в природе.</p>
+    <table>
+      <tr><th>Этап</th><th>Прокси</th><th>Простыми словами</th><th>Объём</th><th>Охват</th></tr>
+      <tr><td>Э1</td><td>Солнечные пятна</td><td>Древние астрономы записывали, когда видели тёмные точки на Солнце невооружённым глазом.</td><td>103 записи</td><td>28 до н.э. — 1604 н.э.</td></tr>
+      <tr><td>Э2</td><td>Северные сияния</td><td>Чем активнее Солнце — тем чаще и южнее видны полярные сияния. Хроники фиксировали «небесные огни».</td><td>104 записи</td><td>567–2003 н.э.</td></tr>
+      <tr><td>Э3</td><td>Корона при затмениях</td><td>При активном Солнце корона круглая, при тихом — вытянутая.</td><td>116 затмений</td><td>71–2024 н.э.</td></tr>
+      <tr><td>Э4</td><td>Радиоуглерод &sup1;&sup4;C</td><td>Космические лучи создают радиоактивный углерод. Когда Солнце активно — &sup1;&sup4;C мало. Когда спит — растёт. Измеряется в кольцах деревьев.</td><td>9 501 точка</td><td>55 000 лет</td></tr>
+      <tr><td>Э5</td><td>Бериллий-10</td><td>То же, что &sup1;&sup4;C, но измеряется в ледяных кернах Гренландии. Независимый способ проверки.</td><td>387 точек</td><td>40 000 лет</td></tr>
+    </table>
+
+    <h3>Стандартные наборы данных</h3>
+    <table>
+      <tr><th>Название</th><th>Что это</th><th>Источник</th></tr>
+      <tr><td>IntCal20</td><td>Мировая калибровочная кривая радиоуглерода. Главный стандарт &sup1;&sup4;C-датировки.</td><td>Reimer et al., 2020</td></tr>
+      <tr><td>GISP2</td><td>Greenland Ice Sheet Project 2. Ледяной керн из Гренландии глубиной 3 км.</td><td>Finkel & Nishiizumi, 1997</td></tr>
+      <tr><td>Hipparcos</td><td>Первый космический каталог звёзд (ESA, 1997). 118 000 звёзд с точными координатами.</td><td>ESA</td></tr>
+      <tr><td>Gaia DR3</td><td>Каталог телескопа Gaia (ESA). 1,8 млрд звёзд. Точность до миллионных долей градуса.</td><td>ESA, 2022</td></tr>
+      <tr><td>JPL DE422</td><td>Эфемериды — точные таблицы положений планет на тысячи лет. Делает NASA JPL.</td><td>NASA</td></tr>
+    </table>
+  </div>
+
+  <!-- V. Методы -->
+  <div class="sect" id="methods">
+    <div class="sect-head"><span class="mono">V</span><h2>Методы <em>анализа</em></h2></div>
+
+    <h3>Спектральный анализ</h3>
+    <table>
+      <tr><th>Термин</th><th>Простыми словами</th></tr>
+      <tr><td>FFT (Быстрое преобразование Фурье)</td><td>Способ разложить сигнал на составляющие волны. Как слушать оркестр и отделить каждый инструмент. Берём 55 000 лет данных и находим скрытые ритмы Солнца.</td></tr>
+      <tr><td>Спектр мощности</td><td>Результат FFT — график: какие частоты есть и насколько сильны. Пики = найденные циклы.</td></tr>
+      <tr><td>Окно Хеннинга</td><td>Трюк для FFT: данные на краях сглаживаются, чтобы не создавать ложных частот. Как затухание звука в конце песни.</td></tr>
+      <tr><td>Вейвлет-анализ</td><td>Продвинутый FFT: показывает не только какие частоты есть, но и <em>когда</em> они были сильными.</td></tr>
+    </table>
+
+    <h3>Статистика</h3>
+    <table>
+      <tr><th>Термин</th><th>Простыми словами</th></tr>
+      <tr><td>Монте-Карло</td><td>Метод «а что если?». Берём модель, слегка меняем параметры случайным образом 500 раз и смотрим, как часто получается тот или иной результат. 95 из 100 показывают минимум = вероятность 95%.</td></tr>
+      <tr><td>Бутстрап (Bootstrap)</td><td>Похож на Монте-Карло, но работает с данными: многократно пересчитываем на случайных подвыборках, чтобы оценить стабильность вывода.</td></tr>
+      <tr><td>Корреляция Пирсона (r)</td><td>Число от &minus;1 до +1: насколько два набора данных «ходят вместе». r = 0,47 между &sup1;&sup4;C и &sup1;&#8304;Be — связь умеренная, положительная.</td></tr>
+      <tr><td>Невязка (RMS)</td><td>Средняя ошибка в градусах. Насколько расчёт отличается от наблюдения. RMS 1,23&deg; для Альмагеста — хорошо.</td></tr>
+      <tr><td>Доверительный интервал (CI)</td><td>Диапазон с заданной вероятностью. 68% CI: 2058–2206 = с вероятностью 68% минимум наступит в этом окне.</td></tr>
+      <tr><td>Перекрёстная проверка</td><td>Проверяем результат одного метода данными другого. Если &sup1;&sup4;C и &sup1;&#8304;Be дают похожие циклы — не случайность.</td></tr>
+      <tr><td>Нелдер-Мид</td><td>Алгоритм подбора параметров. Как настройка эквалайзера: крутим ручки, пока звук не станет оптимальным.</td></tr>
+    </table>
+
+    <h3>Методы датировки</h3>
+    <table>
+      <tr><th>Термин</th><th>Простыми словами</th></tr>
+      <tr><td>Собственное движение звёзд</td><td>Звёзды очень медленно смещаются. За 2000 лет — заметно. Сравнив каталог Птолемея с современным, вычисляем, когда он был составлен.</td></tr>
+      <tr><td>Дендрохронология</td><td>Датировка по годичным кольцам деревьев. По ширине колец — климат того года.</td></tr>
+      <tr><td>Радиоуглеродная датировка</td><td>Определение возраста по содержанию &sup1;&sup4;C. Распадается с известной скоростью — чем меньше, тем старше.</td></tr>
+    </table>
+  </div>
+
+  <!-- VI. Астрономия -->
+  <div class="sect" id="astro">
+    <div class="sect-head"><span class="mono">VI</span><h2>Астрономические <em>понятия</em></h2></div>
+
+    <h3>Координаты</h3>
+    <table>
+      <tr><th>Термин</th><th>Что это</th></tr>
+      <tr><td>Эклиптика</td><td>Плоскость орбиты Земли. Все планеты движутся примерно в ней.</td></tr>
+      <tr><td>J2000</td><td>Стандартная точка отсчёта: положения звёзд приведены к 1 января 2000 г.</td></tr>
+      <tr><td>ICRS</td><td>Международная небесная система координат. Основана на далёких квазарах.</td></tr>
+      <tr><td>Прецессия</td><td>Ось Земли описывает конус (как волчок) за ~26 000 лет. Координаты звёзд постепенно «плывут».</td></tr>
+    </table>
+
+    <h3>Затмения</h3>
+    <table>
+      <tr><th>Термин</th><th>Что это</th></tr>
+      <tr><td>Полное солнечное затмение</td><td>Луна полностью закрывает Солнце. Видна корона. Длится 2–7 минут.</td></tr>
+      <tr><td>Цикл Сароса</td><td>Период ~18 лет 11 дней, через который затмения повторяются. Открыт вавилонянами ~2500 лет назад.</td></tr>
+      <tr><td>Магнитуда затмения</td><td>Доля Солнца, закрытая Луной. Больше 1 = полное.</td></tr>
+    </table>
+
+    <h3>Объекты</h3>
+    <table>
+      <tr><th>Термин</th><th>Что это</th></tr>
+      <tr><td>Сверхновая</td><td>Взрыв звезды. SN 1054 оставила Крабовидную туманность. Её записали 5 разных цивилизаций.</td></tr>
+      <tr><td>Комета Галлея</td><td>Возвращается каждые 74–79 лет. Прослежена 30 раз за 2200 лет. Хронологический якорь.</td></tr>
+      <tr><td>Событие Мияке</td><td>Внезапный всплеск космического излучения. Резкий пик &sup1;&sup4;C в кольцах деревьев (775 и 993 гг. н.э.).</td></tr>
+      <tr><td>Альмагест</td><td>Звёздный каталог Птолемея (~150 г. н.э.), 1022 звезды. Главный источник для astro-dating.</td></tr>
+    </table>
+  </div>
+
+  <!-- VII. Якоря -->
+  <div class="sect" id="anchors">
+    <div class="sect-head"><span class="mono">VII</span><h2>Древние <em>якоря</em></h2></div>
+    <p class="sect-intro"><strong>Якорь</strong> — историческое событие, которое можно проверить астрономическим расчётом. Расчёт совпадает с записью — дата подтверждена.</p>
+
+    <h3>Затмения-якоря</h3>
+    <table>
+      <tr><th>Якорь</th><th>Дата</th><th>Точность</th><th>Значение</th></tr>
+      <tr><td>Бур-Сагале</td><td>763 г. до н.э.</td><td>0,028&deg;</td><td>Точка привязки всей ассирийской хронологии.</td></tr>
+      <tr><td>Фалес</td><td>585 г. до н.э.</td><td>подтверждено</td><td>Первое предсказанное затмение в истории.</td></tr>
+      <tr><td>«Слово о полку Игореве»</td><td>1185 г. н.э.</td><td>0,106&deg;</td><td>Подтверждает дату похода и подлинность текста.</td></tr>
+    </table>
+
+    <h3>Древние тексты и артефакты</h3>
+    <table>
+      <tr><th>Источник</th><th>Цивилизация</th><th>Что проверяли</th></tr>
+      <tr><td>Дрезденский кодекс</td><td>Майя</td><td>Таблицы Венеры: 583,92 дня (ошибка 0,02% от современного).</td></tr>
+      <tr><td>Дендерский зодиак</td><td>Египет</td><td>Положения планет &rarr; датировка ~286 г. до н.э.</td></tr>
+      <tr><td>VAT 4956</td><td>Вавилон</td><td>Дневник с наблюдениями планет. Привязка к Навуходоносору.</td></tr>
+      <tr><td>MUL.APIN</td><td>Вавилон</td><td>Древнейший каталог звёзд Месопотамии.</td></tr>
+      <tr><td>Деканы</td><td>Египет</td><td>36 звёздных групп — ночные часы.</td></tr>
+      <tr><td>Сотический цикл</td><td>Египет</td><td>1460-летний цикл восхода Сириуса.</td></tr>
+      <tr><td>Арьябхатия</td><td>Индия</td><td>Трактат V в. Точные параметры орбит.</td></tr>
+      <tr><td>Махабхарата</td><td>Индия</td><td>Кластерный анализ 7 планет &rarr; 1655 и 1535 гг. до н.э.</td></tr>
+      <tr><td>Каталог Ас-Суфи</td><td>Арабы</td><td>Звёздный каталог X в. Цепочка прецессии.</td></tr>
+      <tr><td>Корейская звёздная карта</td><td>Корея</td><td>Прецессия подтверждает эпоху Когурё.</td></tr>
+      <tr><td>Ангкор-Ват</td><td>Кхмеры</td><td>Прецессионные числа в архитектуре.</td></tr>
+    </table>
+  </div>
+
+  <!-- VIII. Климат -->
+  <div class="sect" id="climate">
+    <div class="sect-head"><span class="mono">VIII</span><h2>Климат и <em>сценарии</em></h2></div>
+    <table>
+      <tr><th>Термин</th><th>Что это</th></tr>
+      <tr><td>IPCC</td><td>Межправительственная группа экспертов по климату (ООН). Главный мировой орган.</td></tr>
+      <tr><td>AR6</td><td>Шестой доклад IPCC (2021–2023). Актуальная база по потеплению.</td></tr>
+      <tr><td>SSP</td><td>Сценарии будущего. SSP1-2.6 = «зелёный путь», SSP5-8.5 = «углеродный разгул».</td></tr>
+      <tr><td>TSI</td><td>Полная солнечная освещённость. Сколько энергии даёт Солнце. При БСМ падает на ~0,1%.</td></tr>
+      <tr><td>Космические лучи (GCR)</td><td>Частицы из-за пределов Солнечной системы. Слабое Солнце = слабый щит = больше лучей = больше &sup1;&sup4;C и &sup1;&#8304;Be.</td></tr>
+      <tr><td>Солнечный ветер</td><td>Поток частиц от Солнца. Активное Солнце &rarr; сильный ветер &rarr; экран от космических лучей.</td></tr>
+      <tr><td>Геомагнитная буря</td><td>Возмущение магнитного поля Земли. Может повредить спутники и электросети.</td></tr>
+      <tr><td>Событие Кэррингтона (1859)</td><td>Сильнейшая буря в истории. Телеграфы загорались. Сегодня &rarr; ущерб на триллионы.</td></tr>
+    </table>
+  </div>
+
+  <!-- IX. Публикации -->
+  <div class="sect" id="publishing">
+    <div class="sect-head"><span class="mono">IX</span><h2>Публикационная <em>инфраструктура</em></h2></div>
+    <table>
+      <tr><th>Термин</th><th>Что это</th></tr>
+      <tr><td>arXiv</td><td>Открытый архив научных препринтов. Статью можно выложить до журнала. Нужен endorsement.</td></tr>
+      <tr><td>Endorsement</td><td>Поручительство: опытный автор подтверждает, что ваша работа — добросовестная наука. Один клик.</td></tr>
+      <tr><td>DOI</td><td>Уникальный номер публикации (как ISBN для книг). Наш: <a href="https://doi.org/10.5281/zenodo.19638005">10.5281/zenodo.19638005</a>.</td></tr>
+      <tr><td>Zenodo</td><td>Открытый репозиторий CERN. Код, данные, статья. Выдаёт DOI.</td></tr>
+      <tr><td>ORCID</td><td>Уникальный номер учёного (как ИНН). Наш: <a href="https://orcid.org/0009-0000-6164-8474">0009-0000-6164-8474</a>.</td></tr>
+      <tr><td>RevTeX4-2</td><td>Формат LaTeX для журналов Physical Review. В нём написана статья SOL-1.</td></tr>
+      <tr><td>Peer review</td><td>Рецензирование: независимые эксперты проверяют статью перед публикацией.</td></tr>
+      <tr><td>h-index</td><td>Индекс Хирша: h статей, каждая процитирована &ge; h раз. Мера научного влияния.</td></tr>
+      <tr><td>ВАК</td><td>Высшая аттестационная комиссия. Список журналов для защиты диссертаций в России.</td></tr>
+      <tr><td>РИНЦ</td><td>Российский индекс научного цитирования (eLIBRARY.ru). Аналог Web of Science.</td></tr>
+      <tr><td>JHA</td><td>Journal for the History of Astronomy — целевой журнал для astro-dating.</td></tr>
+      <tr><td>Google Scholar</td><td>Бесплатный поиск по научным статьям. Считает цитирования и h-index.</td></tr>
+    </table>
+  </div>
+
+  <!-- X. Стек -->
+  <div class="sect" id="stack">
+    <div class="sect-head"><span class="mono">X</span><h2>Технический <em>стек</em></h2></div>
+    <table>
+      <tr><th>Инструмент</th><th>Для чего</th></tr>
+      <tr><td>Python 3.9+</td><td>Язык программирования. Все 60 скриптов проекта.</td></tr>
+      <tr><td>NumPy</td><td>Числовые расчёты: массивы, линейная алгебра.</td></tr>
+      <tr><td>SciPy</td><td>Научные вычисления: FFT, оптимизация, статистика.</td></tr>
+      <tr><td>Matplotlib</td><td>Графики (80+ визуализаций).</td></tr>
+      <tr><td>Astropy</td><td>Астрономия: координаты, эпохи, каталоги.</td></tr>
+      <tr><td>Skyfield</td><td>Положения планет по эфемеридам JPL.</td></tr>
+      <tr><td>LaTeX</td><td>Вёрстка научных статей.</td></tr>
+      <tr><td>CC BY 4.0</td><td>Лицензия: используй, копируй, меняй — только укажи автора.</td></tr>
+    </table>
+  </div>
+
+  <!-- XI. Единицы -->
+  <div class="sect" id="units">
+    <div class="sect-head"><span class="mono">XI</span><h2>Единицы <em>измерения</em></h2></div>
+    <table>
+      <tr><th>Единица</th><th>Что это</th><th>Пример</th></tr>
+      <tr><td>Градус (&deg;)</td><td>Угловая мера. Полный круг = 360&deg;.</td><td>Невязка Альмагеста: 1,23&deg;</td></tr>
+      <tr><td>Угловая минута (')</td><td>1/60 градуса.</td><td>Точность Тихо Браге: ~1'</td></tr>
+      <tr><td>Угловая секунда ('')</td><td>1/3600 градуса.</td><td>Точность Hipparcos: ~1 mas</td></tr>
+      <tr><td>Миллиугловая секунда (mas)</td><td>1/1000 угловой секунды.</td><td>Точность Gaia: ~0,02 mas</td></tr>
+      <tr><td>Бит</td><td>Единица информации.</td><td>Стоунхенж: 6 бит; Gaia: 100 Гбит</td></tr>
+      <tr><td>Юлианская дата (JD)</td><td>Непрерывный счёт дней от 4713 г. до н.э.</td><td>Удобно для расчётов на тысячи лет</td></tr>
+    </table>
+  </div>
+
+  <!-- XII. Учёные -->
+  <div class="sect" id="people">
+    <div class="sect-head"><span class="mono">XII</span><h2>Ключевые <em>учёные</em></h2></div>
+    <table>
+      <tr><th>Имя</th><th>Кто это</th><th>Связь с проектом</th></tr>
+      <tr><td>Дамбис А.К. и Ефремов Ю.Н.</td><td>ГАИШ МГУ. Метод датировки каталогов по собственным движениям (JHA, 2000).</td><td>Наш метод — расширение с 8 до 1022 звёзд.</td></tr>
+      <tr><td>Усоскин И.Г.</td><td>Университет Оулу (Финляндия). Ведущий эксперт по солнечной активности.</td><td>Данные по &sup1;&sup4;C и &sup1;&#8304;Be базируются на его обзорах.</td></tr>
+      <tr><td>Штайнхильбер Ф.</td><td>ETH Zurich. Реконструкция солнечной активности по космогенным изотопам.</td><td>SOL-1 развивает его подход.</td></tr>
+      <tr><td>Reimer P.</td><td>Queen's University Belfast. Руководитель IntCal20.</td><td>Источник данных E4.</td></tr>
+      <tr><td>Фоменко А.Т.</td><td>МГУ. Автор «Новой хронологии».</td><td>Все 18 якорей опровергают его гипотезу о сдвиге на 1000+ лет.</td></tr>
+    </table>
+  </div>
+
+  <!-- XIII. Разговорник -->
+  <div class="sect" id="phrasebook">
+    <div class="sect-head"><span class="mono">XIII</span><h2>Краткий <em>разговорник</em></h2></div>
+    <p class="sect-intro">Как объяснить термины без научного жаргона:</p>
+    <table>
+      <tr><th>Научный термин</th><th>Скажите так</th></tr>
+      <tr><td>Большой солнечный минимум</td><td>Солнце «засыпает» на десятилетия</td></tr>
+      <tr><td>Прокси</td><td>Косвенный показатель, след</td></tr>
+      <tr><td>FFT / Фурье-анализ</td><td>Поиск скрытых ритмов в данных</td></tr>
+      <tr><td>Монте-Карло</td><td>Проверка «а что если?» — 500 раз</td></tr>
+      <tr><td>Корреляция r = 0,47</td><td>Два независимых источника дают похожий результат</td></tr>
+      <tr><td>Невязка 1,23&deg;</td><td>Средняя ошибка — чуть больше ширины Луны на небе</td></tr>
+      <tr><td>Космогенные изотопы</td><td>Атомы, рождённые космическими лучами</td></tr>
+      <tr><td>Эфемериды JPL</td><td>Таблицы NASA: где какая планета когда</td></tr>
+      <tr><td>Endorsement</td><td>Поручительство для публикации</td></tr>
+      <tr><td>Peer review</td><td>Проверка статьи другими учёными</td></tr>
+      <tr><td>DOI</td><td>Уникальный номер публикации (как ISBN)</td></tr>
+      <tr><td>CC BY 4.0</td><td>Бери и пользуйся, только укажи автора</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <span>&copy; 2026 &middot; А.&thinsp;А.&thinsp;Дмитриев</span>
+  <span>CC BY 4.0</span>
+</footer>
+
+</body>
+</html>
