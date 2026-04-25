@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WorldRank — Independent Country Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/" />
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #07090f;
+  --bg2: #0b0f1a;
+  --surface: #11172380;
+  --surface-solid: #11172a;
+  --surface2: #161e30;
+  --surface3: #1f2940;
+  --border: #1f2738;
+  --border2: #2a3349;
+  --text: #e6ebf5;
+  --text2: #8b94a8;
+  --text3: #5a6478;
+  --accent: #4f8cff;
+  --accent2: #2563d4;
+  --accent-soft: #4f8cff22;
+  --green: #34d399;
+  --green2: #064e3b;
+  --green-soft: #34d39922;
+  --red: #f87171;
+  --red-soft: #f8717122;
+  --orange: #fbbf24;
+  --orange-soft: #fbbf2422;
+  --purple: #a78bfa;
+  --cyan: #22d3ee;
+  --maxw: 1320px;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --pad: 24px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #0e1a36 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, #0a1430 0%, transparent 55%),
+    var(--bg);
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit }
+select { font-family: inherit; color: inherit }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) }
+.mono { font-family: var(--mono); font-size: 11px; letter-spacing: .08em }
+.dim { color: var(--text3) }
+.pos { color: var(--green); font-family: var(--mono); font-size: 11px; font-weight: 600 }
+.neg { color: var(--red); font-family: var(--mono); font-size: 11px; font-weight: 600 }
+.ok  { color: var(--green); font-weight: 600 }
+
+/* ============ HEADER ============ */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(7,9,15,.78); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad);
+  display: flex; align-items: center; gap: 24px; height: 60px;
+}
+.wordmark { display: flex; align-items: center; gap: 10px; cursor: pointer }
+.wm-text { display: flex; align-items: baseline; gap: 6px; font-weight: 800; letter-spacing: -.02em }
+.wm-world { font-size: 17px }
+.wm-rank { font-size: 17px; color: var(--accent) }
+.wm-sub {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--text3); padding: 2px 6px; border: 1px solid var(--border2); border-radius: 4px; margin-left: 4px;
+}
+.live-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--green); padding: 4px 8px; background: var(--green-soft); border: 1px solid #166534; border-radius: 5px;
+}
+.pulse-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite }
+@keyframes pulse { 0%,100%{opacity:1; box-shadow: 0 0 0 0 var(--green-soft)} 50%{opacity:.4; box-shadow: 0 0 0 6px transparent} }
+
+nav.tabs { display: flex; gap: 2px; align-items: center; flex: 1; justify-content: center }
+nav.tabs button {
+  font-size: 13px; color: var(--text2); padding: 8px 14px; border-radius: 7px; transition: all .15s; font-weight: 500;
+}
+nav.tabs button:hover { color: var(--text); background: var(--surface) }
+nav.tabs button.active { color: var(--text); background: var(--surface2); border: 1px solid var(--border2) }
+
+.head-actions { display: flex; align-items: center; gap: 8px }
+.lang-toggle {
+  font-family: var(--mono); font-size: 11px; padding: 6px 10px; border: 1px solid var(--border2); border-radius: 6px; color: var(--text2);
+}
+.lang-toggle:hover { color: var(--text); background: var(--surface) }
+.btn-tg-mini {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: #fff; font-weight: 600; font-size: 12px;
+  padding: 7px 12px; border-radius: 7px;
+}
+.btn-tg-mini:hover { background: var(--accent2) }
+
+/* ============ COMMON ============ */
+.screen { padding: 24px 0 56px }
+.section { padding: 36px 0; border-top: 1px solid var(--border) }
+.section.first { border-top: none }
+.sect-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; gap: 12px }
+.sect-head h2 { font-size: 22px; font-weight: 800; letter-spacing: -.02em }
+.sect-head .mono { color: var(--text3) }
+.link-btn { color: var(--accent); font-size: 13px; font-weight: 500 }
+.link-btn:hover { text-decoration: underline }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff; font-weight: 600; font-size: 14px;
+  padding: 11px 18px; border-radius: 8px; transition: background .15s;
+}
+.btn-primary:hover { background: var(--accent2) }
+.btn-primary .arr { transition: transform .15s }
+.btn-primary:hover .arr { transform: translateX(3px) }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface-solid); color: var(--text); font-weight: 500; font-size: 14px;
+  padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border2);
+}
+.btn-ghost:hover { background: var(--surface2); border-color: #3a4660 }
+.btn-ghost.sm { padding: 6px 12px; font-size: 12px }
+
+/* ============ HERO (LANDING) ============ */
+.hero { padding: 56px 0 24px }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: stretch }
+.kicker { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; margin-bottom: 24px }
+.kicker .mono { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text2) }
+.hero h1 { font-size: 64px; font-weight: 900; line-height: 1.02; letter-spacing: -.035em; margin-bottom: 20px }
+.hero h1 .grad { background: linear-gradient(90deg, var(--accent), var(--cyan)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent }
+.lede { font-size: 16px; color: var(--text2); line-height: 1.65; max-width: 540px; margin-bottom: 28px }
+.cta-row { display: flex; gap: 10px; margin-bottom: 24px }
+.hero-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--text2) }
+.hero-meta .dot { color: var(--text3) }
+.hero-meta .mono { font-size: 10px; letter-spacing: .14em; text-transform: uppercase }
+
+.hero-side { display: flex; flex-direction: column; gap: 12px }
+.hero-card {
+  background: linear-gradient(180deg, var(--surface-solid) 0%, var(--bg2) 100%);
+  border: 1px solid var(--border2); border-radius: 14px; padding: 22px;
+  position: relative; overflow: hidden;
+}
+.hero-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(400px 200px at 80% 0%, var(--accent-soft), transparent);
+  pointer-events: none;
+}
+.hc-head { display: flex; justify-content: space-between; margin-bottom: 18px; position: relative }
+.hc-head .mono { font-size: 10px; letter-spacing: .14em; text-transform: uppercase }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; margin-bottom: 18px; position: relative }
+.kpi { padding: 8px 4px }
+.kpi-num { font-size: 26px; font-weight: 800; letter-spacing: -.02em }
+.kpi-num.daily { color: var(--accent) }
+.kpi-lbl { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); margin-top: 2px }
+.zone-bar { display: flex; height: 32px; border-radius: 6px; overflow: hidden; margin-bottom: 10px; position: relative }
+.zb-seg { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 11px; font-weight: 600; color: #07090f; transition: opacity .2s; min-width: 0 }
+.zb-seg:hover { opacity: .85 }
+.zb-seg.acc  { background: #34d399 }
+.zb-seg.grow { background: #86efac }
+.zb-seg.bal  { background: #fde68a }
+.zb-seg.stag { background: #fdba74 }
+.zb-seg.dec  { background: #fca5a5 }
+.zb-legend { display: flex; flex-wrap: wrap; gap: 10px; font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); position: relative }
+.zlg { display: inline-flex; align-items: center; gap: 5px }
+.zlg i { width: 8px; height: 8px; border-radius: 2px; display: inline-block }
+.zlg.acc  i { background: #34d399 }
+.zlg.grow i { background: #86efac }
+.zlg.bal  i { background: #fde68a }
+.zlg.stag i { background: #fdba74 }
+.zlg.dec  i { background: #fca5a5 }
+
+.quote-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+  position: relative;
+}
+.qmark { position: absolute; top: 4px; left: 14px; font-size: 60px; line-height: 1; font-family: Georgia, serif; color: var(--accent); opacity: .4 }
+.quote-card p { font-size: 15px; font-style: italic; color: var(--text); padding-left: 28px; margin-bottom: 8px; line-height: 1.5 }
+.qsig { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--text3); padding-left: 28px; text-transform: uppercase }
+
+/* ============ MOVERS ============ */
+.movers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px }
+.mover {
+  background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  text-align: left; display: flex; flex-direction: column; gap: 12px; transition: all .15s; cursor: pointer;
+}
+.mover:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px -10px var(--accent-soft) }
+.mv-top { display: flex; align-items: center; gap: 10px }
+.flag { font-size: 24px; line-height: 1 }
+.mv-name { flex: 1; min-width: 0 }
+.cname { font-size: 15px; font-weight: 700 }
+.mv-mid { display: flex; justify-content: space-between; align-items: end; gap: 16px }
+.mv-score { font-size: 30px; font-weight: 800; letter-spacing: -.02em; line-height: 1 }
+.spark-wrap { display: flex; flex-direction: column; align-items: end; gap: 4px }
+.mv-bot { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid var(--border) }
+.boi-mini { font-size: 12px; color: var(--text2); font-weight: 600 }
+.boi-mini .mono { color: var(--text3); margin-right: 6px }
+
+/* zone-tag and trust badge */
+.zone-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600;
+  padding: 4px 8px; border-radius: 5px;
+}
+.zone-tag.acc  { background: var(--green-soft); color: #34d399; border: 1px solid #166534 }
+.zone-tag.grow { background: #1a2e1a; color: #86efac; border: 1px solid #22543d }
+.zone-tag.bal  { background: #2a2614; color: #fde68a; border: 1px solid #854d0e }
+.zone-tag.stag { background: #2a1f14; color: #fdba74; border: 1px solid #9a3412 }
+.zone-tag.dec  { background: #2a1414; color: #fca5a5; border: 1px solid #991b1b }
+.zsym { font-weight: 700 }
+
+.trust-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  padding: 3px 8px; border-radius: 4px; min-width: 32px;
+}
+.trust-badge.t1 { background: #052e16; color: #4ade80; border: 1px solid #166534 }
+.trust-badge.t2 { background: #14253a; color: #60a5fa; border: 1px solid #1e40af }
+.trust-badge.t3 { background: #2a2614; color: #fde68a; border: 1px solid #854d0e }
+.trust-badge.t4 { background: #2a1f14; color: #fdba74; border: 1px solid #9a3412 }
+.trust-badge.t5 { background: #2a1414; color: #fca5a5; border: 1px solid #991b1b }
+
+/* ============ PIPELINE ============ */
+.pipe-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px }
+.pipe-step {
+  background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px 16px; position: relative;
+}
+.ps-num { font-size: 11px; color: var(--accent); letter-spacing: .14em; font-weight: 600 }
+.ps-label { font-size: 16px; font-weight: 700; margin: 6px 0 4px }
+.ps-sub { font-size: 12px; color: var(--text2); line-height: 1.45; margin-bottom: 10px }
+.ps-detail { font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--text3) }
+.ps-arrow { position: absolute; right: -18px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 18px; z-index: 2 }
+
+/* ============ COUNTRY DETAIL ============ */
+.cd-strip { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; padding: 12px 16px; background: var(--surface-solid); border: 1px solid var(--border); border-radius: 10px }
+.back-btn { font-size: 13px; color: var(--text2); padding: 4px 8px; border-radius: 5px }
+.back-btn:hover { color: var(--text); background: var(--surface2) }
+.cd-picker { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 320px }
+.cd-picker .mono { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text3) }
+.cd-picker select {
+  flex: 1; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 7px 10px; border-radius: 6px; font-size: 13px;
+}
+.cd-actions { display: flex; gap: 8px }
+
+.cd-hero { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 28px; background: linear-gradient(180deg, var(--surface-solid), var(--bg2)); border: 1px solid var(--border2); border-radius: 16px; margin-bottom: 32px }
+.cd-hero-l { display: flex; gap: 24px; align-items: center }
+.cd-flag { font-size: 72px; line-height: 1 }
+.cd-region .mono { font-size: 11px; letter-spacing: .16em; color: var(--text3) }
+.cd-name { font-size: 44px; font-weight: 900; letter-spacing: -.025em; margin: 4px 0 12px }
+.cd-tags { display: flex; align-items: center; gap: 10px; flex-wrap: wrap }
+.cd-sub { font-size: 12px; color: var(--text2); font-family: var(--mono); letter-spacing: .04em }
+.cd-hero-r { display: flex; align-items: center; gap: 28px }
+.cd-trend { display: flex; flex-direction: column; gap: 6px; align-items: start }
+.cd-trend .mono { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text3) }
+
+/* Interactive Trend Chart */
+.trend-chart { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.tc-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px }
+.tc-periods { display: flex; gap: 2px }
+.tc-btn { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; padding: 4px 8px; border-radius: 4px; color: var(--text3); background: none; border: 1px solid transparent; cursor: pointer; transition: all .12s }
+.tc-btn:hover { color: var(--text2); background: var(--surface2) }
+.tc-btn.active { color: var(--accent); background: var(--accent-soft, rgba(79,140,255,.12)); border-color: var(--accent) }
+.tc-zoom-btns { display: flex; gap: 2px }
+.tc-zbtn { font-size: 14px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: var(--text3); background: none; border: 1px solid var(--border); cursor: pointer; transition: all .12s }
+.tc-zbtn:hover { color: var(--text); background: var(--surface2); border-color: var(--border2) }
+.tc-canvas { border-radius: 6px; background: var(--bg2, #0b0f1a) }
+.tc-tooltip { position: absolute; background: var(--surface2); border: 1px solid var(--border2); border-radius: 6px; padding: 4px 8px; font-family: var(--mono); font-size: 11px; color: var(--text); pointer-events: none; white-space: nowrap; z-index: 5 }
+.tc-crosshair { position: absolute; width: 1px; background: var(--text3); opacity: .4; pointer-events: none; top: 0 }
+
+/* gauge */
+.gauge { position: relative; display: inline-block }
+.gauge-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center }
+.gauge-val { font-size: 28px; font-weight: 800; letter-spacing: -.02em }
+.gauge-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: var(--text3); text-transform: uppercase; margin-top: 2px }
+.gauge-sub { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--text3); text-align: center; margin-top: 4px; text-transform: uppercase }
+
+.cd-sect { margin-bottom: 32px }
+.cd-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px }
+.cd-col { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 22px }
+.cd-col h3 { font-size: 15px; font-weight: 700; margin-bottom: 14px }
+.cd-note { font-size: 12px; color: var(--text3); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border) }
+
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 20px }
+.tf-row { display: grid; grid-template-columns: 1.5fr 1fr 40px 50px; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px dashed var(--border); font-size: 12px }
+.tf-label { color: var(--text) }
+.tf-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden }
+.tf-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 3px }
+.tf-val { font-family: var(--mono); font-size: 11px; font-weight: 600; text-align: right }
+.tf-w { font-size: 9px; letter-spacing: .1em; text-align: right; text-transform: uppercase }
+
+.agency-list { display: flex; flex-direction: column; gap: 8px }
+.agency-row { display: grid; grid-template-columns: 1fr 1fr 80px; gap: 12px; align-items: center; padding: 10px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px }
+.ag-name { font-weight: 600; font-size: 13px }
+.ag-rating { font-size: 14px; font-weight: 700; color: var(--accent) }
+.ag-div { font-family: var(--mono); font-size: 11px; text-align: right }
+.ag-div.match { color: var(--green) }
+.ag-div.minor { color: var(--orange) }
+.ag-div.self  { color: var(--text3) }
+
+.ai-brief .mono { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; display: block; margin-bottom: 10px }
+.ai-brief p { font-size: 13.5px; color: var(--text); line-height: 1.6 }
+.ai-citations { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border) }
+.ai-citations .mono { display: inline-block; margin: 0; color: var(--text3) }
+.cite { font-family: var(--mono); font-size: 10px; padding: 3px 7px; background: var(--accent-soft); color: var(--accent); border-radius: 4px; letter-spacing: .04em }
+
+.ind-table { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; overflow: hidden }
+.ind-head, .ind-row { display: grid; grid-template-columns: 2fr 1.5fr 1fr 100px 60px; gap: 16px; padding: 12px 18px; align-items: center }
+.ind-head { background: var(--surface2); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); border-bottom: 1px solid var(--border) }
+.ind-row { border-bottom: 1px solid var(--border); font-size: 13px }
+.ind-row:last-child { border-bottom: none }
+.ind-row:hover { background: var(--surface2) }
+.ind-name { font-weight: 600 }
+.ind-src { font-size: 10px; letter-spacing: .08em }
+.ind-val { font-family: var(--mono); font-weight: 600; font-size: 13px }
+.ind-norm { font-family: var(--mono); font-weight: 600; text-align: right; color: var(--accent) }
+
+/* ============ COMPARE ============ */
+.cmp-header { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 16px; align-items: center; margin-bottom: 24px }
+.cmp-card-pick { background: linear-gradient(180deg, var(--surface-solid), var(--bg2)); border: 1px solid var(--border2); border-radius: 14px; padding: 24px; display: flex; align-items: center; gap: 18px }
+.cmp-flag { font-size: 56px; line-height: 1 }
+.cmp-pick-info { flex: 1 }
+.cmp-pick-info .mono { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--text3) }
+.cmp-pick-info select { width: 100%; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 8px 10px; border-radius: 6px; font-size: 18px; font-weight: 700; margin-top: 6px }
+.cmp-vs { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--accent); text-align: center; padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 50% }
+.cmp-table { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; overflow: hidden }
+.cmp-row { display: grid; grid-template-columns: 1fr 200px 1fr; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--border); align-items: center }
+.cmp-row:last-child { border-bottom: none }
+.cmp-row:hover { background: var(--surface2) }
+.cmp-row.head { background: var(--surface2); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); padding: 12px 24px }
+.cmp-val { font-size: 16px; font-weight: 700; font-family: var(--mono); display: flex; align-items: center; gap: 10px }
+.cmp-val.l { justify-content: flex-end }
+.cmp-val.r { justify-content: flex-start }
+.cmp-val.l.win, .cmp-val.r.win { color: var(--green) }
+.cmp-metric { text-align: center; font-size: 13px; color: var(--text2) }
+.cmp-bar-row { display: grid; grid-template-columns: 1fr 200px 1fr; gap: 16px; padding: 8px 24px; align-items: center; border-bottom: 1px solid var(--border) }
+.cmp-bar { height: 6px; background: var(--surface2); border-radius: 3px; position: relative; overflow: hidden }
+.cmp-bar.l { direction: rtl }
+.cmp-bar.l .cmp-bar-fill { background: linear-gradient(270deg, var(--accent2), var(--accent)) }
+.cmp-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--cyan)) }
+
+/* ============ BOI ============ */
+.boi-controls { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; flex-wrap: wrap }
+.boi-search { flex: 1; min-width: 200px; max-width: 320px; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 9px 12px; border-radius: 7px; font-size: 13px; font-family: inherit }
+.boi-search:focus { outline: none; border-color: var(--accent) }
+.chip { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 7px 12px; background: var(--surface-solid); border: 1px solid var(--border); border-radius: 6px; color: var(--text2) }
+.chip.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent) }
+.chip:hover { color: var(--text) }
+
+.boi-list { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; overflow: hidden }
+.boi-head, .boi-row { display: grid; grid-template-columns: 60px 2fr 1fr 90px 1fr 80px 80px; gap: 16px; padding: 12px 20px; align-items: center }
+.boi-head { background: var(--surface2); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); border-bottom: 1px solid var(--border) }
+.boi-head button { color: var(--text3); padding: 0; font-size: inherit; letter-spacing: inherit; text-align: left }
+.boi-head button:hover { color: var(--text) }
+.boi-head .sort-active { color: var(--accent) }
+.boi-row { border-bottom: 1px solid var(--border); cursor: pointer; transition: background .12s }
+.boi-row:hover { background: var(--surface2) }
+.boi-row:last-child { border-bottom: none }
+.boi-rank { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--text3) }
+.boi-rank.top { color: var(--accent) }
+.boi-cname { display: flex; align-items: center; gap: 10px }
+.boi-cname .flag { font-size: 20px }
+.boi-cname-text { display: flex; flex-direction: column }
+.boi-cname-text .name { font-weight: 600; font-size: 13.5px }
+.boi-cname-text .code { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .08em }
+.boi-score { font-family: var(--mono); font-size: 16px; font-weight: 800; color: var(--green) }
+.boi-trust { display: flex; justify-content: center }
+.boi-region { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--text3); text-transform: uppercase }
+.boi-spark-cell { display: flex; align-items: center; gap: 6px }
+
+.boi-factors {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 24px;
+}
+.bf-card { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 10px; padding: 14px }
+.bf-label { font-size: 12px; color: var(--text2); margin-bottom: 6px }
+.bf-row { display: flex; justify-content: space-between; align-items: end; margin-bottom: 6px }
+.bf-val { font-size: 22px; font-weight: 800; color: var(--green) }
+.bf-w { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .08em }
+.bf-bar { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden }
+.bf-fill { height: 100%; background: linear-gradient(90deg, var(--green2), var(--green)); border-radius: 2px }
+
+/* ============ FEED ============ */
+.feed-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start }
+.events-list { display: flex; flex-direction: column; gap: 10px }
+.event {
+  display: grid; grid-template-columns: 80px 1fr; gap: 18px;
+  background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px;
+  transition: all .15s; position: relative; border-left: 3px solid var(--border);
+}
+.event.sev3 { border-left-color: var(--red) }
+.event.sev2 { border-left-color: var(--orange) }
+.event.sev1 { border-left-color: var(--accent) }
+.event:hover { background: var(--surface2); transform: translateX(2px) }
+.ev-time { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: .08em; padding-top: 2px }
+.ev-body { display: flex; flex-direction: column; gap: 6px }
+.ev-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap }
+.ev-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; background: var(--surface3); color: var(--text2); font-weight: 600 }
+.ev-tag.ECON, .ev-tag.TRUST { color: var(--accent); background: var(--accent-soft) }
+.ev-tag.BOI    { color: var(--green); background: var(--green-soft) }
+.ev-tag.EVENT  { color: var(--red); background: var(--red-soft) }
+.ev-tag.METHOD { color: var(--purple); background: #a78bfa22 }
+.ev-tag.CASCADE { color: var(--cyan); background: #22d3ee22 }
+.ev-cc { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .08em }
+.ev-sev { margin-left: auto; font-family: var(--mono); font-size: 10px; padding: 2px 6px; border-radius: 3px; letter-spacing: .08em }
+.ev-sev.s1 { color: var(--accent); background: var(--accent-soft) }
+.ev-sev.s2 { color: var(--orange); background: var(--orange-soft) }
+.ev-sev.s3 { color: var(--red); background: var(--red-soft) }
+.ev-title { font-size: 15px; font-weight: 700; letter-spacing: -.01em }
+.ev-text { font-size: 13px; color: var(--text2); line-height: 1.5 }
+
+.feed-side { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 80px }
+.side-card { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 18px }
+.side-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px }
+.side-card p { font-size: 12.5px; color: var(--text2); line-height: 1.55; margin-bottom: 12px }
+.cmd-list { display: flex; flex-direction: column; gap: 0 }
+.cmd-row { display: grid; grid-template-columns: 76px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; align-items: center }
+.cmd-row:last-child { border-bottom: none }
+.cmd-row .k { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 600 }
+.cmd-row .v { color: var(--text2); font-size: 12px }
+.btn-tg { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 10px; background: var(--accent); color: #fff; border-radius: 7px; font-weight: 600; font-size: 12.5px }
+.btn-tg:hover { background: var(--accent2) }
+
+/* ============ METHOD ============ */
+.method-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px }
+.method-card { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 26px; position: relative; overflow: hidden }
+.method-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px }
+.method-card:nth-child(1)::before { background: var(--accent) }
+.method-card:nth-child(2)::before { background: var(--green) }
+.method-card:nth-child(3)::before { background: var(--purple) }
+.method-card .num { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--text3); margin-bottom: 12px }
+.method-card h4 { font-size: 18px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 10px }
+.method-card p { font-size: 13px; color: var(--text2); line-height: 1.65 }
+.formula {
+  font-family: var(--mono); font-size: 12px; padding: 14px; background: #05070d; border: 1px solid var(--border2); border-radius: 8px;
+  margin-top: 14px; color: var(--accent); overflow-x: auto;
+}
+.method-tier-table { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 12px; padding: 8px; margin-top: 16px }
+.tier-row { display: grid; grid-template-columns: 80px 1fr 100px 1fr; gap: 12px; padding: 10px 14px; align-items: center; border-bottom: 1px solid var(--border); font-size: 13px }
+.tier-row:last-child { border-bottom: none }
+.tier-row .lbl { font-weight: 600 }
+.tier-row .desc { color: var(--text2); font-size: 12.5px }
+.tier-row .div { font-family: var(--mono); color: var(--text3); font-size: 11px }
+
+/* ============ FOOTER ============ */
+footer { border-top: 1px solid var(--border); padding: 32px 0; margin-top: 24px }
+.footer-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad);
+  display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 12px; color: var(--text3); flex-wrap: wrap;
+}
+.footer-inner a:hover { color: var(--accent) }
+.footer-inner .quote { font-style: italic; color: var(--text2); flex: 1; text-align: center }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px }
+  .hero h1 { font-size: 48px }
+  .pipe-grid { grid-template-columns: repeat(2, 1fr) }
+  .ps-arrow { display: none }
+  .movers { grid-template-columns: 1fr 1fr }
+  .feed-grid { grid-template-columns: 1fr }
+  .feed-side { position: static }
+  .method-grid { grid-template-columns: 1fr }
+  .cd-cols { grid-template-columns: 1fr }
+  .cd-hero { flex-direction: column; align-items: start }
+  .boi-factors { grid-template-columns: repeat(2, 1fr) }
+  .boi-head, .boi-row { grid-template-columns: 50px 1.5fr 1fr 70px 70px; }
+  .boi-head .col-region, .boi-row .col-region, .boi-head .col-spark, .boi-row .col-spark { display: none }
+}
+@media (max-width: 700px) {
+  .hero h1 { font-size: 36px }
+  .movers { grid-template-columns: 1fr }
+  nav.tabs { display: none }
+  .cd-name { font-size: 32px }
+  .cmp-header { grid-template-columns: 1fr }
+  .cmp-vs { display: none }
+}
+
+/* Tweaks panel */
+.tw-panel {
+  position: fixed; right: 16px; bottom: 16px; z-index: 100; width: 280px;
+  background: var(--surface-solid); border: 1px solid var(--border2); border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,.5); padding: 16px;
+  display: none;
+}
+.tw-panel.open { display: block }
+.tw-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border) }
+.tw-head h4 { font-size: 13px; font-weight: 700 }
+.tw-row { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; gap: 10px }
+.tw-row label { font-size: 12px; color: var(--text2) }
+.tw-row input[type=color] { width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 4px; background: none }
+.tw-row select { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 4px 8px; border-radius: 5px; font-size: 12px }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="wordmark" id="wm">
+      <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="26" stroke="var(--accent)" stroke-width="3" fill="none"/>
+        <ellipse cx="32" cy="32" rx="10" ry="26" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.55"/>
+        <line x1="6" y1="32" x2="58" y2="32" stroke="var(--accent)" stroke-width="1.2" opacity="0.55"/>
+        <path d="M 8 22 Q 32 18 56 22" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 8 42 Q 32 46 56 42" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 32 8 C 44 8 50 18 50 28 C 50 34 48 38 46 41 L 48 50 L 40 50 L 40 56 L 32 56 Z" fill="var(--accent)" opacity="0.92"/>
+        <path d="M 36 30 L 39 30 L 41 26 L 43 34 L 45 30 L 47 30" stroke="var(--bg)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="wm-text">
+        <span class="wm-world">World</span><span class="wm-rank">Rank</span>
+        <span class="wm-sub">News</span>
+      </div>
+      <span class="live-badge"><span class="pulse-dot"></span><span data-i18n="live">LIVE</span></span>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="home"     class="active" data-i18n="nav.home">Home</button>
+      <button data-tab="country"               data-i18n="nav.country">Country</button>
+      <button data-tab="compare"               data-i18n="nav.compare">Compare</button>
+      <button data-tab="boi"                   data-i18n="nav.boi">BioOptimum</button>
+      <button data-tab="feed"                  data-i18n="nav.feed">Feed</button>
+      <button data-tab="method"                data-i18n="nav.method">Method</button>
+    </nav>
+    <div class="head-actions">
+      <button class="lang-toggle" id="langToggle">EN</button>
+      <button class="lang-toggle" id="tweaksToggle" title="Tweaks">⚙</button>
+      <a class="btn-tg-mini" href="https://t.me/worldrank_news" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.93l-.37 4.4c.53 0 .76-.23 1.04-.5l2.5-2.4 5.18 3.78c.95.52 1.62.25 1.87-.88l3.39-15.86c.33-1.4-.51-1.95-1.43-1.61L1.07 9.55c-1.4.55-1.38 1.32-.24 1.67l5.13 1.6 11.91-7.5c.56-.36 1.07-.16.65.2"/></svg>
+        <span data-i18n="cta.channel">Channel</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<footer>
+  <div style="max-width:var(--maxw);margin:0 auto;padding:24px var(--pad)">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px;font-size:12px">
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--text3);text-transform:uppercase;margin-bottom:10px">Science</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="https://aadmitrieff.com/" style="color:var(--text2)">Portfolio</a>
+          <a href="https://aadmitrieff.com/bio-optimum/" style="color:var(--text2)">Bio-Optimum Index</a>
+          <a href="https://aadmitrieff.com/bio-optimum-pro.html" style="color:var(--text2)">BOI Research</a>
+          <a href="https://doi.org/10.5281/zenodo.19638005" target="_blank" rel="noopener" style="color:var(--text2)">SOL-1 Paper</a>
+          <a href="https://github.com/abelbleoworld-blip/astro-dating" target="_blank" rel="noopener" style="color:var(--text2)">astro-dating</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--text3);text-transform:uppercase;margin-bottom:10px">Products</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="https://www.fmone.ru" target="_blank" rel="noopener" style="color:var(--text2)">FMone — Furniture</a>
+          <a href="https://www.brand-space.ru" target="_blank" rel="noopener" style="color:var(--text2)">Brand Space — B2B</a>
+          <a href="https://ailib.fmone.ru" target="_blank" rel="noopener" style="color:var(--text2)">AILib — Legal AI</a>
+          <a href="https://abel.fmone.ru" target="_blank" rel="noopener" style="color:var(--text2)">Abel AIOS</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--text3);text-transform:uppercase;margin-bottom:10px">WorldRank</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="https://t.me/worldrank_news" target="_blank" rel="noopener" style="color:var(--text2)">Telegram Channel</a>
+          <a href="https://t.me/worldrank_newsbot" target="_blank" rel="noopener" style="color:var(--text2)">Analytics Bot</a>
+          <a href="https://github.com/abelbleoworld-blip/worldrank" target="_blank" rel="noopener" style="color:var(--text2)">GitHub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--text3);text-transform:uppercase;margin-bottom:10px">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="https://github.com/abelbleoworld-blip" target="_blank" rel="noopener" style="color:var(--text2)">GitHub</a>
+          <a href="https://x.com/aadmitrief" target="_blank" rel="noopener" style="color:var(--text2)">X / Twitter</a>
+          <a href="https://orcid.org/0009-0000-6164-8474" target="_blank" rel="noopener" style="color:var(--text2)">ORCID</a>
+          <a href="mailto:a@aadmitrieff.com" style="color:var(--text2)">a@aadmitrieff.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)">
+      <span>© 2026 · <a href="https://aadmitrieff.com/" style="color:var(--text2)">A. A. Dmitriev</a> · WorldRank v0.4</span>
+      <span style="font-style:italic;color:var(--text2)">"We don't ask for faith. We ask for verification."</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Tweaks panel -->
+<div class="tw-panel" id="twPanel">
+  <div class="tw-head">
+    <h4>Tweaks</h4>
+    <button onclick="document.getElementById('twPanel').classList.remove('open')" style="color:var(--text3)">×</button>
+  </div>
+  <div class="tw-row">
+    <label>Accent</label>
+    <input type="color" id="twAccent" value="#4f8cff"/>
+  </div>
+  <div class="tw-row">
+    <label>Density</label>
+    <select id="twDensity">
+      <option value="comfy">Comfy</option>
+      <option value="compact">Compact</option>
+    </select>
+  </div>
+  <div class="tw-row">
+    <label>Language</label>
+    <select id="twLang">
+      <option value="en">EN</option>
+      <option value="ru">RU</option>
+    </select>
+  </div>
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+const COUNTRIES = [
+  { code:'PRT', name:'Portugal',     region:'Europe',   flag:'🇵🇹', trust:1, score:84.2, zone:'GROW', boi:9.2, gdp:24.5, hdi:0.866, cpi:62, pop:10.3,  hale:71.4, dGDP:+1.8, trend:[68,70,71,73,74,75,76,77,78,79,80,82,82,83,84] },
+  { code:'CYP', name:'Cyprus',       region:'Europe',   flag:'🇨🇾', trust:2, score:80.1, zone:'GROW', boi:9.0, gdp:32.0, hdi:0.896, cpi:53, pop:1.24,  hale:72.6, dGDP:+2.1, trend:[66.1,67.4,68.1,68.5,69.3,70.8,71.5,73.1,74,75,76,78,79,80,80] },
+  { code:'ESP', name:'Spain',        region:'Europe',   flag:'🇪🇸', trust:2, score:79.4, zone:'GROW', boi:9.0, gdp:31.7, hdi:0.905, cpi:60, pop:48.4,  hale:72.1, dGDP:+1.6, trend:[70.3,70,71.9,72.3,73,72.9,72.9,75,75,76,77,77,78,78,79] },
+  { code:'GRC', name:'Greece',       region:'Europe',   flag:'🇬🇷', trust:3, score:71.8, zone:'BAL',  boi:8.9, gdp:22.0, hdi:0.887, cpi:49, pop:10.4,  hale:72.8, dGDP:+0.9, trend:[62.8,63.9,63.1,65.5,66.1,66.3,67.6,67.1,68,69,70,71,71,72,72] },
+  { code:'NZL', name:'New Zealand',  region:'Oceania',  flag:'🇳🇿', trust:1, score:88.4, zone:'ACC',  boi:8.9, gdp:48.4, hdi:0.937, cpi:87, pop:5.22,  hale:71.9, dGDP:+2.4, trend:[73.9,74.8,76.3,76,77.7,78.2,80.9,80.5,82,83,84,85,86,87,88] },
+  { code:'ITA', name:'Italy',        region:'Europe',   flag:'🇮🇹', trust:2, score:76.5, zone:'BAL',  boi:8.8, gdp:38.4, hdi:0.906, cpi:56, pop:58.8,  hale:72.4, dGDP:+0.6, trend:[74.6,74.4,73.1,73.3,74,74,73.9,74,75,76,76,77,76,76,76] },
+  { code:'AUS', name:'Australia',    region:'Oceania',  flag:'🇦🇺', trust:1, score:90.1, zone:'ACC',  boi:8.8, gdp:64.7, hdi:0.946, cpi:75, pop:26.4,  hale:71.5, dGDP:+2.2, trend:[79,78.8,80,80.6,82.1,83.4,83.8,83.4,85,86,87,88,89,90,90] },
+  { code:'HRV', name:'Croatia',      region:'Europe',   flag:'🇭🇷', trust:3, score:72.4, zone:'GROW', boi:8.7, gdp:21.7, hdi:0.878, cpi:50, pop:3.85,  hale:69.9, dGDP:+1.9, trend:[61.7,63,64.3,64.3,66,66.6,67.3,67.7,68,69,70,71,72,72,72] },
+  { code:'JPN', name:'Japan',        region:'Asia',     flag:'🇯🇵', trust:1, score:86.2, zone:'BAL',  boi:8.7, gdp:39.3, hdi:0.920, cpi:73, pop:124.5, hale:74.1, dGDP:+0.4, trend:[84.4,83.6,84.2,84.1,85.1,84.4,83.9,84.5,85,86,86,86,86,86,86] },
+  { code:'MNE', name:'Montenegro',   region:'Europe',   flag:'🇲🇪', trust:3, score:64.8, zone:'GROW', boi:8.6, gdp:11.2, hdi:0.844, cpi:46, pop:0.61,  hale:69.0, dGDP:+1.7, trend:[53.7,54,55.6,56.3,55.8,58.5,57.4,59.4,60,61,62,63,64,64,65] },
+  { code:'DEU', name:'Germany',      region:'Europe',   flag:'🇩🇪', trust:1, score:91.7, zone:'BAL',  boi:7.8, gdp:54.3, hdi:0.950, cpi:78, pop:84.5,  hale:71.6, dGDP:+0.3, trend:[90.2,90.5,90.6,90.9,90.7,90.5,91.6,90.3,91,92,92,92,91,91,92] },
+  { code:'USA', name:'United States',region:'Americas', flag:'🇺🇸', trust:2, score:85.0, zone:'STAG', boi:7.6, gdp:80.4, hdi:0.927, cpi:69, pop:339.0, hale:66.1, dGDP:-0.4, trend:[91,91.9,90.3,89.8,90.4,90.2,88.2,88,88,87,86,86,85,85,85] },
+  { code:'CHN', name:'China',        region:'Asia',     flag:'🇨🇳', trust:3, score:73.2, zone:'BAL',  boi:6.8, gdp:13.3, hdi:0.788, cpi:42, pop:1410.7,hale:68.5, dGDP:+0.8, trend:[68.9,69.1,69.5,68.3,68.9,69.3,71.2,71.5,71,72,72,73,73,73,73] },
+  { code:'IND', name:'India',        region:'Asia',     flag:'🇮🇳', trust:3, score:62.4, zone:'GROW', boi:6.0, gdp:2.6,  hdi:0.644, cpi:39, pop:1428.6,hale:60.3, dGDP:+1.4, trend:[52.7,52.4,54.5,55,55.3,56.7,56.8,57.1,58,59,60,61,61,62,62] },
+  { code:'BRA', name:'Brazil',       region:'Americas', flag:'🇧🇷', trust:3, score:60.9, zone:'BAL',  boi:7.2, gdp:9.7,  hdi:0.760, cpi:36, pop:216.4, hale:64.2, dGDP:+0.5, trend:[54.1,55.4,55.8,55,56.3,55.6,56.9,56.9,58,59,60,60,61,61,61] },
+  { code:'ZAF', name:'South Africa', region:'Africa',   flag:'🇿🇦', trust:4, score:48.2, zone:'STAG', boi:6.4, gdp:6.8,  hdi:0.717, cpi:41, pop:60.4,  hale:56.0, dGDP:-0.2, trend:[58.2,57.2,56.9,55.6,55.3,53.8,52.5,51.8,52,51,50,49,48,48,48] },
+  { code:'NGA', name:'Nigeria',      region:'Africa',   flag:'🇳🇬', trust:4, score:38.0, zone:'STAG', boi:5.4, gdp:2.2,  hdi:0.535, cpi:25, pop:223.8, hale:52.7, dGDP:-0.1, trend:[47.3,46,46,45.7,44.6,44.9,43.3,42.5,42,41,40,39,39,38,38] },
+  { code:'EGY', name:'Egypt',        region:'Africa',   flag:'🇪🇬', trust:4, score:42.1, zone:'DEC',  boi:5.8, gdp:3.6,  hdi:0.731, cpi:35, pop:112.7, hale:60.4, dGDP:-1.9, trend:[60.7,59.2,58.8,57.2,54.7,54.8,51.8,51.4,50,48,46,44,43,42,42] },
+  { code:'TUR', name:'Türkiye',      region:'Asia',     flag:'🇹🇷', trust:3, score:55.4, zone:'BAL',  boi:7.0, gdp:13.1, hdi:0.855, cpi:34, pop:85.3,  hale:65.4, dGDP:+0.7, trend:[51.8,53,52.5,53.6,53.5,53,53.2,54.1,54,55,55,55,55,55,55] },
+  { code:'ARE', name:'UAE',          region:'Asia',     flag:'🇦🇪', trust:1, score:87.5, zone:'ACC',  boi:7.4, gdp:53.7, hdi:0.937, cpi:68, pop:9.5,   hale:67.7, dGDP:+3.1, trend:[68.7,71.2,72.1,72.8,75.5,76.8,78.2,78.5,80,82,83,84,86,87,88] },
+  { code:'CHE', name:'Switzerland',  region:'Europe',   flag:'🇨🇭', trust:1, score:94.2, zone:'BAL',  boi:8.4, gdp:99.0, hdi:0.967, cpi:82, pop:8.79,  hale:72.5, dGDP:+0.5, trend:[91.1,91.8,91.7,93,91.5,92.5,92.5,93.7,93,93,94,94,94,94,94] },
+  { code:'NOR', name:'Norway',       region:'Europe',   flag:'🇳🇴', trust:1, score:93.5, zone:'GROW', boi:8.0, gdp:106.0,hdi:0.961, cpi:84, pop:5.55,  hale:71.8, dGDP:+1.3, trend:[86.5,87.7,88.1,89.4,88.2,89.6,90,89.5,91,92,92,93,93,93,94] },
+  { code:'SGP', name:'Singapore',    region:'Asia',     flag:'🇸🇬', trust:1, score:92.8, zone:'ACC',  boi:7.9, gdp:84.7, hdi:0.949, cpi:83, pop:5.92,  hale:73.6, dGDP:+2.5, trend:[81.8,82.3,82.4,84.7,85.6,86.1,85.7,87.6,88,89,90,91,92,92,93] },
+  { code:'GBR', name:'United Kingdom',region:'Europe',  flag:'🇬🇧', trust:2, score:83.4, zone:'BAL',  boi:7.7, gdp:46.1, hdi:0.929, cpi:73, pop:67.7,  hale:70.1, dGDP:+0.4, trend:[82.7,83.1,82.3,82.9,83.7,82.9,82.1,82.6,83,83,83,83,83,83,83] },
+  { code:'FRA', name:'France',       region:'Europe',   flag:'🇫🇷', trust:2, score:84.6, zone:'BAL',  boi:8.1, gdp:44.5, hdi:0.910, cpi:71, pop:64.8,  hale:72.0, dGDP:+0.6, trend:[83.3,82.7,82.1,83.7,84.2,83.4,83.4,83.3,84,84,85,85,84,84,85] },
+  { code:'CAN', name:'Canada',       region:'Americas', flag:'🇨🇦', trust:2, score:86.1, zone:'GROW', boi:7.8, gdp:55.6, hdi:0.935, cpi:76, pop:39.0,  hale:71.3, dGDP:+1.1, trend:[81.3,82.6,81.4,83.3,82.1,82.1,83.2,84.6,84,85,85,86,86,86,86] },
+  { code:'KOR', name:'South Korea',  region:'Asia',     flag:'🇰🇷', trust:2, score:84.3, zone:'GROW', boi:7.5, gdp:33.4, hdi:0.925, cpi:63, pop:51.7,  hale:73.1, dGDP:+1.5, trend:[77.6,76.7,77.8,79.3,79.2,79.2,80.4,79.9,81,82,83,83,84,84,84] },
+  { code:'MEX', name:'Mexico',       region:'Americas', flag:'🇲🇽', trust:3, score:58.6, zone:'BAL',  boi:6.9, gdp:13.4, hdi:0.781, cpi:31, pop:128.5, hale:65.8, dGDP:+0.5, trend:[55.3,54.1,54.6,55.1,55.7,56.2,57.3,56.8,57,58,58,58,59,59,59] },
+  { code:'ARG', name:'Argentina',    region:'Americas', flag:'🇦🇷', trust:4, score:46.0, zone:'DEC',  boi:7.0, gdp:13.7, hdi:0.842, cpi:38, pop:46.1,  hale:67.7, dGDP:-2.4, trend:[67.7,64.7,63.2,61.6,60.8,59.7,57.7,56.4,55,53,51,49,47,46,46] },
+  { code:'RUS', name:'Russia',       region:'Europe',   flag:'🇷🇺', trust:4, score:52.8, zone:'ACC',  boi:6.4, gdp:14.4, hdi:0.822, cpi:26, pop:144.2, hale:64.2, dGDP:+3.0, trend:[41.4,42.8,42.1,43.2,44,45.5,47.3,46.5,48,49,50,51,52,52,53] },
+  { code:'GEO', name:'Georgia',      region:'Europe',   flag:'🇬🇪', trust:3, score:66.3, zone:'GROW', boi:8.0, gdp:7.6,  hdi:0.802, cpi:56, pop:3.7,   hale:66.1, dGDP:+6.2, trend:[46.9,47.9,50.5,50.6,53.1,53.8,56,57.5,58,60,62,63,65,66,66] },
+  { code:'KAZ', name:'Kazakhstan',   region:'Asia',     flag:'🇰🇿', trust:3, score:60.5, zone:'ACC',  boi:5.8, gdp:12.1, hdi:0.811, cpi:37, pop:19.8,  hale:64.8, dGDP:+7.5, trend:[43.2,43.1,45.3,46.9,46.9,49.5,50.2,51.5,53,55,56,58,59,60,61] },
+  { code:'THA', name:'Thailand',     region:'Asia',     flag:'🇹🇭', trust:2, score:70.6, zone:'GROW', boi:7.4, gdp:7.8,  hdi:0.800, cpi:36, pop:71.8,  hale:67.7, dGDP:+4.0, trend:[59.1,60.6,60.2,61.3,62.2,64,64.7,65.3,66,67,68,69,70,70,71] },
+  { code:'IDN', name:'Indonesia',    region:'Asia',     flag:'🇮🇩', trust:3, score:63.8, zone:'ACC',  boi:6.5, gdp:4.9,  hdi:0.713, cpi:34, pop:277.5, hale:62.8, dGDP:+5.0, trend:[49.1,51,52.5,53.6,53.1,55.8,56.1,57.1,58,59,60,61,62,63,64] },
+  { code:'VNM', name:'Vietnam',      region:'Asia',     flag:'🇻🇳', trust:3, score:61.4, zone:'GROW', boi:6.3, gdp:4.3,  hdi:0.726, cpi:42, pop:99.5,  hale:64.6, dGDP:+8.4, trend:[44.3,44.9,46.8,48.8,49.8,50.8,51.6,52.1,54,56,57,58,59,60,61] },
+  { code:'ISR', name:'Israel',       region:'Asia',     flag:'🇮🇱', trust:2, score:82.1, zone:'BAL',  boi:7.6, gdp:54.7, hdi:0.919, cpi:62, pop:9.8,   hale:72.4, dGDP:-0.5, trend:[87.6,85.9,86.5,85.7,86,84.1,85.1,84.4,84,84,83,83,82,82,82] },
+  { code:'POL', name:'Poland',       region:'Europe',   flag:'🇵🇱', trust:2, score:78.4, zone:'GROW', boi:7.2, gdp:21.0, hdi:0.881, cpi:55, pop:37.6,  hale:69.3, dGDP:+1.5, trend:[68.7,69,69.9,70.2,71.9,72.2,73,73.7,74,75,76,77,78,78,78] },
+  { code:'CZE', name:'Czechia',      region:'Europe',   flag:'🇨🇿', trust:2, score:80.5, zone:'BAL',  boi:7.4, gdp:29.5, hdi:0.900, cpi:54, pop:10.8,  hale:69.8, dGDP:+0.6, trend:[76.3,76.2,76.3,78.1,76.7,77.6,78.4,79.1,79,80,80,80,81,80,81] },
+  { code:'COL', name:'Colombia',     region:'Americas', flag:'🇨🇴', trust:3, score:52.8, zone:'DEC',  boi:6.8, gdp:6.6,  hdi:0.758, cpi:39, pop:52.1,  hale:64.6, dGDP:-1.2, trend:[61.4,61.5,61,60.4,60.3,59.8,58.7,58.1,57,56,55,54,53,53,53] },
+  { code:'CHL', name:'Chile',        region:'Americas', flag:'🇨🇱', trust:2, score:74.2, zone:'BAL',  boi:8.5, gdp:17.8, hdi:0.860, cpi:67, pop:19.6,  hale:68.6, dGDP:+0.3, trend:[74.1,74.5,73,74.3,73.4,73.2,73.1,73.9,74,75,75,74,74,74,74] },
+  { code:'CRI', name:'Costa Rica',   region:'Americas', flag:'🇨🇷', trust:2, score:72.0, zone:'BAL',  boi:8.2, gdp:13.9, hdi:0.810, cpi:55, pop:5.2,   hale:68.4, dGDP:+0.2, trend:[68.7,70.4,70.3,69.4,70,70.5,70.7,70.5,71,71,72,72,72,72,72] },
+  { code:'URY', name:'Uruguay',      region:'Americas', flag:'🇺🇾', trust:2, score:75.8, zone:'BAL',  boi:8.4, gdp:22.1, hdi:0.830, cpi:74, pop:3.4,   hale:68.2, dGDP:+0.5, trend:[71.8,71,72.9,72.7,73.7,72.6,73,73.8,74,75,75,76,76,76,76] },
+  { code:'SRB', name:'Serbia',       region:'Europe',   flag:'🇷🇸', trust:3, score:60.2, zone:'STAG', boi:6.8, gdp:10.8, hdi:0.802, cpi:36, pop:6.6,   hale:67.1, dGDP:-1.4, trend:[64.3,64.4,63.7,64.2,63.2,63,61.8,61.6,62,62,61,61,60,60,60] },
+  { code:'ARM', name:'Armenia',      region:'Europe',   flag:'🇦🇲', trust:3, score:58.4, zone:'GROW', boi:6.5, gdp:7.0,  hdi:0.786, cpi:46, pop:2.8,   hale:66.3, dGDP:+6.5, trend:[43,45.7,45.7,48,47.6,48.1,49.4,50.4,52,53,55,56,57,58,58] },
+  { code:'UZB', name:'Uzbekistan',   region:'Asia',     flag:'🇺🇿', trust:3, score:52.0, zone:'GROW', boi:5.6, gdp:2.5,  hdi:0.727, cpi:33, pop:36.0,  hale:63.5, dGDP:+3.2, trend:[41.1,40.6,41.7,43.2,42.8,44.3,46,45.6,47,48,49,50,51,52,52] },
+  { code:'UKR', name:'Ukraine',      region:'Europe',   flag:'🇺🇦', trust:4, score:40.5, zone:'ACC',  boi:6.0, gdp:4.5,  hdi:0.773, cpi:33, pop:37.0,  hale:63.0, dGDP:+24.6,trend:[11.3,13,14.8,17.8,18.9,21.7,23.8,25.1,28,26,30,34,38,40,41] },
+  { code:'BLR', name:'Belarus',      region:'Europe',   flag:'🇧🇾', trust:4, score:48.2, zone:'ACC',  boi:5.8, gdp:8.0,  hdi:0.808, cpi:39, pop:9.2,   hale:65.4, dGDP:+27.5,trend:[34.1,35.1,35.3,37.3,38.1,39.4,40.2,41.1,42,43,44,45,46,47,48] },
+  { code:'PHL', name:'Philippines',  region:'Asia',     flag:'🇵🇭', trust:3, score:56.8, zone:'GROW', boi:6.2, gdp:3.9,  hdi:0.710, cpi:33, pop:117.3, hale:61.9, dGDP:+1.2, trend:[46.7,49.2,49,50.3,51.3,51.9,51.1,53.3,53,54,55,55,56,57,57] },
+  { code:'MYS', name:'Malaysia',     region:'Asia',     flag:'🇲🇾', trust:2, score:74.8, zone:'GROW', boi:7.0, gdp:13.3, hdi:0.803, cpi:50, pop:34.3,  hale:66.6, dGDP:+1.1, trend:[67,68.1,68.2,68.7,70.1,71.2,71,71.6,72,73,73,74,74,75,75] },
+  { code:'FIN', name:'Finland',      region:'Europe',   flag:'🇫🇮', trust:1, score:93.0, zone:'BAL',  boi:7.6, gdp:56.0, hdi:0.942, cpi:87, pop:5.6,   hale:71.5, dGDP:-0.2, trend:[93.4,93.5,93.3,93.4,92.8,92.9,93.9,93.5,93,93,93,93,93,93,93] },
+  { code:'SWE', name:'Sweden',       region:'Europe',   flag:'🇸🇪', trust:1, score:92.6, zone:'BAL',  boi:7.8, gdp:60.2, hdi:0.952, cpi:82, pop:10.5,  hale:72.0, dGDP:-0.1, trend:[92.9,93.2,93.6,92.4,92.6,92.8,93.9,92.9,93,93,93,92,92,93,93] },
+];
+
+const EVENTS = [
+  { t:'12m ago',  sev:3, country:'EGY', tag:'ECON',    title:{en:'Egypt zone reclassified DEC',         ru:'Египет: зона переклассифицирована DEC'},   body:{en:'5y regression: -3.2% across 4/8 indicators. Currency volatility flagged.', ru:'5-летняя регрессия: -3.2% по 4/8 индикаторам. Отмечена волатильность валюты.'} },
+  { t:'47m ago',  sev:2, country:'PRT', tag:'BOI',     title:{en:'Portugal BOI ↑ 9.20 (+0.04)',         ru:'Португалия BOI ↑ 9.20 (+0.04)'},           body:{en:'Air-quality and HALE updates lift composite. Algarve still leads sub-index.', ru:'Обновления качества воздуха и HALE поднимают композит. Алгарве лидирует.'} },
+  { t:'1h ago',   sev:2, country:'NZL', tag:'TRUST',   title:{en:'New Zealand confirmed T1',            ru:'Новая Зеландия подтверждена T1'},           body:{en:'Quarterly recompute: divergence vs S&P/Moody\'s within tolerance.', ru:'Квартальный пересчёт: расхождение с S&P/Moody\'s в допуске.'} },
+  { t:'2h ago',   sev:1, country:'JPN', tag:'CASCADE', title:{en:'Daily cascade complete · 217/217',    ru:'Дневной каскад завершён · 217/217'},        body:{en:'Recalc 06:00 UTC. 19,503 datapoints refreshed. AI digest queued.', ru:'Пересчёт 06:00 UTC. 19 503 точек обновлено. AI-дайджест в очереди.'} },
+  { t:'3h ago',   sev:3, country:'ARG', tag:'EVENT',   title:{en:'Argentina · severity 3 alert',        ru:'Аргентина · severity 3'},                   body:{en:'Inflation spike crosses threshold. Auto-published to channel.', ru:'Скачок инфляции пересёк порог. Автопубликация в канал.'} },
+  { t:'5h ago',   sev:1, country:'SGP', tag:'BOI',     title:{en:'Singapore enters BOI top-25',         ru:'Сингапур входит в BOI top-25'},             body:{en:'Composite 7.94 (+0.11). Stability and water sub-scores improved.', ru:'Композит 7.94 (+0.11). Улучшены стабильность и водный субскор.'} },
+  { t:'8h ago',   sev:2, country:'IND', tag:'TRUST',   title:{en:'India revised T3 → T3 (stable)',      ru:'Индия: T3 → T3 (стабильно)'},               body:{en:'No tier change but confidence rises 0.78 → 0.84 (more metrics covered).', ru:'Уровень не изменился, но уверенность 0.78 → 0.84.'} },
+  { t:'11h ago',  sev:1, country:'CHE', tag:'METHOD',  title:{en:'Methodology v0.4 published',          ru:'Методология v0.4 опубликована'},            body:{en:'Trust Score weighting adjusted; CPI weight 0.10 → 0.12. Rerun complete.', ru:'Веса Trust Score обновлены; вес CPI 0.10 → 0.12. Пересчёт завершён.'} },
+];
+
+const TRUST_FACTORS = [
+  { v:78, w:0.10, label:{en:'GDP / capita PPP',   ru:'ВВП / чел. ППС'} },
+  { v:82, w:0.12, label:{en:'Governance index',   ru:'Качество гос. упр.'} },
+  { v:62, w:0.10, label:{en:'Corruption (CPI)',   ru:'Коррупция (CPI)'} },
+  { v:88, w:0.12, label:{en:'Human development', ru:'ИЧР'} },
+  { v:79, w:0.08, label:{en:'Education years',    ru:'Годы образования'} },
+  { v:84, w:0.10, label:{en:'Health expenditure', ru:'Расходы на здр.'} },
+  { v:54, w:0.08, label:{en:'Debt / GDP (inv.)',  ru:'Долг / ВВП (инв.)'} },
+  { v:71, w:0.07, label:{en:'Inflation (inv.)',   ru:'Инфляция (инв.)'} },
+  { v:69, w:0.06, label:{en:'FDI inflow',         ru:'Приток ПИИ'} },
+  { v:81, w:0.08, label:{en:'Rule of law',        ru:'Верховенство права'} },
+  { v:74, w:0.05, label:{en:'Press freedom',      ru:'Свобода прессы'} },
+  { v:80, w:0.04, label:{en:'Environmental perf.',ru:'Эколог. показатель'} },
+];
+
+const BOI_FACTORS = [
+  { w:.18, v:9.4, label:{en:'Climate',         ru:'Климат'} },
+  { w:.12, v:9.0, label:{en:'HALE',            ru:'HALE'} },
+  { w:.12, v:8.7, label:{en:'Air quality',     ru:'Качество воздуха'} },
+  { w:.10, v:9.5, label:{en:'Water',           ru:'Вода'} },
+  { w:.10, v:9.8, label:{en:'Radiation',       ru:'Радиация'} },
+  { w:.08, v:9.0, label:{en:'Altitude',        ru:'Высота'} },
+  { w:.08, v:9.3, label:{en:'Latitude',        ru:'Широта'} },
+  { w:.08, v:8.5, label:{en:'Stability',       ru:'Стабильность'} },
+  { w:.07, v:8.6, label:{en:'UV index',        ru:'УФ-индекс'} },
+  { w:.07, v:9.1, label:{en:'Natural risks',   ru:'Природные риски'} },
+];
+
+const ZONE_META = {
+  ACC:  { label:{en:'Accelerating', ru:'Ускоряется'}, symbol:'▲▲', cls:'acc'  },
+  GROW: { label:{en:'Growing',      ru:'Растёт'},     symbol:'▲',  cls:'grow' },
+  BAL:  { label:{en:'Balancing',    ru:'Баланс'},     symbol:'◆',  cls:'bal'  },
+  STAG: { label:{en:'Stagnating',   ru:'Стагнация'},  symbol:'▽',  cls:'stag' },
+  DEC:  { label:{en:'Declining',    ru:'Снижение'},   symbol:'▽▽', cls:'dec'  },
+};
+
+/* ===================== I18N ===================== */
+const I18N = {
+  en: {
+    'live':'LIVE','nav.home':'Home','nav.country':'Country','nav.compare':'Compare','nav.boi':'BioOptimum','nav.feed':'Feed','nav.method':'Method',
+    'cta.channel':'Channel','quote':'"We don\'t ask for faith. We ask for verification."',
+    'footer.legal':'Legal','footer.privacy':'Privacy',
+  },
+  ru: {
+    'live':'ЛАЙВ','nav.home':'Главная','nav.country':'Страна','nav.compare':'Сравнить','nav.boi':'BioOptimum','nav.feed':'Лента','nav.method':'Методология',
+    'cta.channel':'Канал','quote':'«Мы не просим веры. Мы просим проверки.»',
+    'footer.legal':'Право','footer.privacy':'Конфид.',
+  }
+};
+let LANG = 'en';
+const t = (en, ru) => LANG === 'ru' ? (ru || en) : en;
+
+/* ===================== STATE ===================== */
+const STATE = {
+  tab: 'home',
+  countryCode: 'PRT',
+  cmpA: 'PRT',
+  cmpB: 'DEU',
+  boiSort: 'boi',
+  boiZone: null,
+  boiSearch: '',
+};
+
+/* ===================== HELPERS ===================== */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function spark(data, w=80, h=24, color='var(--accent)') {
+  const max = Math.max(...data), min = Math.min(...data);
+  const r = max - min || 1;
+  const pts = data.map((v,i) => `${(i/(data.length-1))*w},${h - ((v-min)/r)*h}`).join(' ');
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="display:block"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+/* ─── INTERACTIVE TREND CHART ─── */
+function trendChart(data, w=320, h=120, color='var(--green)', id='') {
+  const uid = id || 'tc'+Math.random().toString(36).slice(2,8);
+  return `<div class="trend-chart" id="${uid}" data-points='${JSON.stringify(data)}' data-color="${color}" data-w="${w}" data-h="${h}">
+    <div class="tc-toolbar">
+      <div class="tc-periods">
+        <button class="tc-btn" data-n="3" onclick="tcPeriod('${uid}',3)">1Y</button>
+        <button class="tc-btn" data-n="5" onclick="tcPeriod('${uid}',5)">3Y</button>
+        <button class="tc-btn active" data-n="7" onclick="tcPeriod('${uid}',7)">5Y</button>
+        <button class="tc-btn" data-n="10" onclick="tcPeriod('${uid}',10)">10Y</button>
+        <button class="tc-btn" data-n="0" onclick="tcPeriod('${uid}',0)">MAX</button>
+      </div>
+      <div class="tc-zoom-btns">
+        <button class="tc-zbtn" onclick="tcZoom('${uid}',1.3)" title="Zoom in">+</button>
+        <button class="tc-zbtn" onclick="tcZoom('${uid}',0.7)" title="Zoom out">−</button>
+        <button class="tc-zbtn" onclick="tcReset('${uid}')" title="Reset">↺</button>
+      </div>
+    </div>
+    <div class="tc-canvas" style="position:relative;overflow:hidden;cursor:crosshair">
+      <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" id="${uid}-svg"></svg>
+      <div class="tc-tooltip" id="${uid}-tip" style="display:none"></div>
+      <div class="tc-crosshair" id="${uid}-cross" style="display:none"></div>
+    </div>
+    <div class="tc-range" id="${uid}-range" style="font-family:var(--mono);font-size:10px;color:var(--text3);display:flex;justify-content:space-between;margin-top:4px"></div>
+  </div>`;
+}
+
+function tcDraw(uid, sliceN) {
+  const el = document.getElementById(uid);
+  if (!el) return;
+  const all = JSON.parse(el.dataset.points);
+  const color = el.dataset.color;
+  const W = parseInt(el.dataset.w), H = parseInt(el.dataset.h);
+  const data = sliceN > 0 ? all.slice(-sliceN) : all;
+  const max = Math.max(...data), min = Math.min(...data);
+  const range = max - min || 1;
+  const pad = 4;
+  const hh = H - pad*2;
+  const pts = data.map((v,i) => {
+    const x = data.length>1 ? (i/(data.length-1))*W : W/2;
+    const y = pad + hh - ((v-min)/range)*hh;
+    return {x, y, v};
+  });
+
+  const svg = document.getElementById(uid+'-svg');
+  const line = pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const gradId = uid+'g';
+  const areaPath = `M${pts[0].x},${pts[0].y} ` + pts.slice(1).map(p=>`L${p.x},${p.y}`).join(' ') + ` L${W},${H} L0,${H} Z`;
+
+  // Grid lines
+  let gridLines = '';
+  for (let i = 0; i <= 4; i++) {
+    const gy = pad + (hh/4)*i;
+    const gv = (max - (range/4)*i).toFixed(1);
+    gridLines += `<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,3"/>`;
+    gridLines += `<text x="${W-4}" y="${gy-3}" fill="var(--text3)" font-size="8" font-family="var(--mono)" text-anchor="end">${gv}</text>`;
+  }
+
+  svg.innerHTML = `
+    <defs><linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${color}" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
+    </linearGradient></defs>
+    ${gridLines}
+    <path d="${areaPath}" fill="url(#${gradId})"/>
+    <polyline points="${line}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.map((p,i) => `<circle cx="${p.x}" cy="${p.y}" r="0" fill="${color}" class="tc-dot" data-i="${i}" data-v="${p.v}"/>`).join('')}
+  `;
+
+  // Year labels
+  const curYear = 2026;
+  const startYear = curYear - data.length + 1;
+  document.getElementById(uid+'-range').innerHTML = `<span>${startYear}</span><span>${curYear}</span>`;
+
+  // Store for hover
+  el._pts = pts;
+  el._data = data;
+  el._startYear = startYear;
+
+  // Hover events
+  const canvas = el.querySelector('.tc-canvas');
+  const tip = document.getElementById(uid+'-tip');
+  const cross = document.getElementById(uid+'-cross');
+
+  canvas.onmousemove = function(e) {
+    const rect = svg.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    // Find nearest point
+    let closest = 0, minDist = Infinity;
+    pts.forEach((p,i) => { const d = Math.abs(p.x - mx); if(d < minDist){minDist=d; closest=i;} });
+    const cp = pts[closest];
+    // Highlight dot
+    svg.querySelectorAll('.tc-dot').forEach((d,i) => { d.setAttribute('r', i===closest?'4':'0'); });
+    // Tooltip
+    tip.style.display = 'block';
+    tip.style.left = Math.min(cp.x + 8, W - 80) + 'px';
+    tip.style.top = (cp.y - 28) + 'px';
+    tip.innerHTML = `<b>${(startYear+closest)}</b>: ${cp.v.toFixed(1)}`;
+    // Crosshair
+    cross.style.display = 'block';
+    cross.style.left = cp.x + 'px';
+    cross.style.top = '0';
+    cross.style.height = H + 'px';
+  };
+  canvas.onmouseleave = function() {
+    tip.style.display = 'none';
+    cross.style.display = 'none';
+    svg.querySelectorAll('.tc-dot').forEach(d => d.setAttribute('r','0'));
+  };
+}
+
+function tcPeriod(uid, n) {
+  const el = document.getElementById(uid);
+  el.querySelectorAll('.tc-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.n)===n));
+  el._sliceN = n;
+  tcDraw(uid, n);
+}
+function tcZoom(uid, factor) {
+  const el = document.getElementById(uid);
+  const svg = document.getElementById(uid+'-svg');
+  const curW = parseInt(svg.getAttribute('width'));
+  const newW = Math.max(200, Math.min(1200, Math.round(curW * factor)));
+  svg.setAttribute('width', newW);
+  el.dataset.w = newW;
+  tcDraw(uid, el._sliceN || 7);
+}
+function tcReset(uid) {
+  const el = document.getElementById(uid);
+  const svg = document.getElementById(uid+'-svg');
+  svg.setAttribute('width', '320');
+  el.dataset.w = '320';
+  el._sliceN = 7;
+  el.querySelectorAll('.tc-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.n)===7));
+  tcDraw(uid, 7);
+}
+
+function gauge(value, size=120, color='var(--accent)', label='', sub='') {
+  const r = size/2 - 8;
+  const c = 2 * Math.PI * r;
+  const pct = Math.max(0, Math.min(1, value/100));
+  return `
+    <div class="gauge" style="width:${size}px;height:${size}px">
+      <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="var(--border)" stroke-width="6" fill="none"/>
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" stroke="${color}" stroke-width="6" fill="none"
+          stroke-dasharray="${c*pct} ${c}" stroke-linecap="round"
+          transform="rotate(-90 ${size/2} ${size/2})"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gauge-val">${value}</div>
+        ${label ? `<div class="gauge-label">${label}</div>` : ''}
+      </div>
+      ${sub ? `<div class="gauge-sub">${sub}</div>` : ''}
+    </div>`;
+}
+
+const zoneTag = (z) => {
+  const m = ZONE_META[z]; if (!m) return '';
+  return `<span class="zone-tag ${m.cls}"><span class="zsym">${m.symbol}</span><span>${t(m.label.en, m.label.ru)}</span></span>`;
+};
+const trustBadge = (n) => `<span class="trust-badge t${n}">T${n}</span>`;
+
+/* ===================== SCREENS ===================== */
+function renderHome() {
+  const featured = COUNTRIES.slice(0, 6);
+  const zoneCounts = COUNTRIES.reduce((a,c) => { a[c.zone]=(a[c.zone]||0)+1; return a; }, {});
+  const moversHTML = featured.map(c => `
+    <button class="mover" data-goto="country" data-code="${c.code}">
+      <div class="mv-top">
+        <span class="flag">${c.flag}</span>
+        <div class="mv-name">
+          <div class="cname">${c.name}</div>
+          <span class="mono dim">${c.code} · ${c.region}</span>
+        </div>
+        ${trustBadge(c.trust)}
+      </div>
+      <div class="mv-mid">
+        <div>
+          <span class="mono dim">${t('SCORE','СКОР')}</span>
+          <div class="mv-score">${c.score.toFixed(1)}</div>
+        </div>
+        <div class="spark-wrap">
+          ${spark(c.trend, 84, 28, c.dGDP>=0 ? 'var(--green)' : 'var(--red)')}
+          <span class="${c.dGDP>=0?'pos':'neg'}">${c.dGDP>=0?'+':''}${c.dGDP}%</span>
+        </div>
+      </div>
+      <div class="mv-bot">
+        ${zoneTag(c.zone)}
+        <span class="boi-mini"><span class="mono dim">BOI</span> ${c.boi.toFixed(1)}</span>
+      </div>
+    </button>
+  `).join('');
+
+  const zonesHTML = ['ACC','GROW','BAL','STAG','DEC'].map(z => {
+    const n = zoneCounts[z] || 0;
+    const pct = (n / COUNTRIES.length) * 100;
+    return `<div class="zb-seg ${ZONE_META[z].cls}" style="flex:${pct}" title="${t(ZONE_META[z].label.en, ZONE_META[z].label.ru)}: ${n}"><span>${n}</span></div>`;
+  }).join('');
+
+  const legendHTML = ['ACC','GROW','BAL','STAG','DEC'].map(z =>
+    `<span class="zlg ${ZONE_META[z].cls}"><i></i>${t(ZONE_META[z].label.en, ZONE_META[z].label.ru)}</span>`
+  ).join('');
+
+  const pipe = [
+    { step:'01', label:t('Collect','Сбор'),       sub:t('World Bank, UNDP, TI, RSS','World Bank, UNDP, TI, RSS'),  detail:t('Hourly polling, retries','Опрос, retry, dedup'),
+      free: t(
+        '<b>Sources:</b> World Bank Open Data API (24 indicators), UNDP HDR (HDI), Transparency International (CPI), ReliefWeb RSS, WHO Disease Outbreak RSS.<br><b>Method:</b> Idempotent upsert, deduplication by URL/title, 10s timeout, retry x3.',
+        '<b>Источники:</b> World Bank Open Data API (24 индикатора), UNDP HDR (HDI), Transparency International (CPI), ReliefWeb RSS, WHO Disease Outbreak RSS.<br><b>Метод:</b> Идемпотентный upsert, дедупликация по URL/title, таймаут 10с, retry x3.'
+      ),
+      paid: t(
+        'Full API schemas, raw data samples, collection logs with timing, error rates by source, custom collector templates for your own indicators.',
+        'Полные API-схемы, примеры сырых данных, логи сбора с таймингами, процент ошибок по источникам, шаблоны коллекторов для своих индикаторов.'
+      )},
+    { step:'02', label:t('Normalize','Нормализация'),sub:t('30 metrics → 0–100','30 метрик → 0–100'), detail:t('Z-score, winsorize','Z-score, winsorize'),
+      free: t(
+        '<b>30 metrics</b> across 7 categories: Economy (7), Governance (6), Social (3), Digital (4), Business (4), Safety (1), Environment (1).<br><b>Normalization:</b> Min-max per metric, direction-aware (higher_better / lower_better).',
+        '<b>30 метрик</b> в 7 категориях: Экономика (7), Управление (6), Социальная (3), Цифровая (4), Бизнес (4), Безопасность (1), Экология (1).<br><b>Нормализация:</b> Min-max по метрике, с учётом направления (higher_better / lower_better).'
+      ),
+      paid: t(
+        'Weight tables, z-score distributions, winsorization thresholds, outlier detection rules, per-country normalization breakdowns, exportable CSV.',
+        'Таблицы весов, распределения z-score, пороги винсоризации, правила выброса аномалий, разбивка нормализации по странам, экспорт CSV.'
+      )},
+    { step:'03', label:t('Recompute','Пересчёт'), sub:t('Trust · Zone · BOI','Trust · Зона · BOI'), detail:t('Linear regression 5y','Регрессия 5л'),
+      free: t(
+        '<b>Trust Score T1–T5:</b> Weighted composite vs agency ratings (S&P, Moody\'s, Fitch). Divergence → T1 (match) to T5 (divergent).<br><b>Zones:</b> 8 key metrics, linear regression 5y. ACC ≥3%, GROW ≥1%, BAL ≥-1%, STAG ≥-3%, DEC <-3%.',
+        '<b>Trust Score T1–T5:</b> Взвешенный композит vs рейтинги агентств (S&P, Moody\'s, Fitch). Divergence → T1 (совпадение) до T5 (расхождение).<br><b>Зоны:</b> 8 ключевых метрик, линейная регрессия 5л. ACC ≥3%, GROW ≥1%, BAL ≥-1%, STAG ≥-3%, DEC <-3%.'
+      ),
+      paid: t(
+        'Full regression coefficients per country, confidence intervals, agency-vs-data divergence tables, historical zone transitions, BOI factor breakdowns with source confidence levels.',
+        'Полные коэффициенты регрессии по странам, доверительные интервалы, таблицы расхождений агентств с данными, история переходов зон, разбивка BOI-факторов с уровнями достоверности источников.'
+      )},
+    { step:'04', label:t('AI synthesis','AI-синтез'), sub:t('Claude · grounded','Claude · с контекстом'), detail:t('No hallucinated numbers','Без выдуманных чисел'),
+      free: t(
+        '<b>Model:</b> Claude Sonnet 4 (daily cascade), Claude Opus 4 (country deep dive).<br><b>Method:</b> Grounded analysis — all numbers from DB, AI interprets trends and generates narrative. Auto-apply BOI adjustments at confidence ≥ 0.6.',
+        '<b>Модель:</b> Claude Sonnet 4 (ежедневный каскад), Claude Opus 4 (deep dive по стране).<br><b>Метод:</b> Заземлённый анализ — все числа из БД, AI интерпретирует тренды и генерирует нарратив. Авто-коррекция BOI при confidence ≥ 0.6.'
+      ),
+      paid: t(
+        'Full prompt templates, token usage statistics, AI confidence scores per analysis, prompt engineering guide, custom analysis requests for any country.',
+        'Полные шаблоны промптов, статистика расхода токенов, оценки уверенности AI по анализам, гайд по prompt engineering, кастомные запросы анализа по любой стране.'
+      )},
+    { step:'05', label:t('Publish','Публикация'), sub:t('Telegram + bot','Telegram + бот'), detail:t('06:00 UTC daily','06:00 UTC ежедневно'),
+      free: t(
+        '<b>Channel:</b> <a href="https://t.me/worldrank_news" target="_blank" style="color:var(--accent)">@worldrank_news</a> — daily updates, event alerts, weekly digest.<br><b>Bot:</b> <a href="https://t.me/worldrank_newsbot" target="_blank" style="color:var(--accent)">@worldrank_newsbot</a> — /country, /compare, /boi, /status commands.',
+        '<b>Канал:</b> <a href="https://t.me/worldrank_news" target="_blank" style="color:var(--accent)">@worldrank_news</a> — ежедневные обновления, алерты событий, недельный дайджест.<br><b>Бот:</b> <a href="https://t.me/worldrank_newsbot" target="_blank" style="color:var(--accent)">@worldrank_newsbot</a> — /country, /compare, /boi, /status команды.'
+      ),
+      paid: t(
+        'API access to all endpoints, webhook integration, custom alert rules, white-label reports, priority bot responses, raw data export.',
+        'Доступ к API всех эндпоинтов, интеграция вебхуков, кастомные правила алертов, white-label отчёты, приоритетные ответы бота, экспорт сырых данных.'
+      )},
+  ];
+  const pipeHTML = pipe.map((p,i) => `
+    <div class="pipe-step" style="cursor:pointer;transition:transform .15s,border-color .15s" onclick="togglePipeDetail(this)" onmouseenter="this.style.borderColor='var(--border2)';this.style.transform='translateY(-2px)'" onmouseleave="this.style.borderColor='';this.style.transform=''">
+      <span class="mono ps-num">${p.step}</span>
+      <div class="ps-label">${p.label}</div>
+      <div class="ps-sub">${p.sub}</div>
+      <span class="mono ps-detail dim">${p.detail}</span>
+      <div class="pipe-expand" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text2);line-height:1.55">
+        ${p.free}
+      </div>
+      <div class="pipe-paid" style="display:none;margin-top:8px;padding:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;position:relative;overflow:hidden">
+        <div style="filter:blur(3px);font-size:11px;color:var(--text3);line-height:1.5">${p.paid}</div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(11,15,26,.7);backdrop-filter:blur(2px)">
+          <span style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:6px">Premium</span>
+          <a href="https://ko-fi.com/" target="_blank" style="font-size:11px;color:var(--accent);font-weight:600">Unlock $5 →</a>
+        </div>
+      </div>
+      ${i<4 ? '<div class="ps-arrow">→</div>' : ''}
+    </div>
+  `).join('');
+
+  return `
+    <div class="screen">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="kicker"><span class="pulse-dot"></span><span class="mono">${t('Live · 217 countries · v0.4','Лайв · 217 стран · v0.4')}</span></div>
+            <h1>${t('Independent','Независимая')}<br>${t('Country','Страновая')} <span class="grad">${t('Analytics','Аналитика')}</span></h1>
+            <p class="lede">${t(
+              'World Bank, UNDP, Transparency International data. Automated collection, AI synthesis, Telegram delivery. Trust Score T1–T5, Development Zones, BioOptimum Index.',
+              'Данные World Bank, UNDP, Transparency International. Автосбор, AI-анализ, публикация в Telegram. Trust Score T1–T5, зоны развития, BioOptimum Index.'
+            )}</p>
+            <div class="cta-row">
+              <button class="btn-primary" data-goto="country" data-code="PRT">${t('Open Country Brief','Открыть Country Brief')} <span class="arr">→</span></button>
+              <button class="btn-ghost" data-goto="boi">${t('Browse BioOptimum','BioOptimum рейтинг')}</button>
+            </div>
+            <div class="hero-meta">
+              <span class="mono dim">${t('LAST CASCADE','ПОСЛЕДНИЙ ЦИКЛ')}</span>
+              <span>06:00 UTC · 19 503 ${t('datapoints','точек')}</span>
+              <span class="dot">·</span>
+              <span class="mono dim">${t('AI DIGEST','AI-ДАЙДЖЕСТ')}</span>
+              <span class="ok">✓ ${t('published','опубликован')}</span>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="hero-card">
+              <div class="hc-head">
+                <span class="mono dim">${t('GLOBAL DASHBOARD','ГЛОБАЛЬНАЯ ПАНЕЛЬ')}</span>
+                <span class="mono dim">${new Date().toISOString().slice(0,10)}</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi"><div class="kpi-num">217</div><div class="kpi-lbl">${t('countries','стран')}</div></div>
+                <div class="kpi"><div class="kpi-num">19.5k</div><div class="kpi-lbl">${t('metrics','метрик')}</div></div>
+                <div class="kpi"><div class="kpi-num">26</div><div class="kpi-lbl">${t('indicators','индикаторов')}</div></div>
+                <div class="kpi"><div class="kpi-num daily">06:00</div><div class="kpi-lbl">UTC</div></div>
+              </div>
+              <div class="zone-bar">${zonesHTML}</div>
+              <div class="zb-legend">${legendHTML}</div>
+            </div>
+            <div class="quote-card">
+              <div class="qmark">"</div>
+              <p>${t('We don\'t ask for faith. We ask for verification.','Мы не просим веры. Мы просим проверки.')}</p>
+              <div class="qsig">— A. A. Dmitriev · WorldRank Manifesto</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="sect-head">
+          <h2>${t("Today's Movers",'Сегодняшние движения')}</h2>
+          <button class="link-btn" data-goto="boi">${t('All rankings','Все рейтинги')} →</button>
+        </div>
+        <div class="movers">${moversHTML}</div>
+      </section>
+
+      <section class="section">
+        <div class="sect-head">
+          <h2>${t('How the pipeline runs','Как работает пайплайн')}</h2>
+          <span class="mono">${t('5 STAGES · DAILY','5 ЭТАПОВ · ЕЖЕДНЕВНО')}</span>
+        </div>
+        <div class="pipe-grid">${pipeHTML}</div>
+      </section>
+    </div>
+  `;
+}
+
+function renderCountry() {
+  const c = COUNTRIES.find(x => x.code === STATE.countryCode) || COUNTRIES[0];
+  const optionsHTML = COUNTRIES.map(x => `<option value="${x.code}" ${x.code===c.code?'selected':''}>${x.flag} ${x.name}</option>`).join('');
+  const tfHTML = TRUST_FACTORS.map(f => `
+    <div class="tf-row">
+      <div class="tf-label">${t(f.label.en, f.label.ru)}</div>
+      <div class="tf-bar"><div class="tf-fill" style="width:${f.v}%"></div></div>
+      <div class="tf-val">${f.v}</div>
+      <span class="mono tf-w dim">w ${f.w.toFixed(2)}</span>
+    </div>`).join('');
+
+  const agencies = [
+    { a:'S&P',       rating:'AA-',  div:'Δ 0.04', cls:'match' },
+    { a:"Moody's",   rating:'A1',   div:'Δ 0.06', cls:'match' },
+    { a:'Fitch',     rating:'A+',   div:'Δ 0.09', cls:'minor' },
+    { a:'WorldRank', rating:`T${c.trust}`, div:'—', cls:'self' },
+  ];
+  const agHTML = agencies.map(a => `
+    <div class="agency-row">
+      <div class="ag-name">${a.a}</div>
+      <span class="ag-rating">${a.rating}</span>
+      <div class="ag-div ${a.cls}">${a.div}</div>
+    </div>`).join('');
+
+  const indHTML = [
+    ['GDP per capita (PPP)', 'WB·NY.GDP.PCAP.PP.CD', `$${(c.gdp*1000).toLocaleString()}`, c.trend, 78],
+    ['HDI', 'UNDP', c.hdi.toFixed(3), c.trend, 88],
+    ['CPI score', 'TI', String(c.cpi), c.trend, 62],
+    ['HALE (years)', 'WHO', String(c.hale), c.trend, 80],
+    ['Population (M)', 'WB', c.pop.toFixed(2), c.trend, '—'],
+  ].map(([n,s,v,sp,nm]) => `
+    <div class="ind-row">
+      <div class="ind-name">${n}</div>
+      <span class="mono dim ind-src">${s}</span>
+      <div class="ind-val">${v}</div>
+      <div>${spark(sp, 72, 20, 'var(--accent)')}</div>
+      <span class="mono ind-norm">${nm}</span>
+    </div>`).join('');
+
+  return `
+    <div class="screen">
+      <div class="cd-strip">
+        <button class="back-btn" data-goto="home">← ${t('Home','Главная')}</button>
+        <div class="cd-picker">
+          <span class="mono">${t('COUNTRY','СТРАНА')}</span>
+          <select id="cdSelect">${optionsHTML}</select>
+        </div>
+        <div class="cd-actions">
+          <button class="btn-ghost sm" data-goto="compare" data-code="${c.code}">⇄ ${t('Compare','Сравнить')}</button>
+          <button class="btn-ghost sm">⤓ PDF</button>
+        </div>
+      </div>
+
+      <div class="cd-hero">
+        <div class="cd-hero-l">
+          <div class="cd-flag">${c.flag}</div>
+          <div>
+            <div class="cd-region"><span class="mono">${c.code} · ${c.region}</span></div>
+            <h1 class="cd-name">${c.name}</h1>
+            <div class="cd-tags">
+              ${trustBadge(c.trust)} ${zoneTag(c.zone)}
+              <span class="cd-sub">BOI ${c.boi.toFixed(1)} · ${c.pop}M ${t('pop','нас.')} · HDI ${c.hdi}</span>
+            </div>
+          </div>
+        </div>
+        <div class="cd-hero-r">
+          ${gauge(Math.round(c.score), 120, 'var(--accent)', t('TRUST','TRUST'), t('Composite 0–100','Композит 0–100'))}
+          <div class="cd-trend" style="min-width:340px">
+            ${trendChart(c.trend, 320, 120, c.dGDP>=0?'var(--green)':'var(--red)', 'tc-'+c.code)}
+            <span class="${c.dGDP>=0?'pos':'neg'}" style="margin-top:4px">${c.dGDP>=0?'+':''}${c.dGDP}% ${t('YoY','г/г')}</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="cd-sect">
+        <div class="sect-head">
+          <h2>${t('Trust Score breakdown','Декомпозиция Trust Score')}</h2>
+          <span class="mono dim">${t('12 / 30 INDICATORS · CONFIDENCE 0.86','12 / 30 ИНДИКАТОРОВ · УВЕРЕННОСТЬ 0.86')}</span>
+        </div>
+        <div class="trust-grid">${tfHTML}</div>
+      </section>
+
+      <section class="cd-sect cd-cols">
+        <div class="cd-col">
+          <h3>${t('Agency comparison','Сравнение с агентствами')}</h3>
+          <div class="agency-list">${agHTML}</div>
+          <p class="cd-note">${t('Divergence within tolerance. T-tier confirmed.','Расхождение в допуске. Уровень подтверждён.')}</p>
+        </div>
+        <div class="cd-col">
+          <h3>${t('AI brief','AI-сводка')}</h3>
+          <div class="ai-brief">
+            <span class="mono dim">CLAUDE · GROUNDED · v0.4</span>
+            <p>${t(
+              `${c.name} maintains its T${c.trust} tier with composite ${c.score.toFixed(1)}. Five-year regression shows ${c.dGDP>=0?'positive':'negative'} momentum (${c.dGDP>0?'+':''}${c.dGDP}% YoY). BioOptimum Index sits at ${c.boi.toFixed(1)}, supported by climate and HALE sub-scores. No severity-2+ events in the last 30 days.`,
+              `${c.name}: уровень T${c.trust} подтверждён, композит ${c.score.toFixed(1)}. 5-летняя регрессия — ${c.dGDP>=0?'положительная':'отрицательная'} динамика (${c.dGDP>0?'+':''}${c.dGDP}% г/г). BOI ${c.boi.toFixed(1)}, поддержан климатом и HALE. Событий severity ≥2 за 30 дней нет.`
+            )}</p>
+            <div class="ai-citations">
+              <span class="mono dim">${t('SOURCES','ИСТОЧНИКИ')}</span>
+              <span class="cite">WB·NY.GDP.PCAP</span><span class="cite">UNDP·HDI</span>
+              <span class="cite">TI·CPI</span><span class="cite">WHO·HALE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cd-sect">
+        <div class="sect-head">
+          <h2>${t('Indicator detail','Детализация индикаторов')}</h2>
+        </div>
+        <div class="ind-table">
+          <div class="ind-head">
+            <div>${t('Indicator','Индикатор')}</div>
+            <div>${t('Source','Источник')}</div>
+            <div>${t('Latest','Последний')}</div>
+            <div>${t('5Y','5Л')}</div>
+            <div>${t('Norm','Норм')}</div>
+          </div>
+          ${indHTML}
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+function renderCompare() {
+  const A = COUNTRIES.find(x => x.code === STATE.cmpA) || COUNTRIES[0];
+  const B = COUNTRIES.find(x => x.code === STATE.cmpB) || COUNTRIES[10];
+  const opt = (sel) => COUNTRIES.map(x => `<option value="${x.code}" ${x.code===sel?'selected':''}>${x.flag} ${x.name}</option>`).join('');
+
+  const metrics = [
+    { k:'score',   label:t('Trust composite','Trust композит'), max:100, A:A.score, B:B.score, fmt:v=>v.toFixed(1) },
+    { k:'gdp',     label:t('GDP / capita (k$)','ВВП / чел. ($k)'),       max:120, A:A.gdp,  B:B.gdp,  fmt:v=>v.toFixed(1) },
+    { k:'hdi',     label:'HDI',                  max:1,   A:A.hdi,  B:B.hdi,  fmt:v=>v.toFixed(3) },
+    { k:'cpi',     label:t('CPI score','CPI'),   max:100, A:A.cpi,  B:B.cpi,  fmt:v=>v },
+    { k:'hale',    label:t('HALE (yr)','HALE (лет)'), max:80, A:A.hale, B:B.hale, fmt:v=>v.toFixed(1) },
+    { k:'boi',     label:'BioOptimum Index',     max:10,  A:A.boi,  B:B.boi,  fmt:v=>v.toFixed(1) },
+    { k:'pop',     label:t('Population (M)','Население (млн)'), max:1500, A:A.pop, B:B.pop, fmt:v=>v.toFixed(1) },
+  ];
+  const rowsHTML = metrics.map(m => {
+    const aWin = m.A > m.B, bWin = m.B > m.A;
+    return `
+      <div class="cmp-row">
+        <div class="cmp-val l ${aWin?'win':''}">
+          ${m.fmt(m.A)} ${aWin?'✓':''}
+        </div>
+        <div class="cmp-metric">${m.label}</div>
+        <div class="cmp-val r ${bWin?'win':''}">
+          ${bWin?'✓':''} ${m.fmt(m.B)}
+        </div>
+      </div>
+      <div class="cmp-bar-row">
+        <div class="cmp-bar l"><div class="cmp-bar-fill" style="width:${(m.A/m.max)*100}%"></div></div>
+        <div></div>
+        <div class="cmp-bar r"><div class="cmp-bar-fill" style="width:${(m.B/m.max)*100}%"></div></div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="screen">
+      <div class="sect-head">
+        <h2>${t('Country Compare','Сравнение стран')}</h2>
+        <span class="mono dim">${t('SIDE-BY-SIDE · 7 METRICS','SIDE-BY-SIDE · 7 МЕТРИК')}</span>
+      </div>
+
+      <div class="cmp-header">
+        <div class="cmp-card-pick">
+          <div class="cmp-flag">${A.flag}</div>
+          <div class="cmp-pick-info">
+            <span class="mono">${t('LEFT','ЛЕВЫЙ')}</span>
+            <select id="cmpA">${opt(A.code)}</select>
+            <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">${trustBadge(A.trust)} ${zoneTag(A.zone)}</div>
+          </div>
+        </div>
+        <div class="cmp-vs">VS</div>
+        <div class="cmp-card-pick">
+          <div class="cmp-flag">${B.flag}</div>
+          <div class="cmp-pick-info">
+            <span class="mono">${t('RIGHT','ПРАВЫЙ')}</span>
+            <select id="cmpB">${opt(B.code)}</select>
+            <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">${trustBadge(B.trust)} ${zoneTag(B.zone)}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmp-table">
+        <div class="cmp-row head">
+          <div style="text-align:right">${A.code}</div>
+          <div class="cmp-metric">${t('METRIC','МЕТРИКА')}</div>
+          <div>${B.code}</div>
+        </div>
+        ${rowsHTML}
+      </div>
+    </div>
+  `;
+}
+
+function renderBOI() {
+  const sorted = [...COUNTRIES]
+    .filter(c => !STATE.boiZone || c.zone === STATE.boiZone)
+    .filter(c => !STATE.boiSearch || c.name.toLowerCase().includes(STATE.boiSearch.toLowerCase()) || c.code.toLowerCase().includes(STATE.boiSearch.toLowerCase()))
+    .sort((a,b) => {
+      const k = STATE.boiSort;
+      if (k === 'name') return a.name.localeCompare(b.name);
+      return b[k] - a[k];
+    });
+
+  const rowsHTML = sorted.map((c, i) => `
+    <div class="boi-row" data-goto="country" data-code="${c.code}">
+      <span class="boi-rank ${i<3?'top':''}">#${i+1}</span>
+      <div class="boi-cname">
+        <span class="flag">${c.flag}</span>
+        <div class="boi-cname-text">
+          <span class="name">${c.name}</span>
+          <span class="code">${c.code} · ${c.region}</span>
+        </div>
+      </div>
+      <span class="boi-score">${c.boi.toFixed(1)}</span>
+      <div class="boi-trust">${trustBadge(c.trust)}</div>
+      <div>${zoneTag(c.zone)}</div>
+      <div class="boi-spark-cell col-spark">${spark(c.trend, 60, 18, c.dGDP>=0?'var(--green)':'var(--red)')}<span class="${c.dGDP>=0?'pos':'neg'}">${c.dGDP>=0?'+':''}${c.dGDP}</span></div>
+      <span class="boi-region col-region">${c.region}</span>
+    </div>
+  `).join('');
+
+  const factorsHTML = BOI_FACTORS.map(f => `
+    <div class="bf-card">
+      <div class="bf-label">${t(f.label.en, f.label.ru)}</div>
+      <div class="bf-row">
+        <span class="bf-val">${f.v.toFixed(1)}</span>
+        <span class="bf-w">w ${f.w.toFixed(2)}</span>
+      </div>
+      <div class="bf-bar"><div class="bf-fill" style="width:${(f.v/10)*100}%"></div></div>
+    </div>
+  `).join('');
+
+  const sortBtn = (k, label) => `<button class="${STATE.boiSort===k?'sort-active':''}" data-sort="${k}">${label} ${STATE.boiSort===k?'↓':''}</button>`;
+
+  return `
+    <div class="screen">
+      <div class="sect-head">
+        <h2>${t('BioOptimum Index','BioOptimum Index')}</h2>
+        <span class="mono dim">${t('10 FACTORS · CLIMATE-WEIGHTED','10 ФАКТОРОВ · ВЗВЕШЕНО ПО КЛИМАТУ')}</span>
+      </div>
+
+      <div class="boi-controls">
+        <input class="boi-search" id="boiSearch" placeholder="${t('Search country or code…','Поиск страны или кода…')}" value="${esc(STATE.boiSearch)}"/>
+        <button class="chip ${STATE.boiZone===null?'active':''}" data-zone="">${t('All zones','Все зоны')}</button>
+        ${['ACC','GROW','BAL','STAG','DEC'].map(z => `<button class="chip ${STATE.boiZone===z?'active':''}" data-zone="${z}">${ZONE_META[z].symbol} ${t(ZONE_META[z].label.en, ZONE_META[z].label.ru)}</button>`).join('')}
+      </div>
+
+      <div class="boi-list">
+        <div class="boi-head">
+          <div>#</div>
+          ${sortBtn('name', t('Country','Страна'))}
+          ${sortBtn('boi', 'BOI')}
+          <div>${t('Trust','Trust')}</div>
+          <div>${t('Zone','Зона')}</div>
+          <div class="col-spark">${t('5Y','5Л')}</div>
+          <div class="col-region">${t('Region','Регион')}</div>
+        </div>
+        ${rowsHTML || `<div style="padding:40px;text-align:center;color:var(--text3)">${t('No results','Нет результатов')}</div>`}
+      </div>
+
+      <div class="sect-head" style="margin-top:32px">
+        <h2 style="font-size:18px">${t('BOI factor weights','Веса факторов BOI')}</h2>
+        <span class="mono dim">${t('SUM = 1.00','СУММА = 1.00')}</span>
+      </div>
+      <div class="boi-factors">${factorsHTML}</div>
+    </div>
+  `;
+}
+
+function renderFeed() {
+  const evHTML = EVENTS.map(e => {
+    const c = COUNTRIES.find(x => x.code === e.country);
+    return `
+      <div class="event sev${e.sev}">
+        <div class="ev-time">${e.t}</div>
+        <div class="ev-body">
+          <div class="ev-head">
+            <span class="ev-tag ${e.tag}">${e.tag}</span>
+            <span class="ev-cc">${c?c.flag:''} ${e.country}</span>
+            <span class="ev-sev s${e.sev}">SEV ${e.sev}</span>
+          </div>
+          <div class="ev-title">${t(e.title.en, e.title.ru)}</div>
+          <div class="ev-text">${t(e.body.en, e.body.ru)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const cmds = [
+    ['/status',   t('System health','Статус системы')],
+    ['/country',  t('Details — /country USA','Детали — /country USA')],
+    ['/compare',  t('Compare — /compare USA,DEU','Сравнение — /compare USA,DEU')],
+    ['/boi',      t('Top BioOptimum','Топ BioOptimum')],
+    ['/news',     t('Recent events','Последние события')],
+    ['/changes',  t('Score changes','Изменения скоров')],
+    ['/run',      t('Trigger cascade','Запустить каскад')],
+    ['/scan',     t('Scan news feeds','Сканировать ленты')],
+  ].map(([k,v]) => `<div class="cmd-row"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+
+  return `
+    <div class="screen">
+      <div class="sect-head">
+        <h2>${t('Live Event Feed','Лента событий')}</h2>
+        <span class="mono dim">@worldrank_news</span>
+      </div>
+      <div class="feed-grid">
+        <div class="events-list">${evHTML}</div>
+        <div class="feed-side">
+          <div class="side-card">
+            <h4>⚡ ${t('Subscribe','Подписаться')}</h4>
+            <p>${t('Daily updates, event analysis, weekly digest. AI analytics for 217 countries.','Ежедневные обновления, анализ событий, недельный дайджест. AI-аналитика по 217 странам.')}</p>
+            <a class="btn-tg" href="https://t.me/worldrank_news" target="_blank">${t('Join @worldrank_news','Подписаться @worldrank_news')}</a>
+          </div>
+          <div class="side-card">
+            <h4>⌨ ${t('Bot Commands','Команды бота')}</h4>
+            <div class="cmd-list">${cmds}</div>
+          </div>
+          <div class="side-card">
+            <h4>★ ${t('Sources','Источники')}</h4>
+            <div class="cmd-list">
+              <div class="cmd-row"><div class="k">WB</div><div class="v">${t('World Bank · 24 indicators','World Bank · 24 индикатора')}</div></div>
+              <div class="cmd-row"><div class="k">UNDP</div><div class="v">${t('Human Development · HDI','HDI')}</div></div>
+              <div class="cmd-row"><div class="k">TI</div><div class="v">${t('Corruption Perception · CPI','CPI')}</div></div>
+              <div class="cmd-row"><div class="k">WHO</div><div class="v">${t('Disease outbreaks, HALE','Эпидемии, HALE')}</div></div>
+              <div class="cmd-row"><div class="k">OCHA</div><div class="v">${t('ReliefWeb disasters','ReliefWeb катастрофы')}</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderMethod() {
+  const tiers = [
+    ['T1', t('Perfect match','Идеал. совпадение'), '< 0.05', t('Aligned with all 3 agencies','Совпадает с 3 агентствами')],
+    ['T2', t('Strong match','Сильное совпадение'), '< 0.10', t('Aligned with 2 of 3','Совпадает с 2 из 3')],
+    ['T3', t('Moderate divergence','Умеренное расхождение'), '< 0.20', t('Mixed signals','Смешанные сигналы')],
+    ['T4', t('Notable divergence','Заметное расхождение'), '< 0.35', t('WorldRank diverges','WorldRank расходится')],
+    ['T5', t('Strong divergence','Сильное расхождение'), '≥ 0.35', t('Methodological gap','Методологический разрыв')],
+  ];
+  const tierHTML = tiers.map(([t1,t2,t3,t4]) => `
+    <div class="tier-row">
+      <div>${trustBadge(t1.replace('T',''))}</div>
+      <div class="lbl">${t2}</div>
+      <div class="div">${t3}</div>
+      <div class="desc">${t4}</div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="screen">
+      <div class="sect-head">
+        <h2>${t('Methodology','Методология')}</h2>
+        <span class="mono dim">v0.4 · ${t('UPDATED 2026-04','ОБНОВЛ. 2026-04')}</span>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="num">01 / TRUST SCORE</div>
+          <h4>${t('Trust Score (T1–T5)','Trust Score (T1–T5)')}</h4>
+          <p>${t(
+            '30 metrics normalized 0–100 → weighted sum → compared with agency ratings (S&P, Moody\'s, Fitch). Divergence maps to tiers. Confidence = metrics_used / 20.',
+            '30 метрик нормализуются 0–100 → взвешенная сумма → сравнение с агентствами (S&P, Moody\'s, Fitch). Расхождение → уровни.'
+          )}</p>
+          <div class="formula">score = Σ(wᵢ · normᵢ)<br>tier = f(|score - agency|)</div>
+        </div>
+        <div class="method-card">
+          <div class="num">02 / DEVELOPMENT ZONES</div>
+          <h4>${t('Development Zones','Зоны развития')}</h4>
+          <p>${t(
+            '8 key metrics, linear regression over 5 years. Accelerating (≥3% slope, ≥4 improving), Growing (≥1%), Balancing (≥-1%), Stagnating (≥-3%), Declining (<-3%).',
+            '8 ключевых метрик, линейная регрессия за 5 лет. Ускоряется (≥3%, ≥4 растут), Растёт (≥1%), Баланс (≥-1%), Стагнация (≥-3%), Снижение (<-3%).'
+          )}</p>
+          <div class="formula">slope = lin_reg(metric, years)<br>zone = bucket(slope, n_improving)</div>
+        </div>
+        <div class="method-card">
+          <div class="num">03 / BIOOPTIMUM</div>
+          <h4>BioOptimum Index</h4>
+          <p>${t(
+            '10 biological optimum factors weighted: climate (.18), HALE (.12), air (.12), water (.10), radiation (.10), altitude (.08), latitude (.08), stability (.08), UV (.07), risks (.07).',
+            '10 факторов биологического оптимума: климат (.18), HALE (.12), воздух (.12), вода (.10), радиация (.10), высота (.08), широта (.08), стабильность (.08), УФ (.07), риски (.07).'
+          )}</p>
+          <div class="formula">BOI = Σ(wⱼ · factorⱼ) / Σwⱼ · 10</div>
+        </div>
+      </div>
+
+      <div class="sect-head">
+        <h2 style="font-size:18px">${t('Trust Tier divergence ladder','Шкала расхождения Trust Tier')}</h2>
+        <span class="mono dim">${t('|SCORE - AGENCY_AVG|','|СКОР - СРЕДНЕЕ_АГЕНТСТВ|')}</span>
+      </div>
+      <div class="method-tier-table">${tierHTML}</div>
+
+      <div class="sect-head" style="margin-top:32px">
+        <h2 style="font-size:18px">${t('Pipeline guarantees','Гарантии пайплайна')}</h2>
+      </div>
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="num">∎ ${t('REPRODUCIBLE','ВОСПРОИЗВ.')}</div>
+          <h4>${t('Every number is checkable','Каждое число проверяемо')}</h4>
+          <p>${t('All sources cited; raw data archived; computation deterministic given inputs.','Все источники указаны; сырые данные архивируются; вычисление детерминировано.')}</p>
+        </div>
+        <div class="method-card">
+          <div class="num">∎ ${t('NO HALLUCINATION','БЕЗ ГАЛЛЮЦИНАЦИЙ')}</div>
+          <h4>${t('AI grounded in data','AI опирается на данные')}</h4>
+          <p>${t('Claude only synthesizes pre-computed numbers; cannot invent indicators or scores.','Claude синтезирует только заранее посчитанные числа; не выдумывает.')}</p>
+        </div>
+        <div class="method-card">
+          <div class="num">∎ ${t('OPEN SOURCE','ОТКРЫТЫЙ КОД')}</div>
+          <h4>${t('GitHub published','Код на GitHub')}</h4>
+          <p>${t('Every transformation, weighting, and threshold lives in the public repository.','Все преобразования, веса, пороги — в публичном репозитории.')}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ===================== ROUTER ===================== */
+function render() {
+  const app = $('#app');
+  let html = '';
+  switch (STATE.tab) {
+    case 'home':    html = renderHome(); break;
+    case 'country': html = renderCountry(); break;
+    case 'compare': html = renderCompare(); break;
+    case 'boi':     html = renderBOI(); break;
+    case 'feed':    html = renderFeed(); break;
+    case 'method':  html = renderMethod(); break;
+  }
+  app.innerHTML = html;
+  $$('nav.tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === STATE.tab));
+  // i18n on chrome
+  $$('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    const v = I18N[LANG][k]; if (v) el.textContent = v;
+  });
+  // Init interactive trend charts
+  $$('.trend-chart').forEach(tc => tcDraw(tc.id, 7));
+  window.scrollTo({ top: 0 });
+}
+
+function togglePipeDetail(el) {
+  const expand = el.querySelector('.pipe-expand');
+  const paid = el.querySelector('.pipe-paid');
+  if (expand.style.display === 'none') {
+    expand.style.display = 'block';
+    paid.style.display = 'block';
+    el.style.borderColor = 'var(--accent)';
+  } else {
+    expand.style.display = 'none';
+    paid.style.display = 'none';
+    el.style.borderColor = '';
+  }
+}
+
+function navigate(tab, code) {
+  STATE.tab = tab;
+  if (code && tab === 'country') STATE.countryCode = code;
+  if (code && tab === 'compare') STATE.cmpA = code;
+  render();
+}
+
+document.addEventListener('click', (e) => {
+  const goto = e.target.closest('[data-goto]');
+  if (goto) { navigate(goto.dataset.goto, goto.dataset.code); return; }
+  const tab = e.target.closest('nav.tabs button');
+  if (tab) { navigate(tab.dataset.tab); return; }
+  const sort = e.target.closest('[data-sort]');
+  if (sort) { STATE.boiSort = sort.dataset.sort; render(); return; }
+  const zone = e.target.closest('[data-zone]');
+  if (zone) { STATE.boiZone = zone.dataset.zone || null; render(); return; }
+});
+
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'cdSelect') { STATE.countryCode = e.target.value; render(); }
+  if (e.target.id === 'cmpA')     { STATE.cmpA = e.target.value; render(); }
+  if (e.target.id === 'cmpB')     { STATE.cmpB = e.target.value; render(); }
+});
+document.addEventListener('input', (e) => {
+  if (e.target.id === 'boiSearch') { STATE.boiSearch = e.target.value; render(); }
+});
+
+$('#wm').addEventListener('click', () => navigate('home'));
+
+/* Lang */
+$('#langToggle').addEventListener('click', () => {
+  LANG = LANG === 'en' ? 'ru' : 'en';
+  $('#langToggle').textContent = LANG.toUpperCase();
+  $('#twLang').value = LANG;
+  render();
+});
+
+/* Tweaks */
+$('#tweaksToggle').addEventListener('click', () => $('#twPanel').classList.toggle('open'));
+$('#twAccent').addEventListener('input', (e) => {
+  document.documentElement.style.setProperty('--accent', e.target.value);
+  document.documentElement.style.setProperty('--accent-soft', e.target.value + '22');
+});
+$('#twDensity').addEventListener('change', (e) => {
+  document.documentElement.style.setProperty('--pad', e.target.value === 'compact' ? '16px' : '24px');
+});
+$('#twLang').addEventListener('change', (e) => {
+  LANG = e.target.value;
+  $('#langToggle').textContent = LANG.toUpperCase();
+  render();
+});
+
+/* Initial render */
+render();
+</script>
+</body>
+</html>

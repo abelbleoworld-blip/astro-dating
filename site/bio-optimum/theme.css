@@ -1,0 +1,63 @@
+/* Dark theme overrides */
+body[data-theme="dark"] {
+  --bg: #14110b;
+  --bg-warm: #1d1a13;
+  --paper: #1a1710;
+  --ink: #ece4d0;
+  --ink-soft: #b8b0a0;
+  --muted: #7a7264;
+  --line: #2e2a20;
+  --line-soft: #25221a;
+  --green: #6fb88a;
+  --green-soft: #1f3a2a;
+  --warm: #d97a48;
+  --warm-soft: #3a2618;
+  --gold: #d4a850;
+  --red: #c47070;
+  --shadow: 0 1px 0 rgba(255,255,255,.02), 0 8px 28px rgba(0,0,0,.4);
+}
+body[data-theme="dark"] {
+  background: var(--bg);
+  color: var(--ink);
+}
+body[data-theme="dark"] .grain {
+  background-image:
+    radial-gradient(rgba(255,240,200,.04) 1px, transparent 1px),
+    radial-gradient(rgba(255,240,200,.02) 1px, transparent 1px);
+}
+body[data-theme="dark"] img { opacity: .92; }
+body[data-theme="dark"] .pay-method { background: var(--bg-warm); }
+body[data-theme="dark"] .pay-method .ico { background: #2a2418; color: var(--ink); }
+body[data-theme="dark"] .pay-input { background: var(--bg-warm); color: var(--ink); }
+body[data-theme="dark"] .pay-head { background: linear-gradient(180deg, var(--paper), var(--bg-warm)); }
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .15s ease;
+}
+.theme-toggle:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.theme-toggle .icon {
+  width: 13px; height: 13px;
+  display: inline-block;
+  position: relative;
+}
+.theme-toggle .icon svg {
+  width: 100%; height: 100%;
+  display: block;
+}

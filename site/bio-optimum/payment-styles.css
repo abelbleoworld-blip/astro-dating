@@ -1,0 +1,184 @@
+/* Payment modal styles */
+.pay-overlay {
+  position: fixed; inset: 0;
+  background: rgba(20,16,8,.55);
+  backdrop-filter: blur(4px);
+  z-index: 210;
+  display: flex; justify-content: center; align-items: center;
+  padding: 24px;
+  animation: fadeIn .2s ease;
+}
+.pay-modal {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+.pay-head {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--paper), #fdfaf2);
+}
+.pay-head .kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.pay-head h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -.02em;
+  margin: 0 0 4px;
+}
+.pay-head .price {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+  color: var(--green);
+}
+.pay-head .price small {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-left: 8px;
+  font-weight: 400;
+}
+.pay-body { padding: 20px 28px 24px; }
+
+.pay-methods { margin-bottom: 18px; }
+.pay-methods .lbl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.pay-method {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  background: #fff;
+  transition: all .12s ease;
+}
+.pay-method:hover { border-color: var(--green); }
+.pay-method.active {
+  border-color: var(--green);
+  background: var(--green-soft);
+  box-shadow: inset 3px 0 0 var(--green);
+}
+.pay-method .ico {
+  width: 36px; height: 24px;
+  background: var(--bg-warm);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.pay-method .nm { flex: 1; font-size: 14px; }
+.pay-method .nm small { display: block; color: var(--muted); font-size: 11px; font-family: var(--font-mono); letter-spacing: .04em; margin-top: 1px; }
+.pay-method .check {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+.pay-method.active .check {
+  border-color: var(--green);
+  background: var(--green);
+}
+.pay-method.active .check::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 11px; font-weight: 700;
+}
+
+.pay-input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .04em;
+  outline: none;
+  background: #fff;
+  margin-bottom: 8px;
+}
+.pay-input:focus { border-color: var(--green); }
+
+.pay-card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pay-cta {
+  width: 100%;
+  padding: 14px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.pay-cta:hover { background: #174a31; }
+.pay-cta:disabled { opacity: .5; cursor: not-allowed; }
+
+.pay-foot {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+.pay-success {
+  text-align: center;
+  padding: 40px 28px;
+}
+.pay-success .ok {
+  font-size: 48px;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.pay-success h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -.02em;
+  margin: 0 0 8px;
+}
+.pay-success p {
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}

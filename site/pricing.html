@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — WorldRank Publications</title>
+<meta name="description" content="WorldRank subscription plans. Full country analytics, BOI reports, API доступ. From free headlines to institutional data feeds.">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07090f;
+  --bg2: #0b0f19;
+  --bg3: #0a0e17;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --surface3: #212b40;
+  --border: #1e2740;
+  --border2: #2e3a52;
+  --border3: #3a4a6a;
+  --text: #e1e5ee;
+  --text2: #8892a8;
+  --text3: #5a6478;
+  --accent: #4f8cff;
+  --accent2: #3a70d4;
+  --accent-glow: rgba(79,140,255,.15);
+  --green: #34d399;
+  --green2: #0d3320;
+  --red: #f87171;
+  --red2: #2a1414;
+  --orange: #fbbf24;
+  --orange2: #2a2614;
+  --purple: #a78bfa;
+  --purple2: #1a1230;
+  --cyan: #22d3ee;
+  --maxw: 1200px;
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+html { scroll-behavior: smooth }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; min-height: 100vh }
+a { color: inherit; text-decoration: none }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px }
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(7,9,15,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 32px;
+  display: flex; justify-content: space-between; align-items: center; height: 56px;
+}
+.logo { display: flex; align-items: center; gap: 12px }
+.logo h1 { font-size: 20px; font-weight: 700; letter-spacing: -.02em }
+.logo h1 span { color: var(--accent) }
+.logo .badge {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 8px; background: var(--green2); color: var(--green); border: 1px solid #166534; border-radius: 4px;
+  display: flex; align-items: center; gap: 5px
+}
+.logo .badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite }
+@keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+
+nav { display: flex; gap: 6px; align-items: center }
+nav a {
+  font-size: 13px; color: var(--text2); padding: 6px 12px; border-radius: 6px; transition: all .15s
+}
+nav a:hover { color: var(--text); background: var(--surface) }
+nav a.active { color: var(--accent); background: rgba(79,140,255,.08) }
+nav a.primary {
+  background: var(--accent); color: #fff; font-weight: 600
+}
+nav a.primary:hover { background: var(--accent2) }
+
+/* ── HERO ── */
+.hero {
+  padding: 64px 0 56px;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 60%, var(--bg) 100%);
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.hero::before {
+  content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(79,140,255,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { text-align: center; position: relative; z-index: 1 }
+.hero-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px
+}
+.hero-label::before, .hero-label::after {
+  content: ''; width: 40px; height: 1px; background: var(--border2)
+}
+.hero h2 {
+  font-size: 52px; font-weight: 900; line-height: 1.05; letter-spacing: -.04em; margin-bottom: 18px
+}
+.hero h2 .hl {
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text
+}
+.hero .sub {
+  font-size: 16px; color: var(--text2); line-height: 1.6; max-width: 600px; margin: 0 auto
+}
+.hero .edition-row {
+  display: flex; justify-content: center; gap: 24px; margin-top: 28px; flex-wrap: wrap
+}
+.edition-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text2); display: flex; align-items: center; gap: 6px
+}
+.edition-tag .dot { width: 6px; height: 6px; border-radius: 50% }
+.edition-tag .dot.blue { background: var(--accent) }
+.edition-tag .dot.green { background: var(--green) }
+.edition-tag .dot.orange { background: var(--orange) }
+.edition-tag .dot.purple { background: var(--purple) }
+
+/* ── CURRENCY TOGGLE ── */
+.toggle-row {
+  display: flex; justify-content: center; padding: 32px 0 8px;
+}
+.toggle-box {
+  display: flex; align-items: center; gap: 0;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 4px; font-size: 13px; font-weight: 600;
+}
+.toggle-btn {
+  padding: 8px 24px; border-radius: 7px; cursor: pointer; transition: all .2s;
+  color: var(--text3); user-select: none; font-family: var(--mono); font-size: 13px; font-weight: 600;
+  border: none; background: none
+}
+.toggle-btn.active {
+  background: var(--accent); color: #fff; box-shadow: 0 2px 12px rgba(79,140,255,.3)
+}
+.toggle-btn:hover:not(.active) { color: var(--text2) }
+
+/* ── PRICING CARDS ── */
+.pricing-section { padding: 16px 0 56px }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: stretch
+}
+.price-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px 24px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; transition: border-color .2s, transform .2s
+}
+.price-card:hover { border-color: var(--border2); transform: translateY(-2px) }
+.price-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px
+}
+.price-card.tier-free::before { background: var(--text3) }
+.price-card.tier-reader::before { background: var(--accent) }
+.price-card.tier-pro::before { background: linear-gradient(90deg, var(--accent), var(--cyan)) }
+.price-card.tier-inst::before { background: linear-gradient(90deg, var(--purple), var(--accent)) }
+
+.price-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px rgba(79,140,255,.08), inset 0 1px 0 rgba(79,140,255,.15);
+}
+.popular-badge {
+  position: absolute; top: 16px; right: 16px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 4px 10px; background: rgba(79,140,255,.12); color: var(--accent);
+  border: 1px solid rgba(79,140,255,.25); border-radius: 5px
+}
+
+.card-tier {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 8px
+}
+.price-card.tier-reader .card-tier { color: var(--accent) }
+.price-card.tier-pro .card-tier { color: var(--cyan) }
+.price-card.tier-inst .card-tier { color: var(--purple) }
+
+.card-price {
+  font-size: 40px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 2px
+}
+.card-price .currency { font-size: 22px; font-weight: 600; vertical-align: top; margin-right: 2px; opacity: .7 }
+.card-price .period { font-size: 14px; font-weight: 400; color: var(--text3); margin-left: 4px }
+.card-price-usd { font-family: var(--mono); font-size: 12px; color: var(--text3); margin-bottom: 14px }
+.card-desc { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 20px; min-height: 38px }
+
+.card-features { list-style: none; flex: 1; margin-bottom: 24px }
+.card-features li {
+  font-size: 12.5px; color: var(--text2); padding: 6px 0; display: flex; align-items: flex-start; gap: 8px;
+  border-bottom: 1px solid rgba(30,39,64,.5)
+}
+.card-features li:last-child { border-bottom: none }
+.card-features li .check { color: var(--green); font-size: 13px; flex-shrink: 0; margin-top: 1px }
+.card-features li .x-mark { color: var(--text3); font-size: 13px; flex-shrink: 0; margin-top: 1px; opacity: .4 }
+
+.btn-plan {
+  display: block; width: 100%; padding: 12px 0; border: 1px solid var(--border2); border-radius: 10px;
+  background: var(--surface2); color: var(--text); font-family: var(--sans);
+  font-size: 13px; font-weight: 600; cursor: pointer; text-align: center;
+  transition: all .2s; text-decoration: none
+}
+.btn-plan:hover { background: var(--surface3); border-color: var(--border3) }
+.btn-plan.primary {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  box-shadow: 0 4px 16px rgba(79,140,255,.25)
+}
+.btn-plan.primary:hover { background: var(--accent2); border-color: var(--accent2) }
+.btn-plan.purple {
+  background: rgba(167,139,250,.12); border-color: rgba(167,139,250,.3); color: var(--purple)
+}
+.btn-plan.purple:hover { background: rgba(167,139,250,.2) }
+
+/* ── COMPARISON TABLE ── */
+.compare-section { padding: 48px 0; border-top: 1px solid var(--border) }
+.section-header {
+  text-align: center; margin-bottom: 36px
+}
+.section-header h3 { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px }
+.section-header p { font-size: 14px; color: var(--text2) }
+
+.compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch }
+.compare-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px
+}
+.compare-table thead th {
+  padding: 14px 16px; text-align: center; font-weight: 700; font-size: 13px;
+  border-bottom: 2px solid var(--border2); background: var(--surface); position: sticky; top: 56px; z-index: 10
+}
+.compare-table thead th:first-child { text-align: left; border-radius: 8px 0 0 0 }
+.compare-table thead th:last-child { border-radius: 0 8px 0 0 }
+.compare-table thead th.hl-col { color: var(--accent); background: rgba(79,140,255,.05) }
+
+.compare-table tbody td {
+  padding: 11px 16px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text2)
+}
+.compare-table tbody td:first-child { text-align: left; color: var(--text); font-weight: 500 }
+.compare-table tbody td.hl-col { background: rgba(79,140,255,.03) }
+.compare-table tbody tr:hover td { background: rgba(79,140,255,.03) }
+.compare-table tbody tr:hover td.hl-col { background: rgba(79,140,255,.06) }
+
+.compare-table .group-row td {
+  padding: 10px 16px; font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text3); background: var(--bg2); border-bottom: 1px solid var(--border);
+  text-align: left
+}
+.tbl-yes { color: var(--green); font-weight: 600 }
+.tbl-no { color: var(--text3); opacity: .4 }
+.tbl-val { color: var(--text); font-family: var(--mono); font-size: 12px }
+.tbl-inf { color: var(--cyan); font-family: var(--mono); font-size: 12px; font-weight: 600 }
+
+/* ── SINGLE ISSUE ── */
+.single-section {
+  padding: 48px 0; border-top: 1px solid var(--border)
+}
+.single-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center
+}
+.single-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px }
+.single-card p { font-size: 14px; color: var(--text2); line-height: 1.6; max-width: 520px }
+.single-card .price-tag {
+  font-size: 48px; font-weight: 800; color: var(--accent); letter-spacing: -.03em; text-align: center
+}
+.single-card .price-tag .slash { color: var(--text3); font-weight: 400; font-size: 28px; margin: 0 6px }
+.single-card .price-sub { font-family: var(--mono); font-size: 11px; color: var(--text3); text-align: center; margin-top: 6px; letter-spacing: .1em; text-transform: uppercase }
+.btn-single {
+  display: inline-block; margin-top: 16px; padding: 12px 32px;
+  background: var(--accent); color: #fff; border: none; border-radius: 10px;
+  font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all .2s; text-decoration: none
+}
+.btn-single:hover { background: var(--accent2); box-shadow: 0 4px 16px rgba(79,140,255,.25) }
+
+/* ── MERCH BONUS ── */
+.merch-section { padding: 0 0 48px }
+.merch-card {
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(167,139,250,.06) 100%);
+  border: 1px solid rgba(167,139,250,.2); border-radius: 16px;
+  padding: 36px 40px; display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap
+}
+.merch-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px }
+.merch-card h3 .hl { color: var(--purple) }
+.merch-card p { font-size: 13px; color: var(--text2); line-height: 1.6; max-width: 500px }
+.merch-tiers {
+  display: flex; gap: 16px; flex-wrap: wrap
+}
+.merch-tier {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px 20px; text-align: center; min-width: 110px
+}
+.merch-tier .дней { font-size: 28px; font-weight: 800; color: var(--purple); letter-spacing: -.02em }
+.merch-tier .label { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .1em; text-transform: uppercase; margin-top: 2px }
+
+/* ── FAQ ── */
+.faq-section { padding: 48px 0; border-top: 1px solid var(--border) }
+.faq-list { max-width: 760px; margin: 0 auto }
+.faq-item {
+  border-bottom: 1px solid var(--border); overflow: hidden
+}
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 0; cursor: pointer; font-size: 14px; font-weight: 600;
+  color: var(--text); transition: color .15s; user-select: none
+}
+.faq-q:hover { color: var(--accent) }
+.faq-q .arrow {
+  font-size: 18px; color: var(--text3); transition: transform .25s; flex-shrink: 0; margin-left: 16px
+}
+.faq-item.open .faq-q .arrow { transform: rotate(45deg); color: var(--accent) }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
+  font-size: 13px; color: var(--text2); line-height: 1.65
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 18px }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 36px 0 28px }
+.footer-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 32px
+}
+.footer-col h4 {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 14px
+}
+.footer-col a {
+  display: block; font-size: 13px; color: var(--text2); padding: 4px 0; transition: color .15s
+}
+.footer-col a:hover { color: var(--accent) }
+.footer-col .brand { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px }
+.footer-col .brand span { color: var(--accent) }
+.footer-col .about { font-size: 12px; color: var(--text3); line-height: 1.6 }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 20px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  font-size: 11px; color: var(--text3)
+}
+.footer-bottom a { color: var(--text3); transition: color .15s }
+.footer-bottom a:hover { color: var(--accent) }
+.footer-legal { display: flex; gap: 18px; flex-wrap: wrap }
+.footer-quote { font-style: italic; color: var(--text3) }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1080px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr) }
+}
+@media (max-width: 900px) {
+  .wrap { padding: 0 20px }
+  .header-inner { padding: 0 20px }
+  .footer-grid { grid-template-columns: 1fr 1fr }
+  .single-card { grid-template-columns: 1fr; text-align: center }
+  .single-card p { margin: 0 auto }
+  .merch-card { flex-direction: column; text-align: center }
+  .merch-card p { max-width: 100% }
+}
+@media (max-width: 640px) {
+  .pricing-grid { grid-template-columns: 1fr }
+  .hero h2 { font-size: 34px }
+  .hero .sub { font-size: 14px }
+  .edition-row { gap: 10px }
+  .footer-grid { grid-template-columns: 1fr }
+  nav { display: none }
+  .merch-tiers { justify-content: center }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <a href="worldrank.html"><h1>World<span>Rank</span></h1></a>
+      <div class="badge">Live</div>
+    </div>
+    <nav>
+      <a href="index.html">Портфолио</a>
+      <a href="worldrank.html">Analytics</a>
+      <a href="pricing.html" class="active">Тарифы</a>
+      <a href="https://t.me/worldrank_newsbot" target="_blank" rel="noopener">Bot</a>
+      <a href="https://t.me/worldrank_news" target="_blank" rel="noopener" class="primary">Channel</a>
+      <button onclick="toggleLang()" id="langBtn" style="font-family:var(--mono);font-size:11px;padding:5px 10px;border:1px solid var(--border2);border-radius:5px;color:var(--text2);background:none;cursor:pointer;margin-left:4px">RU</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-label">WorldRank Publications</div>
+      <h2>Подпишитесь на<br><span class="hl">Независимую Аналитику</span></h2>
+      <p class="sub">217 стран. Еженедельные дайджесты. Аналитические отчёты. AI-анализ.<br>Выберите тариф для ваших задач.</p>
+      <div class="edition-row">
+        <div class="edition-tag"><span class="dot blue"></span> Еженедельный дайджест</div>
+        <div class="edition-tag"><span class="dot green"></span> Страновые отчёты</div>
+        <div class="edition-tag"><span class="dot orange"></span> BOI Whitepaper</div>
+        <div class="edition-tag"><span class="dot purple"></span> API и данные</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENCY TOGGLE -->
+<div class="wrap">
+  <div class="toggle-row">
+    <div class="toggle-box">
+      <button class="toggle-btn active" data-cur="rub" onclick="setCurrency('rub')">&#8381; RUB</button>
+      <button class="toggle-btn" data-cur="usd" onclick="setCurrency('usd')">$ USD</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING CARDS -->
+<section class="pricing-section">
+  <div class="wrap">
+    <div class="pricing-grid">
+
+      <!-- FREE -->
+      <div class="price-card tier-free">
+        <div class="card-tier">Free</div>
+        <div class="card-price">
+          <span class="currency cur-symbol">&#8381;</span><span class="cur-price" data-rub="0" data-usd="0">0</span>
+        </div>
+        <div class="card-price-usd cur-alt" data-rub-text="" data-usd-text="">&nbsp;</div>
+        <div class="card-desc">Заголовки, карта зон и топ-5 BOI. Знакомство с WorldRank.</div>
+        <ul class="card-features">
+          <li><span class="check">&#10003;</span> Заголовки WorldRank + превью</li>
+          <li><span class="check">&#10003;</span> Карта зон + таблица трендов</li>
+          <li><span class="check">&#10003;</span> BOI топ-5 рейтинг</li>
+          <li><span class="check">&#10003;</span> Telegram-канал @worldrank_news</li>
+          <li><span class="check">&#10003;</span> 1 запрос боту в день</li>
+          <li><span class="x-mark">&#10005;</span> <span style="opacity:.5">Полные выпуски и архив</span></li>
+          <li><span class="x-mark">&#10005;</span> <span style="opacity:.5">API доступ</span></li>
+        </ul>
+        <a href="https://t.me/worldrank_news" target="_blank" rel="noopener" class="btn-plan">Начать бесплатно</a>
+      </div>
+
+      <!-- READER -->
+      <div class="price-card tier-reader">
+        <div class="card-tier">Reader</div>
+        <div class="card-price">
+          <span class="currency cur-symbol">&#8381;</span><span class="cur-price" data-rub="299" data-usd="3">299</span><span class="period">/мес</span>
+        </div>
+        <div class="card-price-usd cur-alt" data-rub-text="~$3/мес" data-usd-text="~&#8381;299/мес">~$3/мес</div>
+        <div class="card-desc">Полные аналитические выпуски и страновые отчёты для читателей.</div>
+        <ul class="card-features">
+          <li><span class="check">&#10003;</span> Полные аналитические выпуски (еженедельно)</li>
+          <li><span class="check">&#10003;</span> Отчёты Deep Dive по странам (все 217)</li>
+          <li><span class="check">&#10003;</span> Россия: 6 регионов BOI</li>
+          <li><span class="check">&#10003;</span> Полный архив прошлых выпусков</li>
+          <li><span class="check">&#10003;</span> Telegram-бот без ограничений</li>
+          <li><span class="check">&#10003;</span> Email-дайджест еженедельно</li>
+          <li><span class="x-mark">&#10005;</span> <span style="opacity:.5">API доступ</span></li>
+        </ul>
+        <a href="#checkout" class="btn-plan">Подписаться</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="price-card tier-pro featured">
+        <div class="popular-badge">Популярный</div>
+        <div class="card-tier">Pro</div>
+        <div class="card-price">
+          <span class="currency cur-symbol">&#8381;</span><span class="cur-price" data-rub="799" data-usd="9">799</span><span class="period">/мес</span>
+        </div>
+        <div class="card-price-usd cur-alt" data-rub-text="~$9/мес" data-usd-text="~&#8381;799/мес">~$9/мес</div>
+        <div class="card-desc">API-доступ, экспорт данных и кастомные отчёты для профессионалов.</div>
+        <ul class="card-features">
+          <li><span class="check">&#10003;</span> Всё из Reader</li>
+          <li><span class="check">&#10003;</span> BOI Whitepaper + методология</li>
+          <li><span class="check">&#10003;</span> API доступ (100 req/day)</li>
+          <li><span class="check">&#10003;</span> Кастомные отчёты по странам</li>
+          <li><span class="check">&#10003;</span> Приоритетные ответы бота</li>
+          <li><span class="check">&#10003;</span> Экспорт данных CSV</li>
+          <li><span class="check">&#10003;</span> Без рекламы</li>
+        </ul>
+        <a href="#checkout" class="btn-plan primary">Подписаться</a>
+      </div>
+
+      <!-- INSTITUTIONAL -->
+      <div class="price-card tier-inst">
+        <div class="card-tier">Institutional</div>
+        <div class="card-price">
+          <span class="currency cur-symbol">&#8381;</span><span class="cur-price" data-rub="1990" data-usd="25">1 990</span><span class="period">/мес</span>
+        </div>
+        <div class="card-price-usd cur-alt" data-rub-text="~$25/мес" data-usd-text="~&#8381;1 990/мес">~$25/мес</div>
+        <div class="card-desc">Безлимитный API, white-label, коммерческая лицензия для организаций.</div>
+        <ul class="card-features">
+          <li><span class="check">&#10003;</span> Всё из Pro</li>
+          <li><span class="check">&#10003;</span> White-label отчёты</li>
+          <li><span class="check">&#10003;</span> API без лимитов</li>
+          <li><span class="check">&#10003;</span> Массовый экспорт данных</li>
+          <li><span class="check">&#10003;</span> Кастомный AI-анализ</li>
+          <li><span class="check">&#10003;</span> Выделенная поддержка</li>
+          <li><span class="check">&#10003;</span> Коммерческая лицензия</li>
+        </ul>
+        <a href="#checkout" class="btn-plan purple">Связаться</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="wrap">
+    <div class="section-header">
+      <h3>Сравнение тарифов</h3>
+      <p>Подробная разбивка возможностей каждого тарифа</p>
+    </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="min-width:220px">Функция</th>
+            <th>Free</th>
+            <th>Reader</th>
+            <th class="hl-col">Pro</th>
+            <th>Institutional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Content -->
+          <tr class="group-row"><td colspan="5">Контент и публикации</td></tr>
+          <tr>
+            <td>Заголовки WorldRank</td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Полные аналитические выпуски</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Deep Dive по странам (217)</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Россия BOI (6 регионов)</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Архив выпусков</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>BOI Whitepaper + методология</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Кастомные отчёты по странам</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>White-label отчёты</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+
+          <!-- Data & Maps -->
+          <tr class="group-row"><td colspan="5">Данные и визуализации</td></tr>
+          <tr>
+            <td>Карта зон + таблица трендов</td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>BOI рейтинг</td>
+            <td><span class="tbl-val">Top 5</span></td>
+            <td><span class="tbl-val">Full</span></td>
+            <td class="hl-col"><span class="tbl-val">Full</span></td>
+            <td><span class="tbl-val">Full</span></td>
+          </tr>
+          <tr>
+            <td>Экспорт данных CSV</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Массовый экспорт данных</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+
+          <!-- Bot & API -->
+          <tr class="group-row"><td colspan="5">Бот и API</td></tr>
+          <tr>
+            <td>Запросы к Telegram-боту</td>
+            <td><span class="tbl-val">1/day</span></td>
+            <td><span class="tbl-inf">Unlimited</span></td>
+            <td class="hl-col"><span class="tbl-inf">Unlimited</span></td>
+            <td><span class="tbl-inf">Unlimited</span></td>
+          </tr>
+          <tr>
+            <td>Приоритетные ответы бота</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>API доступ</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-val">100 req/day</span></td>
+            <td><span class="tbl-inf">Unlimited</span></td>
+          </tr>
+          <tr>
+            <td>Кастомный AI-анализ</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+
+          <!-- Delivery -->
+          <tr class="group-row"><td colspan="5">Доставка и поддержка</td></tr>
+          <tr>
+            <td>Telegram-канал</td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Email-дайджест</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-val">Weekly</span></td>
+            <td class="hl-col"><span class="tbl-val">Weekly</span></td>
+            <td><span class="tbl-val">Weekly</span></td>
+          </tr>
+          <tr>
+            <td>Без рекламы</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-yes">&#10003;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Выделенная поддержка</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>Коммерческая лицензия</td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-no">&#8212;</span></td>
+            <td class="hl-col"><span class="tbl-no">&#8212;</span></td>
+            <td><span class="tbl-yes">&#10003;</span></td>
+          </tr>
+
+          <!-- Price row -->
+          <tr class="group-row"><td colspan="5">Тарифы</td></tr>
+          <tr>
+            <td>Ежемесячная цена</td>
+            <td><span class="tbl-val cur-cell" data-rub="&#8381;0" data-usd="$0">&#8381;0</span></td>
+            <td><span class="tbl-val cur-cell" data-rub="&#8381;299" data-usd="$3">&#8381;299</span></td>
+            <td class="hl-col"><span class="tbl-val cur-cell" data-rub="&#8381;799" data-usd="$9" style="color:var(--accent);font-weight:600">&#8381;799</span></td>
+            <td><span class="tbl-val cur-cell" data-rub="&#8381;1 990" data-usd="$25">&#8381;1 990</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SINGLE ISSUE -->
+<section class="single-section">
+  <div class="wrap">
+    <div class="single-card">
+      <div>
+        <h3>Покупка одного выпуска</h3>
+        <p>Не готовы к подписке? Купите любой еженедельный аналитический выпуск WorldRank. Полный контент, полные данные, без обязательств. Доступ к выпуску 30 дней после покупки.</p>
+        <a href="#checkout" class="btn-single">Купить выпуск</a>
+      </div>
+      <div>
+        <div class="price-tag">
+          <span class="cur-single-price" data-rub="&#8381;99" data-usd="$1">&#8381;99</span>
+          <span class="slash">/</span>
+          <span style="font-size:16px;color:var(--text2);font-weight:400">issue</span>
+        </div>
+        <div class="price-sub">Разовый платёж</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MERCH BONUS -->
+<section class="merch-section">
+  <div class="wrap">
+    <div class="merch-card">
+      <div>
+        <h3>Merch <span class="hl">Bonus</span></h3>
+        <p>Купите любой мерч WorldRank или aadmitrieff.com и получите бесплатную подписку Reader. Срок зависит от категории товара.</p>
+      </div>
+      <div class="merch-tiers">
+        <div class="merch-tier">
+          <div class="дней">14</div>
+          <div class="label">Days &middot; Стикер</div>
+        </div>
+        <div class="merch-tier">
+          <div class="дней">30</div>
+          <div class="label">Days &middot; T-shirt</div>
+        </div>
+        <div class="merch-tier">
+          <div class="дней">90</div>
+          <div class="label">Days &middot; Премиум</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="wrap">
+    <div class="section-header">
+      <h3>Частые вопросы</h3>
+      <p>Оплата, доступ и детали подписки</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Какие способы оплаты вы принимаете?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Мы принимаем платежи через ЮKassa: карты МИР/Visa/MC, СБП, ЮMoney, T-Pay. Для тарифа Institutional возможна оплата по счёту.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Можно ли менять тарифы?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Yes. You can upgrade or downgrade at any time. When upgrading, you pay the prorated difference for the remaining billing period. Downgrades take effect at the start of the next billing cycle.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Как отменить подписку?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Отменить можно в любое время в личном кабинете или командой /cancel в @worldrank_newsbot. Доступ сохраняется до конца оплаченного периода. Без штрафов.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Есть ли политика возврата?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Yes. Полный возврат в первые 24 часа подписки (если открыто менее 2 материалов). Разовые выпуски — возврат в течение 7 дней, если не открывались. See our <a href="refund.html" style="color:var(--accent)">refund policy</a> for details.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What does the API доступ include?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Pro plan includes REST API доступ with 100 requests per day. Endpoints cover country scores, BOI data, zone classifications, historical trends, and event feeds. Institutional plans have no rate limit. Full API documentation is provided upon subscription.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Как работает бонус за мерч?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">When you purchase any item from our merch store, you automatically receive a Reader-tier subscription for 14 to 90 дней depending on the item. The bonus activates within 24 hours of order confirmation and is linked to your Telegram account.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Можно ли делить подписку с командой?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Free, Reader и Pro — индивидуальные лицензии. Тариф Institutional включает коммерческую лицензию для всей организации. Для командного доступа свяжитесь с нами для корпоративных цен.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>В какой валюте будет списание?</span>
+          <span class="arrow">+</span>
+        </div>
+        <div class="faq-a">Payments are processed in Russian rubles (RUB) by default via YooKassa. The USD prices shown are approximate equivalents for reference. International card holders will be charged in RUB and their bank will convert at the current exchange rate.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand">World<span>Rank</span></div>
+        <p class="about">Independent analytical platform. 217 countries, AI-powered analysis, daily updates. Part of the aadmitrieff.com ecosystem.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <a href="https://aadmitrieff.com" target="_blank" rel="noopener">aadmitrieff.com</a>
+        <a href="https://fmone.ru" target="_blank" rel="noopener">fmone.ru</a>
+        <a href="https://brand-space.ru" target="_blank" rel="noopener">brand-space.ru</a>
+        <a href="https://github.com/abelbleoworld-blip" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-col">
+        <h4>Telegram</h4>
+        <a href="https://t.me/worldrank_news" target="_blank" rel="noopener">@worldrank_news</a>
+        <a href="https://t.me/worldrank_newsbot" target="_blank" rel="noopener">@worldrank_newsbot</a>
+        <a href="https://t.me/aadmitrieff" target="_blank" rel="noopener">@aadmitrieff</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="worldrank.html">Analytics</a>
+        <a href="bio-optimum-pro.html">BioOptimum</a>
+        <a href="pricing.html">Тарифы</a>
+        <a href="index.html">Портфолио</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 A. A. Dmitriev &middot; WorldRank v0.1</span>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="offer.html">Public Offer</a>
+        <a href="refund.html">Refund Policy</a>
+      </div>
+      <span class="footer-quote">&laquo;We don't ask for faith. We ask for verification.&raquo;</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Currency Toggle ── */
+let currentCurrency = 'rub';
+
+function setCurrency(cur) {
+  currentCurrency = cur;
+  document.querySelectorAll('.toggle-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.cur === cur);
+  });
+
+  const isRub = cur === 'rub';
+  const symbol = isRub ? '\u20BD' : '$';
+
+  // Update card prices
+  document.querySelectorAll('.cur-symbol').forEach(function(el) {
+    el.textContent = symbol;
+  });
+  document.querySelectorAll('.cur-price').forEach(function(el) {
+    var val = isRub ? el.dataset.rub : el.dataset.usd;
+    // Format with spaces for thousands (RUB style)
+    if (isRub && parseInt(val) >= 1000) {
+      val = parseInt(val).toLocaleString('ru-RU');
+    }
+    el.textContent = val;
+  });
+
+  // Update alt price line
+  document.querySelectorAll('.cur-alt').forEach(function(el) {
+    var text = isRub ? el.dataset.rubText : el.dataset.usdText;
+    el.innerHTML = text || '&nbsp;';
+  });
+
+  // Update table cells
+  document.querySelectorAll('.cur-cell').forEach(function(el) {
+    el.textContent = isRub ? el.dataset.rub : el.dataset.usd;
+  });
+
+  // Update single issue
+  document.querySelectorAll('.cur-single-price').forEach(function(el) {
+    el.textContent = isRub ? el.dataset.rub : el.dataset.usd;
+  });
+}
+
+/* ── FAQ Accordion ── */
+function toggleFaq(el) {
+  var item = el.parentElement;
+  var wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(function(i) {
+    i.classList.remove('open');
+  });
+  // Toggle clicked
+  if (!wasOpen) {
+    item.classList.add('open');
+  }
+}
+
+/* ── Smooth scroll for anchor links ── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ═══ I18N RU/EN ═══
+var LANG = 'en';
+var I18N = {
+  'Subscribe to': 'Подпишитесь на',
+  'Independent Analytics': 'Независимую Аналитику',
+  '217 countries. Weekly digests. Deep dive reports. AI-powered analysis.': '217 стран. Еженедельные дайджесты. Аналитические отчёты. AI-анализ.',
+  'Choose a plan that fits your research needs.': 'Выберите тариф для ваших задач.',
+  'WEEKLY DIGEST': 'ЕЖЕНЕДЕЛЬНЫЙ ДАЙДЖЕСТ',
+  'COUNTRY REPORTS': 'СТРАНОВЫЕ ОТЧЁТЫ',
+  'BOI WHITEPAPER': 'BOI WHITEPAPER',
+  'API & DATA': 'API И ДАННЫЕ',
+  'FREE': 'БЕСПЛАТНО',
+  'READER': 'ЧИТАТЕЛЬ',
+  'PRO': 'ПРО',
+  'INSTITUTIONAL': 'ИНСТИТУЦИОНАЛ',
+  'Популярный': 'Популярный',
+  'Get Started': 'Начать',
+  'Subscribe': 'Подписаться',
+  'Связаться': 'Связаться',
+  'Current Plan': 'Текущий план',
+  '/мес': '/мес',
+  'Headlines, zone map, and top 5 BOI countries free forever.': 'Заголовки, карта зон и топ-5 BOI стран — навсегда бесплатно.',
+  'Полные аналитические выпуски and country reports for curious minds.': 'Полные аналитические выпуски и страновые отчёты.',
+  'API доступ, data export, and advanced analytics for professionals.': 'API-доступ, экспорт данных и продвинутая аналитика для профессионалов.',
+  'Unlimited API, white-label reports, and commercial licensing.': 'Безлимитный API, white-label отчёты и коммерческая лицензия.',
+  'Заголовки WorldRank + превью': 'Заголовки WorldRank + превью',
+  'Карта зон + таблица трендов': 'Карта зон + таблица трендов',
+  'BOI top-5 countries': 'BOI топ-5 стран',
+  'Telegram-канал access': 'Доступ к Telegram-каналу',
+  '1 bot query / day': '1 запрос боту / день',
+  'Полные аналитические выпуски (weekly)': 'Полные выпуски (еженедельно)',
+  'Country Deep Dive reports (all)': 'Отчёты Deep Dive (все страны)',
+  'Россия: 6 регионов BOI': 'Россия: 6 регионов BOI',
+  'Полный архив прошлых выпусков': 'Полный архив выпусков',
+  'Telegram bot unlimited': 'Бот Telegram безлимит',
+  'Email-дайджест еженедельно': 'Email-дайджест еженедельно',
+  'Всё из Reader': 'Всё из Reader',
+  'BOI Whitepaper + методология': 'BOI Whitepaper + методология',
+  'API доступ (100 req/day)': 'API доступ (100 запр./день)',
+  'Кастомные отчёты по странам': 'Кастомные отчёты по странам',
+  'Приоритетные ответы бота': 'Приоритетные ответы бота',
+  'Экспорт данных CSV': 'Экспорт данных CSV',
+  'Без рекламы': 'Без рекламы',
+  'Всё из Pro': 'Всё из Pro',
+  'White-label отчёты': 'White-label отчёты',
+  'API unlimited': 'API без лимитов',
+  'Массовый экспорт данных': 'Массовый экспорт данных',
+  'Кастомный AI-анализ': 'Кастомный AI-анализ',
+  'Выделенная поддержка': 'Выделенная поддержка',
+  'Коммерческая лицензия': 'Коммерческая лицензия',
+  'Single Issue': 'Один Выпуск',
+  'за выпуск': 'за выпуск',
+  "Don't need a subscription? Buy individual analytical issues.": 'Не нужна подписка? Покупайте отдельные аналитические выпуски.',
+  'Each issue includes full country analysis, zone updates, and BOI changes.': 'Каждый выпуск включает полный анализ стран, обновления зон и изменения BOI.',
+  'Купить выпуск': 'Купить выпуск',
+  'Бонус за мерч': 'Бонус за мерч',
+  'Every merch purchase includes free Reader access:': 'Каждая покупка мерча включает бесплатный доступ Reader:',
+  'Стикер Pack': 'Набор стикеров',
+  'Футболка / Mug': 'Футболка / Кружка',
+  'Премиум Bundle': 'Премиум набор',
+  '14 дней Reader': '14 дней Reader',
+  '30 дней Reader': '30 дней Reader',
+  '90 дней Reader': '90 дней Reader',
+  'Смотреть мерч': 'Смотреть мерч',
+  'Частые вопросы': 'Частые вопросы',
+  'Сравнение тарифов': 'Сравнение тарифов',
+  'Content & Publications': 'Контент и публикации',
+  'Data & Visualizations': 'Данные и визуализации',
+  'Bot & API Access': 'Бот и API',
+  'Delivery & Support': 'Доставка и поддержка',
+  'Pricing': 'Тарифы',
+  'Privacy': 'Конфиденциальность',
+  'Terms': 'Условия',
+  'Legal': 'Юридическое',
+};
+
+function toggleLang() {
+  LANG = LANG === 'en' ? 'ru' : 'en';
+  document.getElementById('langBtn').textContent = LANG === 'en' ? 'RU' : 'EN';
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (LANG === 'ru' && I18N[key]) el.textContent = I18N[key];
+    else el.textContent = key;
+  });
+}
+
+// Mark translatable elements on load
+document.addEventListener('DOMContentLoaded', function() {
+  // Add data-i18n to all text elements that match dictionary keys
+  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  var textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+  textNodes.forEach(function(node) {
+    var text = node.textContent.trim();
+    if (I18N[text] && node.parentElement && !node.parentElement.getAttribute('data-i18n')) {
+      node.parentElement.setAttribute('data-i18n', text);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
