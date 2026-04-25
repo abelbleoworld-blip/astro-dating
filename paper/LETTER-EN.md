@@ -3,9 +3,9 @@
 
 ---
 
-**From:** A.A. Dmitriev, Analyst & Researcher
-Russian National Public Library for Science and Technology (RNPLS&T)
-Scientific Secretary Department | Shraiberg's Research Laboratory
+**From:** A.A. Dmitriev, Researcher
+Russian National Public Library for Science and Technology (GPNTB Russia)
+Scientific Secretary Department | Network Scientific Laboratory (NSL) for Digital Transformation and AI, GPNTB Russia
 **Date:** April 18, 2026
 **Subject:** Predictive model for Grand Solar Minimum based on 55,000 years of empirical data — request for independent verification
 
@@ -151,7 +151,7 @@ During a Grand Solar Minimum:
    - Energy grid balancing (less PV + more heating demand)
    - Geopolitical stability
 
-SpaceX lost 38 Starlink satellites to a moderate geomagnetic storm in February 2022. A GSM changes the baseline space environment for decades.
+SpaceX lost 40 of 49 Starlink satellites launched during a moderate geomagnetic storm in February 2022 (increased atmospheric drag). A GSM changes the baseline space environment for decades.
 
 ---
 
@@ -169,7 +169,7 @@ SpaceX lost 38 Starlink satellites to a moderate geomagnetic storm in February 2
 
 - **Code + Data:** github.com/abelbleoworld-blip/astro-dating (CC BY 4.0)
 - **Paper:** arXiv preprint (uploading)
-- **Contact:** astro-dating@fmone.ru
+- **Contact:** a@aadmitrieff.com
 
 All five source datasets are publicly available:
 - IntCal20: intcal.org

@@ -1,3 +1,7 @@
+# Letter to Prof. Usoskin — English version
+
+> Полная версия (русская, +15% содержания): [[LETTER-USOSKIN-RU]]
+
 Subject: Multi-proxy solar activity reconstruction (55 kyr) — request for feedback
 
 Dear Prof. Usoskin,
@@ -32,6 +36,11 @@ Thank you for your time and for your foundational contributions to this field.
 
 Best regards,
 Alexander A. Dmitriev, Ph.D.
-Russian National Public Library for Science and Technology (RNPLS&T)
-Shraiberg's Research Laboratory
+Russian National Public Library for Science and Technology (GPNTB Russia)
+Network Scientific Laboratory (NSL) for Digital Transformation and AI, GPNTB Russia
 Moscow, Russia
+a@aadmitrieff.com
+
+---
+
+*P.S. The full version of this letter is in Russian — the language of Pushkin and Dostoevsky — and contains additional methodology context, a specific question on stochastic triggering, and 16-civilization archaeoastronomy results. See attached.*

@@ -63,7 +63,7 @@ What does this mean for @SpaceX?
 During a solar minimum:
 • Cosmic rays increase 15-30%
 • Satellite electronics get more bit-flips
-• Starlink lost 38 sats to a MODERATE storm in 2022
+• Starlink lost 40 sats to a MODERATE storm in 2022
 
 A Grand Minimum changes the BASELINE for decades.
 ```

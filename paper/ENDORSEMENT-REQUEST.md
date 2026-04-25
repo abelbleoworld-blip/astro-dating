@@ -15,7 +15,7 @@ Dear [Name],
 
 I am writing to request your endorsement for submitting a paper to arXiv in the cs.AI category.
 
-I am Alexander Dmitriev, a researcher at the Russian National Public Library for Science and Technology (RNPLS&T), Shraiberg's Research Laboratory. My ORCID is 0009-0000-6164-8474.
+I am Alexander Dmitriev, a researcher at the Russian National Public Library for Science and Technology (GPNTB Russia), Network Scientific Laboratory (NSL) for Digital Transformation and AI, GPNTB Russia. My ORCID is 0009-0000-6164-8474.
 
 Our paper presents SOL-1 — an AI-driven multi-proxy predictive system for solar activity, combining FFT spectral analysis and Monte Carlo simulation across five independent physical proxies spanning 55,000 years. The system cross-validates periodicities (Gleissberg ~88yr confirmed in 4/4 proxies) and generates a probabilistic forecast of the next Grand Solar Minimum (~2126 CE, P=95%).
 
@@ -31,7 +31,7 @@ Thank you for your time.
 
 Best regards,
 Alexander Dmitriev
-RNPLS&T, Moscow, Russia
+GPNTB Russia, Moscow, Russia
 ORCID: 0009-0000-6164-8474
 
 ---

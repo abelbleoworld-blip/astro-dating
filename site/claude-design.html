@@ -1,0 +1,1047 @@
+<!--
+╔══════════════════════════════════════════════════════════════════════╗
+║  АРХИТЕКТУРА САЙТА aadmitrieff.com — Claude Design                 ║
+╠══════════════════════════════════════════════════════════════════════╣
+║                                                                      ║
+║  Концепция: научная книга на хорошей бумаге                          ║
+║  Автор: Александр Александрович Дмитриев, к.э.н.                     ║
+║  Лаборатория: СНЛ цифровой трансформации и развития ИИ, ГПНТБ России ║
+║  Email: a@aadmitrieff.com | X: @aadmitrief                          ║
+║                                                                      ║
+║  ПАЛИТРА:                                                            ║
+║  ├─ Фон:       #FAF7F2 (тёплый крем)                                ║
+║  ├─ Карточки:  #FFFFFF (белый) + border #E8E0D4                      ║
+║  ├─ Текст:     #1A1A2E (глубокий угольный)                          ║
+║  ├─ Акцент 1:  #D4845A (терракота — ссылки, кнопки)                 ║
+║  ├─ Акцент 2:  #6B8F71 (приглушённый зелёный — успех)               ║
+║  └─ Акцент 3:  #5B7BA0 (спокойный синий — данные)                   ║
+║                                                                      ║
+║  СЕКЦИИ: Nav → Hero → Наука → AI → Индустрия → Инфра →              ║
+║          Материалы → Контакт → Навыки → Поддержка → Footer           ║
+║                                                                      ║
+║  ЗАПРЕЩЕНО: градиенты, glassmorphism, неон, тёмный фон,             ║
+║             blur-эффекты, эмодзи в заголовках                        ║
+║                                                                      ║
+║  ФАЙЛЫ ИЗОБРАЖЕНИЙ: photo.png, photo-full.png,                      ║
+║                     brandspace-preview.jpg, ailib-preview.jpg        ║
+║                                                                      ║
+║  АДАПТИВНОСТЬ: 1080px → 768px → 480px                               ║
+║  ПЕЧАТЬ: @media print — чистый ч/б, без nav и кнопок                ║
+║                                                                      ║
+║  ДИЗАЙНЕРСКИЙ КОНТЕНТ: добавляется автором поверх этой структуры     ║
+╚══════════════════════════════════════════════════════════════════════╝
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Александр А. Дмитриев — Исследователь, ГПНТБ России</title>
+<meta name="description" content="Научный сотрудник ГПНТБ России. Солнечные прогнозы, AI-системы, промышленный дизайн, открытая наука.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ── */
+:root {
+  --bg: #FAF7F2;
+  --bg-warm: #F5F0E8;
+  --surface: #FFFFFF;
+  --border: #E8E0D4;
+  --border-light: #F0EAE0;
+  --text: #1A1A2E;
+  --text-secondary: #2D2D3D;
+  --text-dim: #6B6B7B;
+  --accent: #D4845A;
+  --accent-hover: #C77B4A;
+  --sage: #6B8F71;
+  --sage-light: #E8F0E9;
+  --blue: #5B7BA0;
+  --blue-light: #E8EFF6;
+  --warm-light: #FFF8F0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --max-w: 1080px;
+  --transition: 0.2s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--accent-hover); }
+img { max-width: 100%; display: block; }
+
+/* ── Fade-in on scroll ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Language switcher ── */
+.lang-switch {
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lang-switch a {
+  display: block;
+  width: 32px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.lang-switch a:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Nav ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.nav-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ── Hero ── */
+.hero {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 72px 24px 56px;
+  text-align: center;
+}
+.hero-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin: 0 auto 28px;
+  overflow: hidden;
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.hero h1 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.hero .subtitle {
+  font-size: 16px;
+  color: var(--text-dim);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.hero .org {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.hero .quote {
+  font-size: 15px;
+  color: var(--text-dim);
+  font-style: italic;
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  transition: all var(--transition);
+}
+.badge a { color: inherit; text-decoration: none; }
+.badge:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Sections ── */
+section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+.section-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.section-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all var(--transition);
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+}
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: #D8D0C4;
+}
+.card-accent {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+}
+.card-accent.terracotta { background: var(--accent); }
+.card-accent.sage { background: var(--sage); }
+.card-accent.blue { background: var(--blue); }
+.card-accent.warm { background: #C9956B; }
+
+.card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.card .desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.card .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ── Tags ── */
+.tag {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.tag-sci { background: #F3EBF8; color: #7B5EA7; }
+.tag-ai  { background: #E8F4F8; color: #3D8B99; }
+.tag-web { background: var(--blue-light); color: var(--blue); }
+.tag-hw  { background: #FFF3E0; color: #B8860B; }
+.tag-biz { background: var(--sage-light); color: #4A7A52; }
+.tag-live{ background: #FDEBE8; color: #C25A45; }
+.tag-oss { background: #F0EFED; color: #7A7A7A; }
+
+/* ── Results grid ── */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+.rbox {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 16px;
+  text-align: center;
+  transition: box-shadow var(--transition);
+}
+.rbox:hover { box-shadow: var(--shadow); }
+.rbox .n {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.rbox .l {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* ── Hero card (FMone) ── */
+.hero-card {
+  grid-column: 1 / -1;
+  padding: 0;
+  overflow: hidden;
+}
+.hero-card-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+.hero-card-inner img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.hero-card-body {
+  padding: 28px;
+  flex: 1;
+  min-width: 280px;
+}
+.hero-card-label {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero-card-body h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.hero-card-body .desc {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.hero-card-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--sage);
+  margin-bottom: 14px;
+}
+
+/* ── Downloads ── */
+.download-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.download-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.download-list li:last-child { border-bottom: none; }
+.download-list a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.download-list a:hover { color: var(--accent-hover); }
+.download-list .meta {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ── Contact ── */
+.contact-block {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 2;
+}
+.contact-block strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.contact-block a { color: var(--accent); }
+
+/* ── Skills cloud ── */
+.skills-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.skills-cloud .tag {
+  padding: 7px 16px;
+  font-size: 13px;
+  border-radius: var(--radius-pill);
+}
+.skills-desc {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+.skills-desc p {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+.skills-desc p strong {
+  font-weight: 600;
+}
+.skills-desc p strong.c-accent { color: var(--accent); }
+.skills-desc p strong.c-sage { color: var(--sage); }
+.skills-desc p strong.c-blue { color: var(--blue); }
+.skills-desc p strong.c-warm { color: #B8860B; }
+
+/* ── Support ── */
+.support-card {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.support-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sage), var(--accent), var(--blue));
+}
+.support-card h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.support-card > p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(212, 132, 90, 0.3);
+}
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1.5px solid var(--border);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── Tiers ── */
+.tiers {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+.tier {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  flex: 1;
+  min-width: 180px;
+  max-width: 210px;
+  text-align: left;
+}
+.tier-label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.tier-label.c-accent { color: var(--accent); }
+.tier-label.c-sage { color: var(--sage); }
+.tier-label.c-blue { color: var(--blue); }
+.tier-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ── Footer ── */
+footer {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+}
+footer p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.9;
+}
+footer a { color: var(--accent); }
+footer .closing-quote {
+  font-style: italic;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 28px; }
+  section { padding: 40px 20px; }
+  .grid { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .hero-card-inner img { width: 100%; height: 200px; }
+  .hero-card-body { min-width: auto; }
+  .nav-links { gap: 12px; }
+  .lang-switch { top: 64px; right: 8px; }
+  .lang-switch a { width: 28px; font-size: 12px; }
+  .tiers { flex-direction: column; align-items: center; }
+  .tier { max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 24px; }
+  .badges { flex-direction: column; align-items: center; }
+  .nav-inner { height: auto; padding: 12px 0; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Print ── */
+@media print {
+  nav, .lang-switch, .btn-primary, .btn-secondary { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; }
+  section { padding: 24px 0; }
+  .hero { padding: 24px 0; }
+  .fade-in { opacity: 1 !important; transform: none !important; }
+  a { color: #000; text-decoration: underline; }
+  footer { border-top: 1px solid #ccc; }
+  .support-card { border: 1px solid #ccc; box-shadow: none; }
+  .support-card::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Language switcher -->
+<div class="lang-switch">
+  <a href="index.html" title="Русский">RU</a>
+  <a href="en.html" title="English">EN</a>
+  <a href="zh.html" title="中文">ZH</a>
+  <a href="es.html" title="Espanol">ES</a>
+  <a href="fr.html" title="Francais">FR</a>
+  <a href="de.html" title="Deutsch">DE</a>
+  <a href="ja.html" title="日本語">JA</a>
+  <a href="ar.html" title="العربية">AR</a>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">А. А. Дмитриев</div>
+    <div class="nav-links">
+      <a href="#science">Наука</a>
+      <a href="#ai">AI и ПО</a>
+      <a href="#industry">Индустрия</a>
+      <a href="#infra">Инфраструктура</a>
+      <a href="#downloads">Материалы</a>
+      <a href="#contact">Контакт</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-photo">
+    <img src="photo.png" alt="Александр А. Дмитриев">
+  </div>
+  <h1>Александр А. Дмитриев</h1>
+  <div class="subtitle">к.э.н. / Научный сотрудник / Data Scientist</div>
+  <div class="org">ГПНТБ России -- Сетевая научная лаборатория (СНЛ)</div>
+  <div class="quote">«Хронология -- не вопрос авторитета. Это вопрос вычисления.»</div>
+  <div class="badges">
+    <div class="badge"><a href="https://orcid.org/0009-0000-6164-8474">ORCID 0009-0000-6164-8474</a></div>
+    <div class="badge"><a href="https://doi.org/10.5281/zenodo.19638005">DOI 10.5281/zenodo.19638005</a></div>
+    <div class="badge"><a href="https://github.com/abelbleoworld-blip/astro-dating">GitHub</a></div>
+    <div class="badge"><a href="https://x.com/aadmitrief">X @aadmitrief</a></div>
+  </div>
+</header>
+
+<!-- ═══════ НАУКА ═══════ -->
+<section id="science">
+  <div class="fade-in">
+    <div class="section-divider"></div>
+    <h2>Наука и исследования</h2>
+    <div class="section-sub">Открытые данные, воспроизводимые результаты, CC BY 4.0</div>
+  </div>
+
+  <div class="grid">
+    <a href="https://doi.org/10.5281/zenodo.19638005" class="card fade-in">
+      <div class="card-accent terracotta"></div>
+      <h3>SOL-1: Прогноз Grand Solar Minimum</h3>
+      <div class="desc">5 прокси за 55 000 лет, 6 солнечных циклов, Monte Carlo 500 прогонов. P(GSM) = 95%. Цикл Глайссберга 88 лет подтверждён 4/4.</div>
+      <div class="tags"><span class="tag tag-sci">FFT</span><span class="tag tag-ai">Monte Carlo</span><span class="tag tag-oss">Open Source</span><span class="tag tag-live">DOI</span></div>
+    </a>
+
+    <div class="card fade-in">
+      <div class="card-accent sage"></div>
+      <h3>astro-dating: Хронозвёзды</h3>
+      <div class="desc">Астрономическая верификация хронологии. 16 якорей, 9 цивилизаций, 3300 лет. Mesh peer-review между 3 машинами.</div>
+      <div class="tags"><span class="tag tag-sci">Астрохронология</span><span class="tag tag-ai">Python</span><span class="tag tag-oss">Open</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent blue"></div>
+      <h3>CIV-1: Кривая цивилизации</h3>
+      <div class="desc">5000 лет астрономического знания: от Стоунхенджа до Gaia. Piecewise exponential: 1230 -> 34 -> 2 года удвоения.</div>
+      <div class="tags"><span class="tag tag-sci">Информатика</span><span class="tag tag-ai">Data Analysis</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent warm"></div>
+      <h3>AI Economics</h3>
+      <div class="desc">Dynamic Interdependency System. Экономическое моделирование взаимозависимостей с AI-оптимизацией.</div>
+      <div class="tags"><span class="tag tag-sci">Экономика</span><span class="tag tag-ai">Моделирование</span></div>
+    </div>
+  </div>
+
+  <div class="result-grid fade-in">
+    <div class="rbox"><div class="n" style="color:var(--accent)">~2126</div><div class="l">Медиана GSM</div></div>
+    <div class="rbox"><div class="n" style="color:var(--sage)">95.4%</div><div class="l">P(Deep+Grand)</div></div>
+    <div class="rbox"><div class="n" style="color:var(--blue)">4/4</div><div class="l">Глайссберг</div></div>
+    <div class="rbox"><div class="n" style="color:var(--accent)">r=0.47</div><div class="l">Be10 x C14</div></div>
+    <div class="rbox"><div class="n" style="color:var(--sage)">55 000</div><div class="l">Лет данных</div></div>
+    <div class="rbox"><div class="n" style="color:#C25A45">0.0%</div><div class="l">P(ничего)</div></div>
+  </div>
+</section>
+
+<!-- ═══════ AI И ПО ═══════ -->
+<section id="ai">
+  <div class="fade-in">
+    <div class="section-divider"></div>
+    <h2>AI и программное обеспечение</h2>
+    <div class="section-sub">AI-продукты, автоматизация, открытый код</div>
+  </div>
+
+  <div class="grid">
+    <div class="card fade-in">
+      <div class="card-accent terracotta"></div>
+      <h3>Abel AIOS</h3>
+      <div class="desc">Персональная AI операционная система. Единый AI-слой поверх всех устройств: часы, телефон, ноутбук, очки. Swift/SwiftUI + Node.js/Fastify + Claude API.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-web">SwiftUI</span><span class="tag tag-web">Fastify</span><span class="tag tag-live">Production</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent sage"></div>
+      <h3>AIpreza</h3>
+      <div class="desc">AI-генератор презентаций. Тема -> исследование -> слайды -> PPTX + подкаст. Edge-TTS, Claude, маржа x25.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-biz">SaaS</span><span class="tag tag-web">Node.js</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent blue"></div>
+      <h3>NanoClaw</h3>
+      <div class="desc">AI-агент в Telegram (@Abe777lebot). Grammy + Claude + better-sqlite3. Контекстные диалоги, поиск, мультимодальность.</div>
+      <div class="tags"><span class="tag tag-ai">AI Agent</span><span class="tag tag-web">Telegram</span><span class="tag tag-live">Live</span></div>
+    </div>
+
+    <a href="https://ailib.fmone.ru" class="card fade-in">
+      <div class="card-accent terracotta"></div>
+      <h3>AILib -- ИИБиб</h3>
+      <div class="desc">B2B платформа знаний для юрфирм. RAG-поиск, Telegram-бот, Bitrix24/amoCRM, AI-оркестратор. Тарифы 9.9k--49.9k р./мес.</div>
+      <div class="tags"><span class="tag tag-ai">RAG</span><span class="tag tag-biz">B2B</span><span class="tag tag-web">SaaS</span><span class="tag tag-live">ailib.fmone.ru</span></div>
+    </a>
+
+    <div class="card fade-in">
+      <div class="card-accent warm"></div>
+      <h3>Claude Supervisor</h3>
+      <div class="desc">Web-дашборд мониторинга Claude Code сессий. Liquid Glass UI, click-to-zoom, auto-approve, kill/pause.</div>
+      <div class="tags"><span class="tag tag-ai">DevTools</span><span class="tag tag-web">Web</span><span class="tag tag-oss">Open</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent sage"></div>
+      <h3>A-Router 2.0</h3>
+      <div class="desc">Fastify-оркестратор всех проектов. Health-check, AI-вердикт, Rules Engine, Task Queue, Telegram-бот @abelworldbot.</div>
+      <div class="tags"><span class="tag tag-ai">Orchestrator</span><span class="tag tag-web">Fastify</span><span class="tag tag-live">24/7</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent blue"></div>
+      <h3>Folder AI</h3>
+      <div class="desc">AI-органайзер файлов для macOS. Electron + Claude API. Spotlight-style поиск, smart analysis, universal build.</div>
+      <div class="tags"><span class="tag tag-ai">AI</span><span class="tag tag-web">Electron</span><span class="tag tag-oss">v1.1.0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ИНДУСТРИЯ ═══════ -->
+<section id="industry">
+  <div class="fade-in">
+    <div class="section-divider"></div>
+    <h2>Индустрия и дизайн</h2>
+    <div class="section-sub">Продуктовый дизайн, инженерия, производство</div>
+  </div>
+
+  <div class="grid">
+    <a href="https://www.fmone.ru" class="card hero-card fade-in">
+      <div class="card-accent terracotta"></div>
+      <div class="hero-card-inner">
+        <img src="photo-full.png" alt="Кинетический стол FMone">
+        <div class="hero-card-body">
+          <div class="hero-card-label">Собственное производство</div>
+          <h3>FMone -- кинетические столы</h3>
+          <div class="desc">Premium мебель с механизмом трансформации. Стол поднимается одним движением -- из журнального в обеденный. 10 моделей: UFO, UMO, CUBE. Металл, стекло, LED-подсветка.</div>
+          <div class="hero-card-price">от 190 000 руб.</div>
+          <div class="tags">
+            <span class="tag tag-hw">10 моделей</span>
+            <span class="tag tag-biz">Доставка РФ</span>
+            <span class="tag tag-live">fmone.ru</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.brand-space.ru" class="card fade-in">
+      <div class="card-accent sage"></div>
+      <h3>Brand Space -- B2B столы</h3>
+      <div class="desc">Кинетические столы для офисов, шоурумов, ресторанов. Индивидуальный дизайн, корпоративные объёмы. ME Market: FerraMarin / Zahra (Dubai).</div>
+      <div class="tags"><span class="tag tag-biz">B2B</span><span class="tag tag-live">brand-space.ru</span></div>
+    </a>
+
+    <div class="card fade-in">
+      <div class="card-accent blue"></div>
+      <h3>AEC-40 Arctic Explorer Class</h3>
+      <div class="desc">Семейство яхт: AEC-15 / AEC-30 / AEC-40. Головной корпус «Абель». Двухтрек: РФ + экспорт. Tier-1 сервис.</div>
+      <div class="tags"><span class="tag tag-hw">Naval Architecture</span><span class="tag tag-biz">Startup</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent warm"></div>
+      <h3>SolidWorks FMone</h3>
+      <div class="desc">3D-моделирование кинетических столов. Инженерная документация, чертежи, подготовка к производству.</div>
+      <div class="tags"><span class="tag tag-hw">CAD</span><span class="tag tag-hw">Engineering</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent terracotta"></div>
+      <h3>GCodeViewer</h3>
+      <div class="desc">Визуализатор G-code для CNC и 3D-принтеров. Просмотр траекторий обработки в реальном времени.</div>
+      <div class="tags"><span class="tag tag-hw">CNC</span><span class="tag tag-web">Viewer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ИНФРАСТРУКТУРА ═══════ -->
+<section id="infra">
+  <div class="fade-in">
+    <div class="section-divider"></div>
+    <h2>Инфраструктура</h2>
+    <div class="section-sub">Серверы, сети, DevOps, мониторинг</div>
+  </div>
+
+  <div class="grid">
+    <div class="card fade-in">
+      <div class="card-accent terracotta"></div>
+      <h3>Abel HQ</h3>
+      <div class="desc">Центр управления на VPS. Node.js + Fastify + SQLite + Ollama (Qwen2.5). Мониторинг 4 серверов, 3 сайтов, 10 проектов.</div>
+      <div class="tags"><span class="tag tag-web">Monitoring</span><span class="tag tag-ai">Ollama</span><span class="tag tag-live">VPS</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent sage"></div>
+      <h3>WireGuard Mesh Network</h3>
+      <div class="desc">Единая сеть 10.10.0.x: MacBook, Beelink, iMac, 4 VPS, iPhone, Steam Deck. Shared git repo через bare-репозиторий.</div>
+      <div class="tags"><span class="tag tag-web">VPN</span><span class="tag tag-hw">Mesh</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent blue"></div>
+      <h3>AMP Agent</h3>
+      <div class="desc">Mesh-агент для координации между машинами. LaunchAgent на каждом узле, связь с хабом на Abel HQ.</div>
+      <div class="tags"><span class="tag tag-web">Mesh</span><span class="tag tag-ai">Agent</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent warm"></div>
+      <h3>Dashboard</h3>
+      <div class="desc">Дашборд управления проектами. AI-анализ Claude Sonnet каждые 4 часа. Автофикс, agent logs.</div>
+      <div class="tags"><span class="tag tag-web">Dashboard</span><span class="tag tag-ai">Analytics</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent terracotta"></div>
+      <h3>4 VPS (Timeweb Cloud)</h3>
+      <div class="desc">FMone, Brand Space, Media-сервер, Abel HQ. nginx + pm2 + SSL + systemd. Автобэкап, мониторинг.</div>
+      <div class="tags"><span class="tag tag-web">DevOps</span><span class="tag tag-live">Production</span></div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-accent sage"></div>
+      <h3>Beelink AZW SER9</h3>
+      <div class="desc">24/7 worker: git-зеркала, CI, сборки, бэкапы. Универсальный вычислительный узел системы.</div>
+      <div class="tags"><span class="tag tag-hw">Hardware</span><span class="tag tag-web">Worker</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ МАТЕРИАЛЫ ═══════ -->
+<section id="downloads">
+  <div class="fade-in">
+    <div class="section-divider"></div>
+    <h2>Материалы</h2>
+    <div class="section-sub">Скачивай, проверяй, цитируй. Лицензия CC BY 4.0.</div>
+  </div>
+
+  <div class="fade-in" style="max-width:640px">
+    <ul class="download-list">
+      <li><a href="https://doi.org/10.5281/zenodo.19638005">SOL-1 полный пакет (Zenodo DOI)</a><span class="meta">LaTeX + графики + данные</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Letter-EN.pdf">Техническое письмо EN</a><span class="meta">PDF</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Letter-RU.pdf">Техническое письмо RU</a><span class="meta">PDF</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/WHY-IT-MATTERS.pdf">Простым языком</a><span class="meta">PDF</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Presentation.pptx">Презентация 12 слайдов</a><span class="meta">PPTX</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Lectures.pdf">8 лекций PILOT++</a><span class="meta">PDF</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating/blob/master/paper/SOL1-Letter-RU.mp3">Аудио письмо</a><span class="meta">MP3, 11:49</span></li>
+      <li><a href="https://github.com/abelbleoworld-blip/astro-dating">GitHub: весь код</a><span class="meta">Python, Node.js</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════ КОНТАКТ ═══════ -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-divider"></div>
+    <h2>Контакт</h2>
+  </div>
+
+  <div class="contact-block fade-in" style="max-width:480px">
+    <strong>Александр Александрович Дмитриев</strong>, к.э.н.<br>
+    ГПНТБ России, Сетевая научная лаборатория цифровой трансформации и развития ИИ (СНЛ)<br><br>
+    ORCID: <a href="https://orcid.org/0009-0000-6164-8474">0009-0000-6164-8474</a><br>
+    DOI: <a href="https://doi.org/10.5281/zenodo.19638005">10.5281/zenodo.19638005</a><br>
+    GitHub: <a href="https://github.com/abelbleoworld-blip">abelbleoworld-blip</a><br>
+    X: <a href="https://x.com/aadmitrief">@aadmitrief</a><br>
+    Email: <a href="mailto:a@aadmitrieff.com">a@aadmitrieff.com</a><br><br>
+    Сайты: <a href="https://www.fmone.ru">fmone.ru</a> &middot; <a href="https://www.brand-space.ru">brand-space.ru</a> &middot; <a href="https://ailib.fmone.ru">ailib.fmone.ru</a>
+  </div>
+</section>
+
+<!-- ═══════ НАВЫКИ ═══════ -->
+<section id="skills" style="text-align:center">
+  <div class="fade-in">
+    <div class="section-divider" style="margin-left:auto;margin-right:auto"></div>
+    <h2>Чем могу быть полезен</h2>
+    <div class="section-sub">Ищу сотрудничество, peer review, совместные проекты</div>
+  </div>
+
+  <div class="skills-cloud fade-in">
+    <span class="tag tag-ai">AI Prediction</span>
+    <span class="tag tag-sci">Data Science</span>
+    <span class="tag tag-sci">Solar Physics</span>
+    <span class="tag tag-ai">Monte Carlo</span>
+    <span class="tag tag-web">Full Stack</span>
+    <span class="tag tag-web">Node.js</span>
+    <span class="tag tag-web">Python</span>
+    <span class="tag tag-web">Swift</span>
+    <span class="tag tag-hw">IoT</span>
+    <span class="tag tag-hw">CAD</span>
+    <span class="tag tag-biz">B2B SaaS</span>
+    <span class="tag tag-biz">Product Design</span>
+    <span class="tag tag-ai">Claude API</span>
+    <span class="tag tag-ai">LLM Agents</span>
+    <span class="tag tag-sci">Open Science</span>
+    <span class="tag tag-sci">Climate Adaptation</span>
+    <span class="tag tag-hw">Naval Architecture</span>
+    <span class="tag tag-biz">Monetization</span>
+    <span class="tag tag-web">DevOps</span>
+    <span class="tag tag-ai">FFT Spectral</span>
+  </div>
+
+  <div class="skills-desc fade-in">
+    <p><strong class="c-sage">Peer Review:</strong> ищу независимую проверку SOL-1 прогноза. Код открыт, данные публичны.</p>
+    <p><strong class="c-accent">AI-продукты:</strong> проектирую и строю AI-системы (агенты, RAG, предиктивные пайплайны) под ключ.</p>
+    <p><strong class="c-blue">Data Analysis:</strong> FFT, wavelet, Monte Carlo, time series -- от палеоклимата до финансов.</p>
+    <p><strong class="c-warm">Промышленный дизайн:</strong> от 3D-модели до серийного производства (кинетические столы, яхты).</p>
+    <p><strong class="c-accent">Инфраструктура:</strong> 4 VPS, mesh-сеть, 10+ проектов в production, CI/CD, мониторинг.</p>
+  </div>
+</section>
+
+<!-- ═══════ ПОДДЕРЖКА ═══════ -->
+<section style="padding:40px 24px 56px">
+  <div class="support-card fade-in">
+    <h2>Поддержите науку напрямую</h2>
+    <p>Покупая кинетический стол FMone -- вы финансируете независимые исследования SOL-1 и открытую науку. Каждый стол = вклад в прогноз, который может спасти урожаи.</p>
+    <div class="btn-row">
+      <a href="https://www.fmone.ru" class="btn-primary">Каталог столов</a>
+      <a href="https://doi.org/10.5281/zenodo.19638005" class="btn-secondary">Читать исследование</a>
+    </div>
+
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
+      <div style="font-size:13px;color:var(--text-dim);margin-bottom:14px">Или поддержите исследование напрямую:</div>
+      <div class="btn-row">
+        <a href="https://ko-fi.com/aadmitriev" class="btn-secondary">Ko-fi</a>
+        <a href="https://www.buymeacoffee.com/aadmitriev" class="btn-secondary">Buy Me a Coffee</a>
+        <a href="https://www.patreon.com/aadmitriev" class="btn-secondary">Patreon</a>
+        <a href="https://github.com/sponsors/abelbleoworld-blip" class="btn-secondary">GitHub Sponsors</a>
+        <a href="https://paypal.me/aadmitriev" class="btn-secondary">PayPal</a>
+      </div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:12px">100% средств идёт на открытые исследования SOL-1 и серверную инфраструктуру</div>
+    </div>
+
+    <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border)">
+      <div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:12px">Бонусы для донатеров</div>
+      <div class="tiers">
+        <div class="tier">
+          <div class="tier-label c-accent">от $5</div>
+          <div class="tier-desc">Книга EPUB + PDF (RU/EN) + благодарность на сайте</div>
+        </div>
+        <div class="tier">
+          <div class="tier-label c-sage">от $25</div>
+          <div class="tier-desc">Локальный прогноз для вашего региона + персональный отчёт</div>
+        </div>
+        <div class="tier">
+          <div class="tier-label c-blue">от $100</div>
+          <div class="tier-desc">Консультация 1ч + адаптация прогноза под вашу отрасль (агро, энерго, спутники)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>
+    &copy; 2026 Александр А. Дмитриев &middot; <a href="https://doi.org/10.5281/zenodo.19638005">DOI 10.5281/zenodo.19638005</a> &middot; CC BY 4.0
+  </p>
+  <p class="closing-quote">«Мы не просим верить. Мы просим проверить.»</p>
+</footer>
+
+<!-- Scroll fade-in -->
+<script>
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+
+</body>
+</html>

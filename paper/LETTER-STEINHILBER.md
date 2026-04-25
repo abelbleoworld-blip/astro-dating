@@ -1,3 +1,7 @@
+# Letter to Dr. Steinhilber — English version
+
+> Полная версия (русская, +15% содержания): [[LETTER-STEINHILBER-RU]]
+
 Subject: Extension of your 2013 solar activity forecast using 5-proxy pipeline
 
 Dear Dr. Steinhilber,
@@ -27,5 +31,10 @@ Thank you for the foundational work that made this extension possible.
 
 Best regards,
 Alexander A. Dmitriev, Ph.D.
-RNPLS&T, Moscow, Russia
+GPNTB Russia, Moscow, Russia
 ORCID: 0009-0000-6164-8474
+a@aadmitrieff.com
+
+---
+
+*P.S. The full version of this letter is in Russian — the language of Pushkin and Dostoevsky — and contains additional results (GSM validation table, MAU-1 verification matrix, 16-civilization archaeoastronomy context) not included in this English summary. See attached.*
