@@ -1,0 +1,35 @@
+[
+  {
+    "id": "usoskin",
+    "to": "ilya.usoskin@oulu.fi",
+    "name": "Prof. Ilya G. Usoskin",
+    "subject": "SOL-1: 5-proxy reconstruction of solar activity (55 kyr) — request for review",
+    "cover_md": "../COVER-USOSKIN-EN.md",
+    "memo_link": "https://aadmitrieff.com/research/sol1-summary-en.html",
+    "language": "en",
+    "verified": true,
+    "verified_source": "OUTREACH-PLAN-v2.md"
+  },
+  {
+    "id": "steinhilber",
+    "to": "friedhelm.steinhilber@eawag.ch",
+    "name": "Dr. Friedhelm Steinhilber",
+    "subject": "SOL-1: extension of Steinhilber & Beer (2013) — request for review",
+    "cover_md": "../COVER-STEINHILBER-EN.md",
+    "memo_link": "https://aadmitrieff.com/research/sol1-summary-en.html",
+    "language": "en",
+    "verified": false,
+    "verified_source": "needs verification — current institution unclear (was Eawag, may have moved to ETH or elsewhere)"
+  },
+  {
+    "id": "dambis",
+    "to": "dambis@sai.msu.ru",
+    "name": "проф. А. К. Дамбис",
+    "subject": "SOL-1: обобщение метода Дамбис-Ефремов на полный каталог Альмагеста — мнение и endorsement (CEQSPB)",
+    "cover_md": "../COVER-DAMBIS-RU.md",
+    "memo_link": "https://aadmitrieff.com/research/sol1-summary-ru.html",
+    "language": "ru",
+    "verified": false,
+    "verified_source": "domain sai.msu.ru is correct (ГАИШ МГУ); typical email format <surname>@sai.msu.ru — confirm in MSU/SAI staff page"
+  }
+]

@@ -454,7 +454,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 0 28px }
           <li><span class="check">&#10003;</span> Email-дайджест еженедельно</li>
           <li><span class="x-mark">&#10005;</span> <span style="opacity:.5">API доступ</span></li>
         </ul>
-        <a href="#checkout" class="btn-plan">Подписаться</a>
+        <a href="#" onclick="checkout("reader");return false" class="btn-plan">Подписаться</a>
       </div>
 
       <!-- PRO -->
@@ -475,7 +475,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 0 28px }
           <li><span class="check">&#10003;</span> Экспорт данных CSV</li>
           <li><span class="check">&#10003;</span> Без рекламы</li>
         </ul>
-        <a href="#checkout" class="btn-plan primary">Подписаться</a>
+        <a href="#" onclick="checkout("pro");return false" class="btn-plan primary">Подписаться</a>
       </div>
 
       <!-- INSTITUTIONAL -->
@@ -495,7 +495,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 0 28px }
           <li><span class="check">&#10003;</span> Выделенная поддержка</li>
           <li><span class="check">&#10003;</span> Коммерческая лицензия</li>
         </ul>
-        <a href="#checkout" class="btn-plan purple">Связаться</a>
+        <a href="#" onclick="checkout("institutional");return false" class="btn-plan purple">Связаться</a>
       </div>
 
     </div>
@@ -702,7 +702,7 @@ footer { border-top: 1px solid var(--border); padding: 36px 0 28px }
       <div>
         <h3>Покупка одного выпуска</h3>
         <p>Не готовы к подписке? Купите любой еженедельный аналитический выпуск WorldRank. Полный контент, полные данные, без обязательств. Доступ к выпуску 30 дней после покупки.</p>
-        <a href="#checkout" class="btn-single">Купить выпуск</a>
+        <a href="#" onclick="checkout("single");return false" class="btn-single">Купить выпуск</a>
       </div>
       <div>
         <div class="price-tag">
@@ -928,6 +928,60 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     }
   });
 });
+
+// ═══ YOOKASSA CHECKOUT ═══
+var API_BASE = 'https://aadmitrieff.com/wr-api';
+
+function checkout(tier) {
+  var email = prompt('Введите ваш email для подписки / Enter your email:');
+  if (!email || email.indexOf('@') === -1) return;
+
+  var btn = event.target;
+  var origText = btn.textContent;
+  btn.textContent = 'Создаём платёж...';
+  btn.style.opacity = '0.6';
+
+  fetch(API_BASE + '/api/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tier: tier, email: email })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Ошибка: ' + (data.error || 'Попробуйте позже'));
+      btn.textContent = origText;
+      btn.style.opacity = '1';
+    }
+  })
+  .catch(function(e) {
+    alert('Ошибка соединения: ' + e.message);
+    btn.textContent = origText;
+    btn.style.opacity = '1';
+  });
+}
+
+// Check success/fail from redirect
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    var tier = params.get('tier') || 'подписка';
+    var banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#0d3320;color:#34d399;padding:16px;text-align:center;font-weight:600;z-index:9999;font-size:15px;border-bottom:2px solid #166534';
+    banner.innerHTML = 'Оплата прошла успешно! Тариф ' + tier.toUpperCase() + ' активирован. Проверьте email. <button onclick="this.parentElement.remove()" style="background:none;border:none;color:#86efac;cursor:pointer;margin-left:16px;font-size:18px">&times;</button>';
+    document.body.prepend(banner);
+    history.replaceState({}, '', 'pricing.html');
+  }
+  if (params.get('fail') === '1') {
+    var banner2 = document.createElement('div');
+    banner2.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#2a1414;color:#fca5a5;padding:16px;text-align:center;font-weight:600;z-index:9999;font-size:15px;border-bottom:2px solid #991b1b';
+    banner2.innerHTML = 'Оплата не прошла. Попробуйте ещё раз или выберите другой способ оплаты. <button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fca5a5;cursor:pointer;margin-left:16px;font-size:18px">&times;</button>';
+    document.body.prepend(banner2);
+    history.replaceState({}, '', 'pricing.html');
+  }
+})();
 
 // ═══ I18N RU/EN ═══
 var LANG = 'en';

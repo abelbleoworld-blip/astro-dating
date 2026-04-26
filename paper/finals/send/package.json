@@ -1,0 +1,15 @@
+{
+  "name": "sol1-sender",
+  "version": "0.1.0",
+  "description": "DRY-RUN-by-default email sender for SOL-1 cover letters",
+  "type": "module",
+  "main": "send.js",
+  "scripts": {
+    "dry-run": "node send.js --dry-run",
+    "send": "node send.js"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}

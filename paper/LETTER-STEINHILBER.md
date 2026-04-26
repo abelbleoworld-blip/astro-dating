@@ -1,4 +1,4 @@
-# Letter to Dr. Steinhilber — English version
+hs# Letter to Dr. Steinhilber — English version
 
 > Полная версия (русская, +15% содержания): [[LETTER-STEINHILBER-RU]]
 

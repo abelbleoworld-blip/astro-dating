@@ -5,3 +5,12 @@ __pycache__/
 *.gz
 venv/
 .env
+audiobook/mastered/Chronostars-Audiobook-Full.mp3
+
+# Letters send/ — node_modules
+paper/finals/send/node_modules/
+paper/finals/send/package-lock.json
+
+# Recipients with personal data
+paper/finals/send/recipients.json
+
